@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cxpl1jlccv7pr"]
+
+[sub_resource type="Gradient" id="Gradient_2b72u"]
+offsets = PackedFloat32Array(0, 0.6676301, 1)
+colors = PackedColorArray(0.8638137, 0.86381376, 0.8638137, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b37e2"]
+gradient = SubResource("Gradient_2b72u")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2b72u"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_b37e2")
+disable_receive_shadows = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_b37e2"]
+material = SubResource("StandardMaterial3D_2b72u")
+size = Vector2(0.15, 0.15)
+
+[node name="marker" type="Node3D" unique_id=12986420]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1356565519]
+mesh = SubResource("QuadMesh_b37e2")

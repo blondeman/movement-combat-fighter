@@ -20,6 +20,18 @@ size = Vector3(3, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qgarv"]
 size = Vector3(3, 3, 3)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6ulkd"]
+sky_top_color = Color(0.33135566, 0.46108645, 0.6778868, 1)
+sky_curve = 0.01237024
+ground_curve = 0.005743467
+
+[sub_resource type="Sky" id="Sky_fn2sa"]
+sky_material = SubResource("ProceduralSkyMaterial_6ulkd")
+
+[sub_resource type="Environment" id="Environment_57l66"]
+background_mode = 2
+sky = SubResource("Sky_fn2sa")
+
 [node name="map" type="Node3D" unique_id=1204885823]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1614982453]
@@ -51,3 +63,10 @@ mesh = SubResource("BoxMesh_t8dge")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D" unique_id=790542700]
 shape = SubResource("BoxShape3D_qgarv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1991686835]
+transform = Transform3D(0.59726125, 0.5753763, -0.5587675, 0, 0.69667697, 0.717385, 0.8020467, -0.42846626, 0.41609815, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=511241859]
+environment = SubResource("Environment_57l66")

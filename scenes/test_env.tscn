@@ -2,9 +2,36 @@
 
 [ext_resource type="PackedScene" uid="uid://chin4pqwih5k2" path="res://scenes/test_map.tscn" id="1_pb8ym"]
 [ext_resource type="PackedScene" uid="uid://bjlvvldfyusmf" path="res://scenes/player.tscn" id="2_kyn1l"]
+[ext_resource type="PackedScene" uid="uid://cchyawv2tafhk" path="res://scenes/target.tscn" id="4_wpndf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_po6i2"]
 
 [node name="test env" type="Node3D" unique_id=598394550]
 
 [node name="map" parent="." unique_id=1204885823 instance=ExtResource("1_pb8ym")]
 
 [node name="player" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1192970082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.79417, 3.3043282, -3.9007523)
+mesh = SubResource("SphereMesh_po6i2")
+
+[node name="target" parent="MeshInstance3D2" unique_id=90836808 instance=ExtResource("4_wpndf")]
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1391381837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1688647, 1.0215175, 1.5756073)
+mesh = SubResource("SphereMesh_po6i2")
+
+[node name="target" parent="MeshInstance3D5" unique_id=1733175098 instance=ExtResource("4_wpndf")]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1731639549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1434593, 5.7030487, 3.0514133)
+mesh = SubResource("SphereMesh_po6i2")
+
+[node name="target" parent="MeshInstance3D3" unique_id=1129936986 instance=ExtResource("4_wpndf")]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1375279965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.865154, 6.1193695, -2.833789)
+mesh = SubResource("SphereMesh_po6i2")
+
+[node name="target" parent="MeshInstance3D4" unique_id=1763937560 instance=ExtResource("4_wpndf")]
