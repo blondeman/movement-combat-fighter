@@ -26,7 +26,7 @@ func best_input_that_can_be_paid(input : InputPackage) -> String:
 	for action in input.actions:
 		if state_machine.states[action] == self:
 			return "okay"
-		else:
+		if state_machine.states.has(action):
 			return action
 	return "error"
 

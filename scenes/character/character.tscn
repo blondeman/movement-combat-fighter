@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d0rm7om2v2vf" path="res://states/run.tscn" id="6_q52vl"]
 [ext_resource type="PackedScene" uid="uid://7863bectfee0" path="res://states/jump.tscn" id="7_l884r"]
 [ext_resource type="PackedScene" uid="uid://blnbleuuyy58c" path="res://states/jump_dash.tscn" id="8_bblvu"]
+[ext_resource type="PackedScene" uid="uid://brfsc5uny6yqf" path="res://states/slide.tscn" id="10_l884r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
 
@@ -44,3 +45,5 @@ character = NodePath("..")
 [node name="jump" parent="locomotion" unique_id=1644593060 instance=ExtResource("7_l884r")]
 
 [node name="jump_dash" parent="locomotion" unique_id=104782609 instance=ExtResource("8_bblvu")]
+
+[node name="slide" parent="locomotion" unique_id=498822131 instance=ExtResource("10_l884r")]

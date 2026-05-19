@@ -6,9 +6,9 @@ func update(delta: float, input: InputPackage):
 
 
 func default_lifecycle(input : InputPackage):
-	if character.is_on_floor():
+	if character.is_on_floor_or_coyote():
 		return best_input_that_can_be_paid(input)
 	else:
-		if input.actions.has("dash"):
+		if input.actions.has("dash") and character.dash_cooldown_remaining <= 0:
 			return "dash"
 		return "okay"
