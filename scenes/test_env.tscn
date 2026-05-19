@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://chin4pqwih5k2" path="res://scenes/test_map.tscn" id="1_pb8ym"]
 [ext_resource type="PackedScene" uid="uid://bjlvvldfyusmf" path="res://scenes/character/player/player.tscn" id="2_kyn1l"]
-[ext_resource type="PackedScene" uid="uid://70ly63n0ywvt" path="res://scenes/character/enemy/test_enemy.tscn" id="4_lfx8k"]
 [ext_resource type="PackedScene" uid="uid://cchyawv2tafhk" path="res://scenes/character/target.tscn" id="4_wpndf"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_po6i2"]
@@ -35,13 +34,4 @@ mesh = SubResource("SphereMesh_po6i2")
 
 [node name="target" parent="MeshInstance3D4" unique_id=1763937560 instance=ExtResource("4_wpndf")]
 
-[node name="character" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]
-
-[node name="test_enemy" parent="." unique_id=1764360142 instance=ExtResource("4_lfx8k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.840498, 0, 7.6184044)
-
-[node name="test_enemy2" parent="." unique_id=2131534544 instance=ExtResource("4_lfx8k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.752036, 0, 1.4390154)
-
-[node name="test_enemy3" parent="." unique_id=605805038 instance=ExtResource("4_lfx8k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.310982, -1.9073486e-06, -7.2181864)
+[node name="player" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]

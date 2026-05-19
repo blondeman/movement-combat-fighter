@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d0rm7om2v2vf"]
+
+[ext_resource type="Script" uid="uid://dcysxmq0tapn6" path="res://states/Run.gd" id="1_pyb00"]
+
+[node name="run" type="Node" unique_id=2083203723]
+script = ExtResource("1_pyb00")
+state_name = "run"
+priority = 2
