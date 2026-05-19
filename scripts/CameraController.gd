@@ -14,9 +14,12 @@ var _target_camera_rotation: Vector3
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	top_level = true
 
 
 func _process(delta: float) -> void:
+	global_position = get_parent().global_position
+	
 	if !camera:
 		return
 	
