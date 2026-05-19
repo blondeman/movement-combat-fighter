@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://beshmq74cso23"]
+
+[ext_resource type="Script" uid="uid://ca2i1pak77ip2" path="res://scripts/CharacterEntity.gd" id="1_ntlox"]
+[ext_resource type="Material" uid="uid://bop21rijavshp" path="res://materials/toon_blue.tres" id="2_unmdi"]
+[ext_resource type="PackedScene" uid="uid://dyjik25g3y33i" path="res://scenes/character/hit_detect.tscn" id="3_my7n2"]
+[ext_resource type="PackedScene" uid="uid://da6tsuhccpd1i" path="res://scenes/character/health.tscn" id="4_dp8ca"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
+
+[node name="character" type="CharacterBody3D" unique_id=1758554578]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_ntlox")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1468529141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_u8vuu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2024260194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = ExtResource("2_unmdi")
+mesh = SubResource("SphereMesh_3vyb7")
+
+[node name="hit_detect" parent="." unique_id=1062837414 instance=ExtResource("3_my7n2")]
+
+[node name="health" parent="." unique_id=362310195 instance=ExtResource("4_dp8ca")]

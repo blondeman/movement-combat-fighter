@@ -3,10 +3,10 @@
 [ext_resource type="Material" uid="uid://cjy6ko6iek64e" path="res://materials/toon_dark_gray.tres" id="1_6ulkd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_eflb2"]
-size = Vector2(30, 30)
+size = Vector2(50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4qc02"]
-size = Vector3(30, 1, 30)
+size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4wuf8"]
 size = Vector3(5, 5, 1)
@@ -62,6 +62,36 @@ mesh = SubResource("BoxMesh_t8dge")
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3" unique_id=187824764]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D" unique_id=790542700]
+shape = SubResource("BoxShape3D_qgarv")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=178710114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.258053, -0.84489584, -11.974731)
+material_override = ExtResource("1_6ulkd")
+mesh = SubResource("BoxMesh_t8dge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4" unique_id=2077549356]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D" unique_id=1206020503]
+shape = SubResource("BoxShape3D_qgarv")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1008815678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.863589, -0.24325228, -12.640994)
+material_override = ExtResource("1_6ulkd")
+mesh = SubResource("BoxMesh_t8dge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5" unique_id=60767034]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D" unique_id=366001507]
+shape = SubResource("BoxShape3D_qgarv")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=897868265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.394517, 0.23672819, -14.252869)
+material_override = ExtResource("1_6ulkd")
+mesh = SubResource("BoxMesh_t8dge")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D6" unique_id=197959944]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D6/StaticBody3D" unique_id=116021829]
 shape = SubResource("BoxShape3D_qgarv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1991686835]

@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bg1f33tyvub8d"]
 
-[ext_resource type="Script" uid="uid://q35mvb4mmshk" path="res://scripts/CameraController.gd" id="1_cvpoc"]
-[ext_resource type="PackedScene" uid="uid://cxpl1jlccv7pr" path="res://scenes/marker.tscn" id="2_kod1s"]
+[ext_resource type="Script" uid="uid://q35mvb4mmshk" path="res://scripts/CameraController.gd" id="1_v2v7n"]
+[ext_resource type="PackedScene" uid="uid://cxpl1jlccv7pr" path="res://scenes/character/player/marker.tscn" id="2_81dl4"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cvpoc"]
 
 [node name="camera" type="SpringArm3D" unique_id=1981057096 node_paths=PackedStringArray("camera", "marker")]
 shape = SubResource("SeparationRayShape3D_cvpoc")
 spring_length = 5.0
-script = ExtResource("1_cvpoc")
+script = ExtResource("1_v2v7n")
 camera = NodePath("Camera3D")
 marker = NodePath("marker")
 min_pitch = -80.0
@@ -19,4 +19,4 @@ desired_pitch = -30.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 current = true
 
-[node name="marker" parent="." unique_id=12986420 instance=ExtResource("2_kod1s")]
+[node name="marker" parent="." unique_id=12986420 instance=ExtResource("2_81dl4")]

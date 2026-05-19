@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bjlvvldfyusmf"]
+
+[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/character/character.tscn" id="1_gmlin"]
+[ext_resource type="PackedScene" uid="uid://xp7lfyphvee2" path="res://scenes/character/player/input_handler.tscn" id="3_lvxji"]
+[ext_resource type="PackedScene" uid="uid://bg1f33tyvub8d" path="res://scenes/character/player/camera.tscn" id="4_dqkch"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
+
+[node name="player" unique_id=1758554578 instance=ExtResource("1_gmlin")]
+
+[node name="camera" parent="." index="2" unique_id=1981057096 instance=ExtResource("4_dqkch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="input_handler" parent="." index="3" unique_id=499386536 instance=ExtResource("3_lvxji")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_detect" parent_id_path=PackedInt32Array(1062837414) index="0" unique_id=2007273432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_u8vuu")

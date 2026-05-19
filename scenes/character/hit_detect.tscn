@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dyjik25g3y33i"]
+
+[node name="hit_detect" type="Area3D" unique_id=1062837414]

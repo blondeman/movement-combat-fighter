@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://70ly63n0ywvt"]
+
+[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/character/character.tscn" id="1_h8qle"]
+[ext_resource type="Material" uid="uid://cjju881fensax" path="res://materials/toon_red.tres" id="2_bar1l"]
+[ext_resource type="PackedScene" uid="uid://cchyawv2tafhk" path="res://scenes/character/target.tscn" id="3_1pf6i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
+
+[node name="test_enemy" unique_id=1758554578 instance=ExtResource("1_h8qle")]
+
+[node name="MeshInstance3D" parent="." index="1" unique_id=2024260194]
+material_override = ExtResource("2_bar1l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_detect" parent_id_path=PackedInt32Array(1062837414) index="0" unique_id=1775492314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_u8vuu")
+
+[node name="target" parent="." index="4" unique_id=90836808 instance=ExtResource("3_1pf6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

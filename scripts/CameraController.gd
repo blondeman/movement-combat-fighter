@@ -6,8 +6,6 @@ var character_entity: CharacterEntity
 @export var camera: Camera3D
 @export var marker: Node3D
 
-@export var target: Node3D
-
 @export_category("Camera Settings")
 @export var sensitivity_x: float = 3
 @export var sensitivity_y: float = 3
@@ -32,7 +30,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if !target or !camera:
+	if !camera:
 		return
 	
 	if _swap_cooldown_timer > 0.0:
