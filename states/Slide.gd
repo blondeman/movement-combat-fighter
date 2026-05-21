@@ -39,5 +39,3 @@ func process_slide(delta: float, input: InputPackage):
 	
 	character.velocity.x = horizontal_vel.x
 	character.velocity.z = horizontal_vel.z
-	
-	character.momentum = horizontal_vel

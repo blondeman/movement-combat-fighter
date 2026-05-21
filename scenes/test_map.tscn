@@ -3,10 +3,10 @@
 [ext_resource type="Material" uid="uid://cjy6ko6iek64e" path="res://materials/toon_dark_gray.tres" id="1_6ulkd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_eflb2"]
-size = Vector2(50, 50)
+size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4qc02"]
-size = Vector3(50, 1, 50)
+size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4wuf8"]
 size = Vector3(5, 5, 1)

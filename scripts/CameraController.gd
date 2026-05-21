@@ -31,6 +31,9 @@ func _process(delta: float) -> void:
 	if !camera:
 		return
 	
+	if _swap_cooldown_timer > 0.0:
+		_swap_cooldown_timer -= delta
+	
 	if character.lock_target:
 		_look_at_target(delta)
 		_set_marker_position()

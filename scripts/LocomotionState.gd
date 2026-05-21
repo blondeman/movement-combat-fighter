@@ -26,24 +26,17 @@ func process_input_vector(delta: float, input: InputPackage):
 	var rotated_input: Vector2 = input.get_rotated_input()
 	var direction := Vector3(rotated_input.x, 0.0, rotated_input.y).normalized()
 	var has_input := rotated_input.length_squared() > 0.001
-
-	if character.is_on_floor_or_coyote():
-		character.momentum = character.momentum.lerp(Vector3.ZERO, character.momentum_decay * delta)
-	else:
-		character.momentum = character.momentum.lerp(Vector3.ZERO, character.air_momentum_decay * delta)
-
-	if has_input:
-		var target: Vector3 = direction * speed
-		var blended: Vector3 = character.momentum + target
-		var momentum_speed: float = character.momentum.length()
-		var max_speed: float = max(speed, momentum_speed)
-		if blended.length() > max_speed:
-			blended = blended.normalized() * max_speed
-		character.velocity.x = blended.x
-		character.velocity.z = blended.z
-		# Gradually steer momentum toward actual movement direction
-		var actual := Vector3(character.velocity.x, 0.0, character.velocity.z)
-		character.momentum = character.momentum.lerp(actual, character.momentum_decay * delta)
-	else:
-		character.velocity.x = character.momentum.x
-		character.velocity.z = character.momentum.z
+	if !character.is_on_floor_or_coyote():
+		# Quake-style air acceleration: only accelerate if it would increase speed in wish direction
+		if has_input:
+			var wish_dir := direction
+			var current_speed := Vector3(character.velocity.x, 0.0, character.velocity.z).dot(wish_dir)
+			var add_speed := speed - current_speed
+			if add_speed > 0.0:
+				var accel_speed: float = character.air_acceleration * speed * delta
+				accel_speed = min(accel_speed, add_speed)
+				character.velocity.x += wish_dir.x * accel_speed
+				character.velocity.z += wish_dir.z * accel_speed
+		else:
+			character.velocity.x = move_toward(character.velocity.x, 0.0, character.air_momentum_decay * delta)
+			character.velocity.z = move_toward(character.velocity.z, 0.0, character.air_momentum_decay * delta)

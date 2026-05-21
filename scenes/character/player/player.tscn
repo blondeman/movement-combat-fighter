@@ -10,12 +10,14 @@ size = Vector3(0.3, 0.3, 1)
 [node name="player" unique_id=1758554578 node_paths=PackedStringArray("input_handler") instance=ExtResource("1_gmlin")]
 input_handler = NodePath("input_handler")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" parent_id_path=PackedInt32Array(1468529141) index="0" unique_id=1922587349]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(2024260194) index="0" unique_id=1922587349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.095391154, 0.17765868)
 mesh = SubResource("BoxMesh_sfcyi")
 
-[node name="camera" parent="." index="2" unique_id=1981057096 node_paths=PackedStringArray("character") instance=ExtResource("2_sfcyi")]
-character = NodePath("..")
-desired_pitch = -30.0
+[node name="camera_target" type="Node3D" parent="." index="2" unique_id=1921077291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="camera" parent="camera_target" index="0" unique_id=1981057096 node_paths=PackedStringArray("character") instance=ExtResource("2_sfcyi")]
+character = NodePath("../..")
 
 [node name="input_handler" parent="." index="3" unique_id=499386536 instance=ExtResource("3_lvxji")]

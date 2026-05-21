@@ -4,7 +4,7 @@ extends LocomotionState
 @export var dash_gravity_scale: float = 0.2
 
 const transition_timing = 0.2
-const dash_timing = 0.0
+const dash_timing = 0.1
 
 var dashed : bool = false
 var dash_direction: Vector3 = Vector3.ZERO
@@ -26,10 +26,6 @@ func default_lifecycle(input: InputPackage) -> String:
 
 func update(delta: float, input: InputPackage):
 	process_dash(input)
-	if dashed and dash_direction != Vector3.ZERO:
-		character.velocity.x = dash_direction.x
-		character.velocity.z = dash_direction.z
-	character.velocity.y -= gravity * dash_gravity_scale * delta
 	character.move_and_slide()
 
 
@@ -44,7 +40,6 @@ func process_dash(input: InputPackage):
 		character.velocity.x = dash_direction.x
 		character.velocity.z = dash_direction.z
 		character.velocity.y = 0
-		character.momentum = Vector3(dash_direction.x, 0, dash_direction.z)
 		
 		if character.is_on_floor():
 			var face_direction = character.basis.z

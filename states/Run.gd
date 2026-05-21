@@ -1,6 +1,6 @@
 extends LocomotionState
 
-@export var turn_speed = 2
+@export var turn_speed: float = 2.0
 
 func update(delta: float, input: InputPackage):
 	process_input_vector(delta, input)
