@@ -33,14 +33,14 @@ func update(delta: float, input : InputPackage):
 func process_dash_jump(input: InputPackage):
 	if works_longer_than(dash_jump_timing) and not dash_jumped:
 		var rotated_input = input.get_rotated_input()
+		var input_direction = Vector3(rotated_input.x, 0, rotated_input.y)
 		if rotated_input.length_squared() > 0.001:
-			dash_direction = Vector3(rotated_input.x, 0, rotated_input.y).normalized() * dash_velocity
+			dash_direction = input_direction * dash_velocity
 		else:
 			dash_direction = character.global_transform.basis.z * dash_velocity
 		character.velocity.x = dash_direction.x
 		character.velocity.z = dash_direction.z
 		character.velocity.y = jump_velocity
-		character.momentum = Vector3(dash_direction.x, jump_velocity, dash_direction.z)
 		
 		character.dash_cooldown_remaining = character.dash_cooldown
 		character.coyote_timer = 0.0

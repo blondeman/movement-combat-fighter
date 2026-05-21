@@ -15,10 +15,11 @@ func default_lifecycle(input: InputPackage) -> String:
 		dash_direction = Vector3.ZERO
 		if not character.is_on_floor():
 			return "midair"
-		# Dash exits into slide if still moving fast
+			
 		var horizontal_speed = Vector3(character.velocity.x, 0, character.velocity.z).length()
 		if horizontal_speed > speed:
 			return "slide"
+		
 		return best_input_that_can_be_paid(input)
 	else:
 		return "okay"
