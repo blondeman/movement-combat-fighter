@@ -1,3 +1,4 @@
+class_name EntityController
 extends CharacterBody3D
 
 @export var input_handler: InputHandler
@@ -13,6 +14,8 @@ var coyote_timer: float = 0.0
 var was_on_floor: bool = false
 
 var momentum: Vector3 = Vector3.ZERO
+
+var lock_target: Node3D = null
 
 func _physics_process(delta: float):
 	if dash_cooldown_remaining > 0:

@@ -14,6 +14,8 @@ input_handler = NodePath("input_handler")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.095391154, 0.17765868)
 mesh = SubResource("BoxMesh_sfcyi")
 
-[node name="camera" parent="." index="2" unique_id=1981057096 instance=ExtResource("2_sfcyi")]
+[node name="camera" parent="." index="2" unique_id=1981057096 node_paths=PackedStringArray("character") instance=ExtResource("2_sfcyi")]
+character = NodePath("..")
+desired_pitch = -30.0
 
 [node name="input_handler" parent="." index="3" unique_id=499386536 instance=ExtResource("3_lvxji")]

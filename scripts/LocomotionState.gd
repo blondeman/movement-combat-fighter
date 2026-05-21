@@ -41,6 +41,9 @@ func process_input_vector(delta: float, input: InputPackage):
 			blended = blended.normalized() * max_speed
 		character.velocity.x = blended.x
 		character.velocity.z = blended.z
+		# Gradually steer momentum toward actual movement direction
+		var actual := Vector3(character.velocity.x, 0.0, character.velocity.z)
+		character.momentum = character.momentum.lerp(actual, character.momentum_decay * delta)
 	else:
 		character.velocity.x = character.momentum.x
 		character.velocity.z = character.momentum.z

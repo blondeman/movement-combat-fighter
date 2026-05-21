@@ -1,3 +1,3 @@
 [gd_scene format=3 uid="uid://cchyawv2tafhk"]
 
-[node name="target" type="Node" unique_id=233307061 groups=["target"]]
+[node name="target" type="Node3D" unique_id=1718967945 groups=["target"]]

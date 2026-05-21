@@ -1,7 +1,7 @@
 class_name StateMachine
 extends Node
 
-@export var character: CharacterBody3D
+@export var character: EntityController
 
 var current_state: State
 var states: Dictionary
