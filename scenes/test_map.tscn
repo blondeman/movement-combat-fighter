@@ -25,6 +25,16 @@ size = Vector3(5, 5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss0f2"]
 albedo_texture = ExtResource("3_p21b5")
+uv1_scale = Vector3(6, 4, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fn2sa"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57l66"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p21b5"]
+albedo_texture = ExtResource("3_p21b5")
 uv1_scale = Vector3(3, 2, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t8dge"]
@@ -32,6 +42,10 @@ size = Vector3(3, 3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qgarv"]
 size = Vector3(3, 3, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw728"]
+albedo_texture = ExtResource("3_p21b5")
+uv1_scale = Vector3(3, 2, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kddbv"]
 albedo_texture = ExtResource("3_p21b5")
@@ -72,18 +86,18 @@ mesh = SubResource("BoxMesh_4wuf8")
 shape = SubResource("BoxShape3D_s02eq")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1699725813]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1.5, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.908993, -2.5681648, -13.320117)
 material_override = SubResource("StandardMaterial3D_ss0f2")
-mesh = SubResource("BoxMesh_t8dge")
+mesh = SubResource("BoxMesh_fn2sa")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3" unique_id=187824764]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D" unique_id=790542700]
-shape = SubResource("BoxShape3D_qgarv")
+shape = SubResource("BoxShape3D_57l66")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=178710114]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.258053, -0.84489584, -11.974731)
-material_override = SubResource("StandardMaterial3D_kddbv")
+material_override = SubResource("StandardMaterial3D_p21b5")
 mesh = SubResource("BoxMesh_t8dge")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4" unique_id=2077549356]
@@ -93,7 +107,7 @@ shape = SubResource("BoxShape3D_qgarv")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1008815678]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.863589, -0.24325228, -12.640994)
-material_override = SubResource("StandardMaterial3D_kddbv")
+material_override = SubResource("StandardMaterial3D_pw728")
 mesh = SubResource("BoxMesh_t8dge")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5" unique_id=60767034]

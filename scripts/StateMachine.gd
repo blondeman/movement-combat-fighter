@@ -24,13 +24,22 @@ func update(delta: float, input: InputPackage):
 
 func change_state(new_state: String) -> void:
 	if current_state:
-		print(current_state.state_name + " -> " + new_state)
+		if character.print_state:
+			print(current_state.state_name + " -> " + new_state)
 		current_state._exit()
+	else:
+		if character.print_state:
+			print(" -> " + new_state)
 	current_state = states[new_state]
 	current_state._enter()
 
 
 func state_priority_sort(a : String, b : String):
+	if !states.has(a):
+		return false
+	if !states.has(b):
+		return true
+	
 	if states[a].priority > states[b].priority:
 		return true
 	else:

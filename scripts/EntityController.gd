@@ -21,6 +21,9 @@ var was_on_floor: bool = false
 
 var lock_target: Node3D = null
 
+@export_group("Debug Options")
+@export var print_state: bool = false
+
 func _physics_process(delta: float):
 	if dash_cooldown_remaining > 0:
 		dash_cooldown_remaining -= delta
