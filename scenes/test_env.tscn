@@ -35,32 +35,38 @@ end_position = Vector3(6, 2.495, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1028767, 0.10659289, -13.334726)
 end_position = Vector3(-6, 2.495, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1192970082]
+[node name="player" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]
+air_acceleration = 2.0
+print_state = true
+
+[node name="enemies" type="Node3D" parent="." unique_id=2118239741]
+
+[node name="enemy" parent="enemies" unique_id=335383611 instance=ExtResource("4_lfx8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.215195, 0, -1.6263876)
+air_acceleration = 2.0
+
+[node name="test" type="Node3D" parent="." unique_id=1757790502]
+
+[node name="test_target1" type="MeshInstance3D" parent="test" unique_id=1192970082]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3282585, 6.8322973, -4.139407)
 mesh = SubResource("SphereMesh_po6i2")
 
-[node name="target" parent="MeshInstance3D2" unique_id=90836808 instance=ExtResource("4_wpndf")]
+[node name="target" parent="test/test_target1" unique_id=90836808 instance=ExtResource("4_wpndf")]
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1391381837]
+[node name="test_target2" type="MeshInstance3D" parent="test" unique_id=1391381837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.702953, 4.549486, 1.3369522)
 mesh = SubResource("SphereMesh_po6i2")
 
-[node name="target" parent="MeshInstance3D5" unique_id=1733175098 instance=ExtResource("4_wpndf")]
+[node name="target" parent="test/test_target2" unique_id=1733175098 instance=ExtResource("4_wpndf")]
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1731639549]
+[node name="test_target3" type="MeshInstance3D" parent="test" unique_id=1731639549]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.677547, 9.231018, 2.8127582)
 mesh = SubResource("SphereMesh_po6i2")
 
-[node name="target" parent="MeshInstance3D3" unique_id=1129936986 instance=ExtResource("4_wpndf")]
+[node name="target" parent="test/test_target3" unique_id=1129936986 instance=ExtResource("4_wpndf")]
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1375279965]
+[node name="test_target4" type="MeshInstance3D" parent="test" unique_id=1375279965]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.399242, 9.647339, -3.0724442)
 mesh = SubResource("SphereMesh_po6i2")
 
-[node name="target" parent="MeshInstance3D4" unique_id=1763937560 instance=ExtResource("4_wpndf")]
-
-[node name="player" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]
-
-[node name="enemy" parent="." unique_id=335383611 instance=ExtResource("4_lfx8k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.215195, 0, -1.6263876)
-print_state = true
+[node name="target" parent="test/test_target4" unique_id=1763937560 instance=ExtResource("4_wpndf")]
