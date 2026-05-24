@@ -60,7 +60,7 @@ mesh = SubResource("SphereMesh_po6i2")
 [node name="target" parent="MeshInstance3D4" unique_id=1763937560 instance=ExtResource("4_wpndf")]
 
 [node name="player" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]
+print_state = true
 
 [node name="enemy" parent="." unique_id=335383611 instance=ExtResource("4_lfx8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.215195, 0, -1.6263876)
-print_state = true

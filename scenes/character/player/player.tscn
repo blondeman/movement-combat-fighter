@@ -4,15 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bqf7oei24h2xv" path="res://scenes/character/player/camera_controller.tscn" id="2_sfcyi"]
 [ext_resource type="PackedScene" uid="uid://dq212cpt14hia" path="res://scenes/character/player/player_input_handler.tscn" id="3_sfcyi"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_sfcyi"]
-size = Vector3(0.3, 0.3, 1)
-
 [node name="player" unique_id=1758554578 node_paths=PackedStringArray("input_handler") groups=["player"] instance=ExtResource("1_gmlin")]
 input_handler = NodePath("PlayerInputHandler")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" parent_id_path=PackedInt32Array(2024260194) index="0" unique_id=1922587349]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.095391154, 0.17765868)
-mesh = SubResource("BoxMesh_sfcyi")
 
 [node name="camera_target" type="Node3D" parent="." index="2" unique_id=1921077291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

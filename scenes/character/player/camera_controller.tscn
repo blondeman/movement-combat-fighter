@@ -21,3 +21,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 current = true
 
 [node name="marker" parent="." unique_id=12986420 instance=ExtResource("2_drmjl")]
+visible = false
