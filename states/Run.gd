@@ -9,9 +9,11 @@ func update(delta: float, input: InputPackage):
 func process_input_vector(delta: float, input: InputPackage):
 	var input_direction := input.get_input_direction()
 	var face_direction = character.basis.z
-	var applied_angle = rotate_toward_direction(input_direction, delta)
+	var prev_angle = face_direction.signed_angle_to(input_direction, Vector3.UP)
 	
-	if abs(applied_angle) >= tracking_angular_speed * delta:
-		character.velocity = face_direction.rotated(Vector3.UP, applied_angle) * turn_speed
+	process_rotation(delta, input_direction)
+	
+	if not character.lock_target and abs(prev_angle) >= tracking_angular_speed * delta:
+		character.velocity = face_direction.rotated(Vector3.UP, prev_angle) * turn_speed
 	else:
-		character.velocity = face_direction.rotated(Vector3.UP, applied_angle) * speed
+		character.velocity = face_direction.rotated(Vector3.UP, prev_angle) * speed

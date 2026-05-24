@@ -21,14 +21,18 @@ func default_lifecycle(input : InputPackage) -> String:
 
 func update(delta: float, input : InputPackage):
 	process_jump(input)
+	rotate_toward_velocity(delta)
 	character.velocity.y -= gravity * delta
 	character.move_and_slide()
+
+
+func exit():
+	rotate_toward_velocity(0)
 
 
 func process_jump(input: InputPackage):
 	if works_longer_than(jump_timing) and not jumped:
 		var input_direction = input.get_input_direction()
-		var applied_angle = rotate_toward_direction(input_direction, 0.0)
 
 		if change_velocity:
 			character.velocity = character.basis.z * speed

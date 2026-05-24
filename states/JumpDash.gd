@@ -29,7 +29,7 @@ func update(delta: float, input : InputPackage):
 func process_dash_jump(input: InputPackage):
 	if works_longer_than(dash_jump_timing) and not dash_jumped:
 		var input_direction = input.get_input_direction()
-		rotate_toward_direction(input_direction)
+		rotate_toward_direction(0, input_direction)
 		
 		if input_direction.length_squared() > 0.001:
 			dash_direction = input_direction * dash_velocity

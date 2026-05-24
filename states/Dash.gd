@@ -1,7 +1,6 @@
 extends LocomotionState
 
 @export var dash_velocity : float = 30
-@export var dash_gravity_scale: float = 0.2
 
 const transition_timing = 0.2
 const dash_timing = 0.1
@@ -27,7 +26,12 @@ func default_lifecycle(input: InputPackage) -> String:
 
 func update(delta: float, input: InputPackage):
 	process_dash(input)
+	rotate_toward_velocity(delta)
 	character.move_and_slide()
+
+
+func exit():
+	rotate_toward_velocity(0)
 
 
 func process_dash(input: InputPackage):
@@ -42,9 +46,6 @@ func process_dash(input: InputPackage):
 		character.velocity.x = dash_direction.x
 		character.velocity.z = dash_direction.z
 		character.velocity.y = 0
-
-		if character.is_on_floor():
-			rotate_toward_direction(input_direction, 0.0)
 
 		character.dash_cooldown_remaining = character.dash_cooldown
 		dashed = true

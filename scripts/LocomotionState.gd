@@ -40,11 +40,11 @@ func process_input_vector(delta: float, input: InputPackage):
 			character.velocity.z = move_toward(character.velocity.z, 0.0, character.air_momentum_decay * delta)
 
 
-func process_rotation(input_direction: Vector3, delta: float = 0.0):
+func process_rotation(delta: float, input_direction: Vector3):
 	if character.lock_target:
 		rotate_toward_lock_target(delta)
 	else:
-		rotate_toward_direction(input_direction, delta)
+		rotate_toward_direction(delta, input_direction)
 
 
 func rotate_toward_lock_target(delta: float = 0.0):
@@ -63,12 +63,17 @@ func rotate_toward_lock_target(delta: float = 0.0):
 		character.rotate_y(angle)
 
 
-func rotate_toward_direction(input_direction: Vector3, delta: float = 0.0) -> float:
+func rotate_toward_direction(delta: float, input_direction: Vector3) -> float:
 	var face_direction = character.basis.z
 	var angle = face_direction.signed_angle_to(input_direction, Vector3.UP)
-	if abs(angle) >= tracking_angular_speed * delta:
+	if delta > 0.0 and abs(angle) >= tracking_angular_speed * delta:
 		character.rotate_y(sign(angle) * tracking_angular_speed * delta)
 		return sign(angle) * tracking_angular_speed * delta
 	else:
 		character.rotate_y(angle)
 		return angle
+
+
+func rotate_toward_velocity(delta: float):
+	var target_direction := Vector3(character.velocity.x, 0, character.velocity.z).normalized()
+	rotate_toward_direction(delta, target_direction)
