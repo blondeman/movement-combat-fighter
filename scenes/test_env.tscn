@@ -38,9 +38,10 @@ end_position = Vector3(6, 2.495, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1028767, 0.10659289, -13.334726)
 end_position = Vector3(-6, 2.495, 0)
 
-[node name="player" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]
-air_acceleration = 2.0
-print_state = true
+[node name="NavigationLink3D5" type="NavigationLink3D" parent="NavigationRegion3D" unique_id=1365261538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.85, 5.107, -18.513)
+bidirectional = false
+end_position = Vector3(10.145, -5, 0)
 
 [node name="enemies" type="Node3D" parent="." unique_id=2118239741]
 
@@ -51,14 +52,6 @@ air_acceleration = 2.0
 [node name="test" type="Node3D" parent="." unique_id=1757790502]
 
 [node name="test_target1" type="MeshInstance3D" parent="test" unique_id=1192970082]
-[node name="NavigationLink3D5" type="NavigationLink3D" parent="NavigationRegion3D" unique_id=1365261538]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.85, 5.107, -18.513)
-bidirectional = false
-end_position = Vector3(10.145, -5, 0)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1192970082]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3282585, 6.8322973, -4.139407)
-mesh = SubResource("SphereMesh_po6i2")
 
 [node name="target" parent="test/test_target1" unique_id=90836808 instance=ExtResource("4_wpndf")]
 
@@ -79,13 +72,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.399242, 9.647339, -3.0724
 mesh = SubResource("SphereMesh_po6i2")
 
 [node name="target" parent="test/test_target4" unique_id=1763937560 instance=ExtResource("4_wpndf")]
-[node name="target" parent="MeshInstance3D4" unique_id=1763937560 instance=ExtResource("4_wpndf")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=199085791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3282585, 6.8322973, -4.139407)
+mesh = SubResource("SphereMesh_po6i2")
+
+[node name="MeshInstance3D4#target" parent="." unique_id=1945086311 instance=ExtResource("4_wpndf")]
 
 [node name="player" parent="." unique_id=1758554578 instance=ExtResource("2_kyn1l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.239986, 1.9073486e-06, -16.152374)
-floor_snap_length = 0.1
 print_state = true
 
-[node name="enemy" parent="." unique_id=335383611 instance=ExtResource("4_lfx8k")]
+[node name="enemy" parent="." unique_id=265361567 instance=ExtResource("4_lfx8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.215195, 0, -1.6263876)
 floor_snap_length = 0.1
