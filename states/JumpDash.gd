@@ -23,18 +23,15 @@ func default_lifecycle(input : InputPackage) -> String:
 
 func update(delta: float, input : InputPackage):
 	process_dash_jump(input)
-	if dash_jumped and dash_direction != Vector3.ZERO:
-		character.velocity.x = dash_direction.x
-		character.velocity.z = dash_direction.z
-	character.velocity.y -= gravity * dash_gravity_scale * delta
 	character.move_and_slide()
 
 
 func process_dash_jump(input: InputPackage):
 	if works_longer_than(dash_jump_timing) and not dash_jumped:
-		var rotated_input = input.get_rotated_input()
-		var input_direction = Vector3(rotated_input.x, 0, rotated_input.y)
-		if rotated_input.length_squared() > 0.001:
+		var input_direction = input.get_input_direction()
+		rotate_toward_direction(0, input_direction)
+		
+		if input_direction.length_squared() > 0.001:
 			dash_direction = input_direction * dash_velocity
 		else:
 			dash_direction = character.global_transform.basis.z * dash_velocity

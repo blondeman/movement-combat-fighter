@@ -23,6 +23,7 @@ func _update(delta: float, input: InputPackage):
 
 func update(delta: float, input: InputPackage):
 	process_slide(delta, input)
+	process_rotation(delta, input.get_input_direction())
 	character.velocity.y -= gravity * delta
 	character.move_and_slide()
 
