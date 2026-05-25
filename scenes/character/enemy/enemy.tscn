@@ -11,10 +11,12 @@ input_handler = NodePath("EnemyInputHandler")
 [node name="target" parent="." index="0" unique_id=1718967945 instance=ExtResource("3_4kjq8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="MeshInstance3D" parent="." index="2" unique_id=2024260194]
+[node name="body" parent="visual" parent_id_path=PackedInt32Array(879074467) index="0" unique_id=652490843]
 material_override = ExtResource("2_735o0")
 
 [node name="EnemyInputHandler" parent="." index="3" unique_id=1301081944 instance=ExtResource("2_4kjq8")]
 
 [node name="jump" parent="locomotion" parent_id_path=PackedInt32Array(1047176849) index="4" unique_id=1644593060]
 change_velocity = true
+
+[editable path="visual"]

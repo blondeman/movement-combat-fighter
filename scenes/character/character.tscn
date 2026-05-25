@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://beshmq74cso23"]
 
 [ext_resource type="Script" uid="uid://0dlkb5wsieer" path="res://scripts/EntityController.gd" id="1_bblvu"]
-[ext_resource type="Material" uid="uid://bop21rijavshp" path="res://materials/toon_blue.tres" id="2_unmdi"]
-[ext_resource type="Material" uid="uid://cjy6ko6iek64e" path="res://materials/toon_dark_gray.tres" id="3_0rlhq"]
+[ext_resource type="PackedScene" uid="uid://cgwk0ofrtytnp" path="res://scenes/character/test_visual.tscn" id="2_l884r"]
 [ext_resource type="Script" uid="uid://c8diifbq30i4l" path="res://scripts/StateMachine.gd" id="3_mutn8"]
 [ext_resource type="PackedScene" uid="uid://cfqcbf3b317wa" path="res://states/dash.tscn" id="4_bix7t"]
 [ext_resource type="PackedScene" uid="uid://cqrypb8hkd1wv" path="res://states/idle.tscn" id="5_bblvu"]
@@ -14,74 +13,56 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_l884r"]
-size = Vector3(0.3, 0.3, 0.72)
-
-[sub_resource type="SphereMesh" id="SphereMesh_l884r"]
-radius = 0.1
-height = 0.2
-
-[sub_resource type="BoxMesh" id="BoxMesh_0rlhq"]
-size = Vector3(0.05, 1.5, 0.05)
-
-[sub_resource type="BoxMesh" id="BoxMesh_oe6dy"]
-size = Vector3(0.15, 0.05, 0.15)
-
 [node name="character" type="CharacterBody3D" unique_id=1758554578 node_paths=PackedStringArray("locomotion")]
 collision_layer = 2
 collision_mask = 3
 floor_snap_length = 0.2
 script = ExtResource("1_bblvu")
 locomotion = NodePath("locomotion")
+air_acceleration = 4.0
 max_step_size = 0.6
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1468529141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_u8vuu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2024260194]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-material_override = ExtResource("2_unmdi")
-mesh = SubResource("SphereMesh_3vyb7")
+[node name="visual" parent="." unique_id=879074467 instance=ExtResource("2_l884r")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=177398488]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.178)
-mesh = SubResource("BoxMesh_l884r")
-
-[node name="hand_l" type="MeshInstance3D" parent="MeshInstance3D" unique_id=937995662]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
-mesh = SubResource("SphereMesh_l884r")
-
-[node name="hand_r" type="MeshInstance3D" parent="MeshInstance3D" unique_id=107911552]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
-mesh = SubResource("SphereMesh_l884r")
-
-[node name="sword" type="MeshInstance3D" parent="MeshInstance3D/hand_r" unique_id=1496296084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5815239, 0)
-material_override = ExtResource("3_0rlhq")
-mesh = SubResource("BoxMesh_0rlhq")
-
-[node name="hilt" type="MeshInstance3D" parent="MeshInstance3D/hand_r/sword" unique_id=497566762]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.41204834, 0)
-material_override = ExtResource("3_0rlhq")
-mesh = SubResource("BoxMesh_oe6dy")
-
-[node name="locomotion" type="Node" parent="." unique_id=1047176849 node_paths=PackedStringArray("character")]
+[node name="locomotion" type="Node" parent="." unique_id=1047176849 node_paths=PackedStringArray("character", "visual")]
 script = ExtResource("3_mutn8")
 character = NodePath("..")
+visual = NodePath("../visual")
 
 [node name="idle" parent="locomotion" unique_id=200638708 instance=ExtResource("5_bblvu")]
+animation_name = "idle"
+animation_blend_time = 0.1
 
 [node name="midair" parent="locomotion" unique_id=1316658025 instance=ExtResource("5_q52vl")]
+animation_name = "midair"
+animation_blend_time = 0.1
 
 [node name="run" parent="locomotion" unique_id=2083203723 instance=ExtResource("6_q52vl")]
+animation_name = "run"
+animation_blend_time = 0.1
+is_blend_space = true
 
 [node name="dash" parent="locomotion" unique_id=905912519 instance=ExtResource("4_bix7t")]
+dash_velocity = 20.0
+animation_name = "dash"
+animation_blend_time = 0.1
+is_blend_space = true
 
 [node name="jump" parent="locomotion" unique_id=1644593060 instance=ExtResource("7_l884r")]
+jump_velocity = 10.0
+animation_name = "jump"
+animation_blend_time = 0.1
 
 [node name="jump_dash" parent="locomotion" unique_id=104782609 instance=ExtResource("8_bblvu")]
+jump_velocity = 10.0
+dash_velocity = 20.0
+animation_name = "dash"
+animation_blend_time = 0.1
 
 [node name="slide" parent="locomotion" unique_id=498822131 instance=ExtResource("10_l884r")]
+animation_name = "slide"
+animation_blend_time = 0.1

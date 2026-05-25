@@ -35,7 +35,7 @@ func process_jump(input: InputPackage):
 		var input_direction = input.get_input_direction()
 
 		if change_velocity:
-			character.velocity = character.basis.z * speed
+			character.velocity = input_direction * speed
 		character.velocity.y = jump_velocity
 
 		character.coyote_timer = 0.0

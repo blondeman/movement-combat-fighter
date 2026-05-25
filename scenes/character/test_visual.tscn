@@ -1,0 +1,544 @@
+[gd_scene format=3 uid="uid://cgwk0ofrtytnp"]
+
+[ext_resource type="Script" uid="uid://dsdyq4qtawy5c" path="res://scripts/Visual.gd" id="1_gwiwh"]
+[ext_resource type="Material" uid="uid://bop21rijavshp" path="res://materials/toon_blue.tres" id="1_k5fyg"]
+[ext_resource type="Material" uid="uid://cjy6ko6iek64e" path="res://materials/toon_dark_gray.tres" id="2_gwiwh"]
+[ext_resource type="Script" uid="uid://klmqagymhdeb" path="res://scripts/BlendStateSwitch.gd" id="4_w3so6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_l884r"]
+size = Vector3(0.3, 0.3, 0.72)
+
+[sub_resource type="SphereMesh" id="SphereMesh_l884r"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_0rlhq"]
+size = Vector3(0.05, 1.5, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oe6dy"]
+size = Vector3(0.15, 0.05, 0.15)
+
+[sub_resource type="Animation" id="Animation_gwiwh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_r:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_r:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_l:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0, 0.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/hand_l:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w3so6"]
+resource_name = "attack"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_r:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.39348263, 0.53333336, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0.5), Vector3(-0.7525636, 0.336527, 0.020871758), Vector3(-0.314056, -0.13831809, 0.77340835), Vector3(0.47927302, -0.13831806, 0.64642936), Vector3(0.5728679, -0.1313082, 0.6822438), Vector3(-0.391, -0.07, 0.633), Vector3(-0.5, 0, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_r:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.39348263, 0.53333336, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.6647087, 0.20385446, 0), Vector3(0.9599661, 0.16010325, 0.35945198), Vector3(1.3216885, 1.5096915, 0.8141655), Vector3(1.3397381, 1.936696, 0.8797955), Vector3(0.67275137, 0.7684465, 0.41441754), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_l:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.10675885, 0.20436694, 0.29892477, 0.39958313, 0.53989476, 0.6985079),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0, 0.5), Vector3(0.3956719, -0.04606974, 0.8111364), Vector3(0.70321137, -0.04606974, 0.32994485), Vector3(0.91852146, -0.04606974, -0.15846157), Vector3(0.791015, -0.04606974, -0.092859864), Vector3(0.7771116, -0.04606974, 0.1854912), Vector3(0.5, 0, 0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_yh4so"]
+resource_name = "dash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_r:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.76814294, 0, -0.10452759), Vector3(-0.33060396, 0, 0.7842454)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_l:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.42071342, 0, 0.61011535), Vector3(0.6635486, 1.1920929e-07, -0.17435902)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_r:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.74297285, 0, 0), Vector3(1.3890377, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/hand_l:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_yt3fj"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_l:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4087),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0, 0.5), Vector3(0.5, -0.110806644, 0.46509612)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_r:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0.5), Vector3(-0.5, -0.111, 0.465)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_l:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4087),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.06382669, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/hand_r:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.06382669, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_20uax"]
+resource_name = "jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_r:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0.5), Vector3(-0.5, -0.3175354, 0.44883907), Vector3(-0.5, 0.18336105, 0.5710193), Vector3(-0.5, 0.55113316, 0.47528136)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_r:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.9435947, 0, 0), Vector3(0.027576227, 0, 0), Vector3(-0.7709992, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_l:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0, 0.5), Vector3(0.5, -0.3175354, 0.44883907), Vector3(0.5, 0.18336105, 0.5710193), Vector3(0.5, 0.55113316, 0.47528136)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/hand_l:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.086372145, 0, 0), Vector3(0.8572227, 0, 0), Vector3(-0.058795918, 0, 0), Vector3(-0.85737133, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_321ia"]
+resource_name = "midair"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_l:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.32027656),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.57376325, 0.570202), Vector3(0.5, 0.7324927, 0.46545947)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_r:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.32027656),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0.57376325, 0.570202), Vector3(-0.5, 0.7324927, 0.46545947)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_l:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.32027656),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.70484704, 0, 0), Vector3(-0.9046349, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/hand_r:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.32027656),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.61847484, 0, 0), Vector3(-0.81826276, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k5fyg"]
+resource_name = "run"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_r:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.53333336, 0.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5, 0, 0.5), Vector3(-0.5, 0.2, 0.3), Vector3(-0.5, 0, 0.5), Vector3(-0.5, -0.2, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_r:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.53333336, 0.7666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.08726646, 0, 0), Vector3(0, 0, 0), Vector3(0.5235988, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_l:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666656, 0.5333335, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0, 0.5), Vector3(0.5, -0.2, 0.3), Vector3(0.5, 0, 0.5), Vector3(0.5, 0.2, 0.3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/hand_l:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.53333336, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.5235988, 0, 0), Vector3(0, 0, 0), Vector3(-0.08726646, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8ai8p"]
+resource_name = "slide"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/hand_r:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.45930085, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/hand_l:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/hand_r:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.19307363, 1.1920929e-07, 0.7455926)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/hand_l:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.31610894, 0, 0.71519744)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwiwh"]
+_data = {
+&"RESET": SubResource("Animation_gwiwh"),
+&"attack": SubResource("Animation_w3so6"),
+&"dash": SubResource("Animation_yh4so"),
+&"idle": SubResource("Animation_yt3fj"),
+&"jump": SubResource("Animation_20uax"),
+&"midair": SubResource("Animation_321ia"),
+&"run": SubResource("Animation_k5fyg"),
+&"slide": SubResource("Animation_8ai8p")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ai8p"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lslkc"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q3c63"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o6xqe"]
+animation = &"dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t142n"]
+animation = &"slide"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gwiwh"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8ai8p")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_lslkc")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_q3c63")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_o6xqe")
+blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_t142n")
+blend_point_4/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w3so6"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yt3fj"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_20uax"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_321ia"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yh4so"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_w3so6"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_w3so6")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_yt3fj")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_20uax")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_321ia")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_yh4so")
+blend_point_4/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yt3fj"]
+graph_offset = Vector2(-392.57513, 54.156578)
+nodes/output/position = Vector2(160, 272)
+nodes/run/node = SubResource("AnimationNodeBlendSpace2D_w3so6")
+nodes/run/position = Vector2(-304, 112)
+nodes/dash/node = SubResource("AnimationNodeBlendSpace2D_gwiwh")
+nodes/dash/position = Vector2(-304, 336)
+node_connections = [&"output", 0, &"run"]
+
+[node name="visual" type="Node3D" unique_id=879074467 node_paths=PackedStringArray("animation_player", "blend_state")]
+script = ExtResource("1_gwiwh")
+animation_player = NodePath("AnimationPlayer")
+blend_state = NodePath("AnimationTree")
+
+[node name="body" type="MeshInstance3D" parent="." unique_id=652490843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = ExtResource("1_k5fyg")
+mesh = SubResource("SphereMesh_3vyb7")
+
+[node name="face" type="MeshInstance3D" parent="body" unique_id=2049540884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.178)
+mesh = SubResource("BoxMesh_l884r")
+
+[node name="hand_l" type="MeshInstance3D" parent="body" unique_id=11654138]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.5, 0, 0.5)
+mesh = SubResource("SphereMesh_l884r")
+
+[node name="hand_r" type="MeshInstance3D" parent="body" unique_id=1973670416]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999997, -0.5, 0, 0.5)
+mesh = SubResource("SphereMesh_l884r")
+
+[node name="sword" type="MeshInstance3D" parent="body/hand_r" unique_id=1933027581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5815239, 0)
+material_override = ExtResource("2_gwiwh")
+mesh = SubResource("BoxMesh_0rlhq")
+
+[node name="hilt" type="MeshInstance3D" parent="body/hand_r/sword" unique_id=1634013257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.41204834, 0)
+material_override = ExtResource("2_gwiwh")
+mesh = SubResource("BoxMesh_oe6dy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1190784198]
+libraries/ = SubResource("AnimationLibrary_gwiwh")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1857423590]
+tree_root = SubResource("AnimationNodeBlendTree_yt3fj")
+anim_player = NodePath("../AnimationPlayer")
+parameters/run/blend_position = Vector2(0, 0)
+parameters/dash/blend_position = Vector2(0, 0)
+script = ExtResource("4_w3so6")

@@ -2,7 +2,7 @@ extends LocomotionState
 
 @export var dash_velocity : float = 30
 
-const transition_timing = 0.2
+const transition_timing = 0.3
 const dash_timing = 0.1
 
 var dashed : bool = false

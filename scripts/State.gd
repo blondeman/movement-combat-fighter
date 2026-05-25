@@ -3,7 +3,13 @@ extends Node
 
 signal state_finished(next_state_name: String)
 
+@export_group("Animation Settings")
 @export var state_name : String
+@export var animation_name : String = "RESET"
+@export var animation_blend_time : float = -1
+@export var is_blend_space : bool = false
+
+@export_group("State Settings")
 @export var priority : int
 
 var enter_state_time : float
