@@ -15,4 +15,8 @@ func default_lifecycle(input : InputPackage):
 	else:
 		if input.actions.has("dash") and character.dash_cooldown_remaining <= 0:
 			return "dash"
+		
+		if input.actions.has("light_attack"):
+			return "midair_light_attack"
+		
 		return "okay"

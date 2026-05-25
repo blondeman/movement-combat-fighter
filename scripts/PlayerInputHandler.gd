@@ -22,7 +22,7 @@ func get_input() -> InputPackage:
 		if new_input.actions.has("jump"):
 			new_input.actions.append("jump_dash")
 	
-	if Input.is_action_just_pressed("attack"):
-		new_input.actions.append("attack")
+	if Input.is_action_pressed("attack"):
+		new_input.actions.append("light_attack")
 	
 	return new_input

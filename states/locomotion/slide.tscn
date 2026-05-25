@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brfsc5uny6yqf"]
 
-[ext_resource type="Script" uid="uid://bd2podicybgsy" path="res://states/Slide.gd" id="1_hin7n"]
+[ext_resource type="Script" uid="uid://bd2podicybgsy" path="res://states/locomotion/Slide.gd" id="1_hin7n"]
 
 [node name="slide" type="Node" unique_id=498822131]
 script = ExtResource("1_hin7n")

@@ -13,7 +13,7 @@ var link_timer: float = 0
 var do_jump: bool = false
 
 @export_group("Attacking")
-@export var attack_range: float = .8
+@export var attack_range: float = 1.3
 
 func _ready():
 	_set_target()
@@ -50,7 +50,7 @@ func get_input() -> InputPackage:
 		new_input.input_direction = link_travel_direction
 	
 	if nav_agent.distance_to_target() < attack_range:
-		new_input.actions.append("attack")
+		new_input.actions.append("light_attack")
 	
 	return new_input
 

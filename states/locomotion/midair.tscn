@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8csxavncreo1"]
 
-[ext_resource type="Script" uid="uid://btn0rcgfaw7fm" path="res://states/Midair.gd" id="1_xk0fj"]
+[ext_resource type="Script" uid="uid://btn0rcgfaw7fm" path="res://states/locomotion/Midair.gd" id="1_xk0fj"]
 
 [node name="midair" type="Node" unique_id=1316658025]
 script = ExtResource("1_xk0fj")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blnbleuuyy58c"]
 
-[ext_resource type="Script" uid="uid://grt32231myro" path="res://states/JumpDash.gd" id="1_xa4tm"]
+[ext_resource type="Script" uid="uid://grt32231myro" path="res://states/locomotion/JumpDash.gd" id="1_xa4tm"]
 
 [node name="jump_dash" type="Node" unique_id=104782609]
 script = ExtResource("1_xa4tm")

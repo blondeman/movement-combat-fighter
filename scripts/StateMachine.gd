@@ -8,12 +8,17 @@ var current_state: State
 var states: Dictionary
 
 func _ready():
-	for child in get_children():
+	get_states_in_children(self)
+	change_state("idle")
+
+
+func get_states_in_children(node: Node):
+	for child in node.get_children():
 		if child is State:
 			states[child.state_name] = child
 			child.character = character
 			child.state_machine = self
-	change_state("idle")
+		get_states_in_children(child)
 
 
 func update(delta: float, input: InputPackage):
