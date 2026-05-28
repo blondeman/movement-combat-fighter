@@ -32,27 +32,28 @@ func _ready():
 	
 	nav_agent.link_reached.connect(_jump)
 
-func get_input() -> InputPackage:
-	var new_input = InputPackage.new()
-	
-	new_input.actions.append("idle")
+
+func get_actions(inputPackage: InputPackage):
+	inputPackage.actions.append("idle")
 	
 	var next_pos: Vector3 = nav_agent.get_next_path_position()
 	var direction: Vector3 = (next_pos - get_parent().global_position)
-	new_input.input_direction = Vector2(direction.x, direction.z).normalized()
-	if new_input.input_direction != Vector2.ZERO:
-		new_input.actions.append("run")
+	inputPackage.input_direction = Vector2(direction.x, direction.z).normalized()
+	if inputPackage.input_direction != Vector2.ZERO:
+		inputPackage.actions.append("run")
 	
 	if link_timer > 0:
 		if do_jump:
-			new_input.actions.append("jump")
+			inputPackage.actions.append("jump")
 			do_jump = false
-		new_input.input_direction = link_travel_direction
+		inputPackage.input_direction = link_travel_direction
+
+
+func get_combat_actions(inputPackage: InputPackage):
+	inputPackage.combat_actions.append("idle")
 	
 	if nav_agent.distance_to_target() < attack_range:
-		new_input.actions.append("light_attack")
-	
-	return new_input
+		inputPackage.combat_actions.append("light_attack")
 
 
 func _process(delta: float) -> void:

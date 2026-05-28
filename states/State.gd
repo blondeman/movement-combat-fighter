@@ -4,13 +4,14 @@ extends Node
 signal state_finished(next_state_name: String)
 
 @export_group("Animation Settings")
-@export var state_name : String
 @export var animation_name : String = "RESET"
 @export var animation_blend_time : float = -1
 @export var is_blend_space : bool = false
 
 @export_group("State Settings")
+@export var state_name : String
 @export var priority : int
+@export var can_loop: bool = false
 
 var enter_state_time : float
 var initial_position : Vector3
@@ -30,7 +31,7 @@ func default_lifecycle(input : InputPackage) -> String:
 func best_input_that_can_be_paid(input : InputPackage) -> String:
 	input.actions.sort_custom(state_machine.state_priority_sort)
 	for action in input.actions:
-		if state_machine.states[action] == self:
+		if state_machine.states[action] == self and !can_loop:
 			return "okay"
 		if state_machine.states.has(action):
 			return action

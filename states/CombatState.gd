@@ -1,5 +1,5 @@
 class_name CombatState
-extends LocomotionState
+extends State
 
 @export var damage: float = 10.0
 @export var animation_length: float = 0.7
@@ -17,16 +17,11 @@ func default_lifecycle(input: InputPackage) -> String:
 		return "okay"
 
 
-func update(delta: float, input: InputPackage):
-	process_attack(input)
-	process_rotation(delta, input.get_input_direction())
-	character.move_and_slide()
-
-
-func process_attack(input: InputPackage):
-	if works_longer_than(attack_timing) and not attacked:
-		attacked = true
-		
-		if (character.velocity * Vector3(1,0,1)).length() < speed:
-			var face_direction = character.basis.z
-			character.velocity = face_direction * speed
+func best_input_that_can_be_paid(input : InputPackage) -> String:
+	input.combat_actions.sort_custom(state_machine.state_priority_sort)
+	for action in input.combat_actions:
+		if state_machine.states[action] == self and !can_loop:
+			return "okay"
+		if state_machine.states.has(action):
+			return action
+	return "error"

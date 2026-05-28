@@ -1,9 +1,10 @@
 extends CombatState
 
 
-func default_lifecycle(input: InputPackage) -> String:
-	if works_longer_than(animation_length):
-		attacked = false
-		return "idle"
-	else:
-		return "okay"
+func update(delta: float, input: InputPackage):
+	process_attack(input)
+
+
+func process_attack(input: InputPackage):
+	if works_longer_than(attack_timing) and not attacked:
+		attacked = true

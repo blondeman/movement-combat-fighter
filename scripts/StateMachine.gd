@@ -3,6 +3,7 @@ extends Node
 
 @export var character: EntityController
 @export var visual: Visual
+@export var print_state: bool = true
 
 var current_state: State
 var states: Dictionary
@@ -34,13 +35,15 @@ func update(delta: float, input: InputPackage):
 
 
 func change_state(new_state: String) -> void:
+	if print_state and character.print_state:
+		var machine_name = "["+name+"]"
+		if current_state:
+			print(machine_name + current_state.state_name + " -> " + new_state)
+		else:
+			print(machine_name + " -> " + new_state)
+	
 	if current_state:
-		if character.print_state:
-			print(current_state.state_name + " -> " + new_state)
 		current_state._exit()
-	else:
-		if character.print_state:
-			print(" -> " + new_state)
 	current_state = states[new_state]
 	current_state._enter()
 	visual.play(current_state)

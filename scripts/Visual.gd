@@ -7,23 +7,12 @@ extends Node3D
 
 func play(state: State):
 	if state.is_blend_space:
-		play_blend_state(state.animation_name)
+		blend_state.connect_blend_space(state.animation_name)
 	else:
-		play_animation(state.animation_name, state.animation_blend_time)
-
-
-func play_animation(animation_name: String, blend_time: float = -1):
-	blend_state.active = false
-	if animation_player.has_animation(animation_name):
-		animation_player.play(animation_name)
-	else:
-		animation_player.stop()
-
-
-func play_blend_state(animation_name: String):
-	animation_player.stop()
-	blend_state.active = true
-	blend_state.connect_blend_space(animation_name)
+		if state is LocomotionState:
+			blend_state.connect_locomotion_animation(state.animation_name)
+		if state is CombatState:
+			blend_state.connect_combat_animation(state.animation_name)
 
 
 func set_blend_space_2d_position(direction: Vector2):

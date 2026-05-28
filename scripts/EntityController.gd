@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export_group("StateMachine")
 @export var input_handler: InputHandler
 @export var locomotion: StateMachine
+@export var combat: StateMachine
 
 @export_group("Movement")
 @export var momentum_decay: float = 4.0
@@ -45,6 +46,7 @@ func _physics_process(delta: float):
 		var input = input_handler.get_input()
 		stair_step_up(input.get_input_direction())
 		locomotion.update(delta, input)
+		combat.update(delta, input)
 		stair_step_down()
 	
 	check_world_bounds()

@@ -74,6 +74,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_w3so6"]
 resource_name = "attack"
 length = 0.7
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -438,6 +439,9 @@ _data = {
 &"slide": SubResource("Animation_8ai8p")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ollqi"]
+animation = &"RESET"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ai8p"]
 animation = &"dash"
 
@@ -451,7 +455,7 @@ animation = &"dash"
 animation = &"dash"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t142n"]
-animation = &"slide"
+animation = &"dash"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gwiwh"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_8ai8p")
@@ -464,6 +468,9 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_o6xqe")
 blend_point_3/pos = Vector2(0, 1)
 blend_point_4/node = SubResource("AnimationNodeAnimation_t142n")
 blend_point_4/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pq80e"]
+animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w3so6"]
 animation = &"run"
@@ -492,14 +499,25 @@ blend_point_3/pos = Vector2(1, 0)
 blend_point_4/node = SubResource("AnimationNodeAnimation_yh4so")
 blend_point_4/pos = Vector2(0, 0)
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_q5pif"]
+filter_enabled = true
+filters = ["body/hand_r:position", "body/hand_r:rotation"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yt3fj"]
-graph_offset = Vector2(-392.57513, 54.156578)
-nodes/output/position = Vector2(160, 272)
+resource_local_to_scene = true
+graph_offset = Vector2(-651.133, 5.540393)
+nodes/output/position = Vector2(320, 256)
 nodes/run/node = SubResource("AnimationNodeBlendSpace2D_w3so6")
-nodes/run/position = Vector2(-304, 112)
+nodes/run/position = Vector2(-528, 48)
 nodes/dash/node = SubResource("AnimationNodeBlendSpace2D_gwiwh")
-nodes/dash/position = Vector2(-304, 336)
-node_connections = [&"output", 0, &"run"]
+nodes/dash/position = Vector2(-528, 272)
+nodes/locomotion/node = SubResource("AnimationNodeAnimation_pq80e")
+nodes/locomotion/position = Vector2(-512, -160)
+nodes/state_mixer/node = SubResource("AnimationNodeBlend2_q5pif")
+nodes/state_mixer/position = Vector2(32, 256)
+nodes/combat/node = SubResource("AnimationNodeAnimation_ollqi")
+nodes/combat/position = Vector2(-512, 592)
+node_connections = [&"output", 0, &"state_mixer", &"state_mixer", 0, &"locomotion", &"state_mixer", 1, &"combat"]
 
 [node name="visual" type="Node3D" unique_id=879074467 node_paths=PackedStringArray("animation_player", "blend_state")]
 script = ExtResource("1_gwiwh")
@@ -539,6 +557,7 @@ libraries/ = SubResource("AnimationLibrary_gwiwh")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1857423590]
 tree_root = SubResource("AnimationNodeBlendTree_yt3fj")
 anim_player = NodePath("../AnimationPlayer")
-parameters/run/blend_position = Vector2(0, 0)
+parameters/run/blend_position = Vector2(3.029, 0)
 parameters/dash/blend_position = Vector2(0, 0)
+parameters/state_mixer/blend_amount = 0.0
 script = ExtResource("4_w3so6")

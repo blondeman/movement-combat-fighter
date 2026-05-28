@@ -16,7 +16,7 @@ material_override = ExtResource("2_735o0")
 
 [node name="EnemyInputHandler" parent="." index="3" unique_id=1301081944 instance=ExtResource("2_4kjq8")]
 
-[node name="jump" parent="locomotion" parent_id_path=PackedInt32Array(1047176849) index="4" unique_id=1644593060]
+[node name="jump" parent="state_machine/locomotion" parent_id_path=PackedInt32Array(450061241) index="4" unique_id=1644593060]
 change_velocity = true
 
 [editable path="visual"]
