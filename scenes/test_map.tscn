@@ -23,6 +23,12 @@ size = Vector3(5, 5, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s02eq"]
 size = Vector3(5, 5, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_p21b5"]
+size = Vector3(3, 1, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5gif"]
+size = Vector3(3, 1, 9)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss0f2"]
 albedo_texture = ExtResource("3_p21b5")
 uv1_scale = Vector3(6, 4, 6)
@@ -120,6 +126,26 @@ mesh = SubResource("BoxMesh_4wuf8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=264920695]
 shape = SubResource("BoxShape3D_s02eq")
 
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1126459397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 14)
+material_override = SubResource("StandardMaterial3D_fn2sa")
+mesh = SubResource("BoxMesh_4wuf8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4" unique_id=288848093]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D" unique_id=1321169231]
+shape = SubResource("BoxShape3D_s02eq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1153563244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 9)
+material_override = SubResource("StandardMaterial3D_fn2sa")
+mesh = SubResource("BoxMesh_p21b5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5" unique_id=824214697]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D" unique_id=1169896424]
+shape = SubResource("BoxShape3D_o5gif")
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1699725813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.908993, -2.5681648, -13.320117)
 material_override = SubResource("StandardMaterial3D_ss0f2")
@@ -148,6 +174,16 @@ mesh = SubResource("PrismMesh_fn2sa")
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D7" unique_id=1390815791]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D7/StaticBody3D" unique_id=568608475]
+shape = SubResource("ConcavePolygonShape3D_fn2sa")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="." unique_id=1823705075]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2.5, 18.5)
+material_override = SubResource("StandardMaterial3D_kddbv")
+mesh = SubResource("PrismMesh_fn2sa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D8" unique_id=983204222]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D8/StaticBody3D" unique_id=1215023257]
 shape = SubResource("ConcavePolygonShape3D_fn2sa")
 
 [node name="stairs" type="Node3D" parent="." unique_id=146876944]

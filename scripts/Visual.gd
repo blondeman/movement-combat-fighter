@@ -3,6 +3,7 @@ extends Node3D
 
 @export var animation_player: AnimationPlayer
 @export var blend_state: BlendStateSwitch
+@export var weapon: Weapon
 
 
 func play(state: State):
@@ -13,7 +14,13 @@ func play(state: State):
 			blend_state.connect_locomotion_animation(state.animation_name)
 		if state is CombatState:
 			blend_state.connect_combat_animation(state.animation_name)
+			weapon.set_data(state as CombatState)
 
+func set_hitbox_active(is_attacking: bool):
+	weapon.is_attacking = is_attacking
+
+func reset_weapon():
+	weapon.reset()
 
 func set_blend_space_2d_position(direction: Vector2):
 	blend_state.set_blend_space_2d_position(direction)

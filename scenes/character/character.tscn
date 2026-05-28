@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://beshmq74cso23"]
 
 [ext_resource type="Script" uid="uid://0dlkb5wsieer" path="res://scripts/EntityController.gd" id="1_bblvu"]
+[ext_resource type="PackedScene" uid="uid://dyjik25g3y33i" path="res://scenes/character/hitbox.tscn" id="2_cuvpk"]
 [ext_resource type="PackedScene" uid="uid://cgwk0ofrtytnp" path="res://scenes/character/test_visual.tscn" id="2_l884r"]
 [ext_resource type="Script" uid="uid://c8diifbq30i4l" path="res://scripts/StateMachine.gd" id="3_mutn8"]
 [ext_resource type="PackedScene" uid="uid://cfqcbf3b317wa" path="res://states/locomotion/dash.tscn" id="4_bix7t"]
@@ -28,6 +29,8 @@ max_step_size = 0.6
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1468529141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_u8vuu")
+
+[node name="hitbox" parent="." unique_id=1062837414 instance=ExtResource("2_cuvpk")]
 
 [node name="visual" parent="." unique_id=879074467 instance=ExtResource("2_l884r")]
 

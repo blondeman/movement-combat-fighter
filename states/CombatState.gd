@@ -25,3 +25,16 @@ func best_input_that_can_be_paid(input : InputPackage) -> String:
 		if state_machine.states.has(action):
 			return action
 	return "error"
+
+
+func _exit():
+	state_machine.visual.reset_weapon()
+	exit()
+
+
+func is_weapon_hitbox_active() -> bool:
+	var animation_player: AnimationParameters = state_machine.visual.animation_player as AnimationParameters
+	var data: Animation = animation_player.get_animation(animation_name)
+	
+	var track = data.find_track("AnimationParameters:is_weapon_hitbox_active", Animation.TYPE_VALUE)
+	return animation_player.get_boolean_value(animation_name, track, get_progress())

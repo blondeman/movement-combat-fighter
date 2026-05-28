@@ -69,6 +69,7 @@ attack={
 3d_physics/layer_2="controller"
 3d_physics/layer_3="hit_box"
 3d_physics/layer_4="nav_mesh"
+3d_physics/layer_5="hurtbox"
 
 [physics]
 
