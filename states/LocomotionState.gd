@@ -36,8 +36,7 @@ func process_input_vector(delta: float, input: InputPackage):
 				character.velocity.x += wish_dir.x * accel_speed
 				character.velocity.z += wish_dir.z * accel_speed
 		else:
-			character.velocity.x = move_toward(character.velocity.x, 0.0, character.air_momentum_decay * delta)
-			character.velocity.z = move_toward(character.velocity.z, 0.0, character.air_momentum_decay * delta)
+			decay_horizontal_velocity(character.air_momentum_decay, delta)
 
 
 func process_rotation(delta: float, input_direction: Vector3):
@@ -77,3 +76,13 @@ func rotate_toward_direction(delta: float, input_direction: Vector3) -> float:
 func rotate_toward_velocity(delta: float):
 	var target_direction := Vector3(character.velocity.x, 0, character.velocity.z).normalized()
 	rotate_toward_direction(delta, target_direction)
+
+
+func decay_horizontal_velocity(decay: float, delta: float) -> void:
+	var horizontal := Vector3(character.velocity.x, 0.0, character.velocity.z)
+	var horizontal_speed := horizontal.length()
+	var new_speed := move_toward(horizontal_speed, 0.0, decay * delta)
+	if horizontal_speed > 0.0:
+		horizontal = (horizontal / horizontal_speed) * new_speed
+	character.velocity.x = horizontal.x
+	character.velocity.z = horizontal.z

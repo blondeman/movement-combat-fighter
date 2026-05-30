@@ -1,7 +1,8 @@
 class_name CombatState
 extends State
 
-@export var damage: float = 10.0
+@export var health_damage: int = 10
+@export var poise_damage: int = 10
 @export var animation_length: float = 0.7
 
 const attack_timing = 0.1

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://chsoueweepwb3"]
+
+[ext_resource type="Script" uid="uid://s73ts22tot0r" path="res://states/combat/CombatHitstun.gd" id="1_pxexe"]
+
+[node name="hitstun" type="Node" unique_id=1267284484]
+script = ExtResource("1_pxexe")
+state_name = "hitstun"

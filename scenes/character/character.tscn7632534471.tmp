@@ -19,10 +19,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
 
-[sub_resource type="Curve" id="Curve_h1xxs"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [node name="character" type="CharacterBody3D" unique_id=1758554578 node_paths=PackedStringArray("locomotion", "combat", "hitbox")]
 collision_layer = 2
 collision_mask = 3
@@ -33,6 +29,7 @@ combat = NodePath("state_machine/combat")
 hitbox = NodePath("hitbox")
 air_acceleration = 4.0
 max_step_size = 0.6
+print_state = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1468529141]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -101,10 +98,6 @@ priority = 5
 
 [node name="health" parent="." unique_id=13787964 node_paths=PackedStringArray("character") instance=ExtResource("14_rvcjf")]
 character = NodePath("..")
-max_stun_timing = 0.6
-stun_curve = SubResource("Curve_h1xxs")
-min_stun_timing = 0.2
-poise_healing_time = 20.0
 
 [connection signal="on_take_damage" from="hitbox" to="health" method="_on_hitbox_on_take_damage"]
 [connection signal="on_calculated_hit_stun" from="health" to="state_machine/locomotion/hitstun" method="_on_health_on_calculated_hit_stun"]

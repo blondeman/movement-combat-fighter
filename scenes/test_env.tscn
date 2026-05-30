@@ -74,6 +74,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.239986, 1.9073486e-06, -16
 floor_snap_length = 0.1
 locomotion = NodePath("state_machine")
 air_acceleration = 2.0
+print_state = true
 
 [node name="enemy" parent="." unique_id=1103560140 instance=ExtResource("4_lfx8k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1401515, 0, -3.6938171)

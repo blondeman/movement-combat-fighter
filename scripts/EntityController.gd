@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var input_handler: InputHandler
 @export var locomotion: StateMachine
 @export var combat: StateMachine
+@export var hitbox: Hitbox
 
 @export_group("Movement")
 @export var momentum_decay: float = 4.0
