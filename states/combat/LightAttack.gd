@@ -1,4 +1,4 @@
-extends CombatState
+extends Combo
 
 
 func update(delta: float, input: InputPackage):

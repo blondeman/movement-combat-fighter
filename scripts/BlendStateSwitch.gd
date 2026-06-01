@@ -25,17 +25,18 @@ func connect_blend_space(blend_space: String):
 
 func connect_locomotion_animation(animation_name: String):
 	blend_tree.disconnect_node("state_mixer", 0)
-	blend_tree.connect_node("state_mixer", 0, "locomotion")
+	blend_tree.connect_node("state_mixer", 0, "locomotion_seek")
 	current_blend_space = ""
 	
 	blend_tree.get_node("locomotion").animation = animation_name
-	set("parameters/locomotion/seek_request", 0.0)
+	set("parameters/locomotion_seek/seek_request", 0.0)
 
 
 func connect_combat_animation(animation_name: String):
 	blend_tree.get_node("combat").animation = animation_name
+	
 	if animation_name != "RESET":
-		set("parameters/combat/seek_request", 0.0)
+		set("parameters/combat_seek/seek_request", 0.0)
 		set("parameters/state_mixer/blend_amount", 1.0)
 	else:
 		set("parameters/state_mixer/blend_amount", 0.0)

@@ -7,12 +7,12 @@ extends State
 
 const attack_timing = 0.1
 
-var attacked : bool = false
+var attacked := false
+
 
 func default_lifecycle(input: InputPackage) -> String:
 	if works_longer_than(animation_length):
 		attacked = false
-		
 		return best_input_that_can_be_paid(input)
 	else:
 		return "okay"

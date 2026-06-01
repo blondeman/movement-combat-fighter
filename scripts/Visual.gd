@@ -17,7 +17,7 @@ func play(state: State):
 			weapon.set_data(state as CombatState)
 
 func set_hitbox_active(is_attacking: bool):
-	weapon.is_attacking = is_attacking
+	weapon.set_active(is_attacking)
 
 func reset_weapon():
 	weapon.reset()

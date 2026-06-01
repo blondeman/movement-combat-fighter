@@ -2,65 +2,96 @@ extends Node
 
 @export var character: EntityController
 @export var max_health: int = 100
-var current_health: int = 0
+var current_health: float = 0
+
+@export_group("Poise")
+@export var max_poise: int = 100
+var current_poise: float = 0
+@export var poise_regen_rate: float = 10.0        # points per second
+@export var poise_recover_threshold: float = 0.5  # fraction of max to exit broken state
 
 @export_group("Hitstun")
-@export var max_poise: int = 100
-var current_poise: int = 0
-@export var max_stun_timing = 0.3
-@export var stun_curve: Curve
-@export var min_stun_timing: float = 0.05
-@export var poise_healing_time: float = 10
-var last_hit_time: float = 0
+@export var base_stun_duration: float = 0.3
+@export var min_stun_duration: float = 0.05
+@export var stun_decay: float = 0.6               # each consecutive stun * this multiplier
+var consecutive_stun_count: int = 0
+
+var is_poise_broken: bool = false
 
 signal on_take_damage(amount: int, current_health: int, max_health: int)
 signal on_die()
 signal on_calculated_hit_stun(stun_timing: float)
+signal on_poise_broken()
+signal on_poise_recovered()
+
 
 func _ready() -> void:
 	current_health = max_health
 	current_poise = max_poise
 
 
-func take_damage(health_amount: int, poise_amount: int):
+func _process(delta: float) -> void:
+	if current_poise < max_poise:
+		current_poise = min(current_poise + poise_regen_rate * delta, max_poise)
+
+	if is_poise_broken:
+		if current_poise >= poise_recover_threshold:
+			_recover_poise()
+
+
+func take_damage(health_amount: int, poise_amount: int) -> void:
 	current_health -= health_amount
 	on_take_damage.emit(health_amount, current_health, max_health)
-	
-	current_poise -= poise_amount
-	if current_poise <= 0:
-		current_poise = 0
-	
+
 	if character.print_state:
-		print("[" + get_parent().name + "]: " + str(current_health) + "/" + str(max_health))
-		print("[" + get_parent().name + "]: " + str(current_poise) + "/" + str(max_poise))
-	
-	handle_hitstun()
+		print("[%s]: HP %d/%d  Poise %d/%d  Broken: %s" % [
+			get_parent().name, int(current_health), max_health,
+			int(current_poise), max_poise, is_poise_broken
+		])
 	
 	if current_health <= 0:
 		die()
+		return
+
+	take_poise_damage(poise_amount)
+
+func take_poise_damage(poise_amount: int):
+	if !is_poise_broken:
+		current_poise -= poise_amount
+		if current_poise <= 0:
+			current_poise = 0
+			_break_poise()
+
+	if is_poise_broken:
+		_apply_hitstun()
 
 
-func die():
+func _break_poise() -> void:
+	is_poise_broken = true
+	consecutive_stun_count = 0
+	on_poise_broken.emit()
+
+
+func _recover_poise() -> void:
+	is_poise_broken = false
+	consecutive_stun_count = 0
+	on_poise_recovered.emit()
+
+
+func _apply_hitstun() -> void:
+	var stun = base_stun_duration * pow(stun_decay, consecutive_stun_count)
+	stun = maxf(stun, min_stun_duration)
+	consecutive_stun_count += 1
+
+	on_calculated_hit_stun.emit(stun)
+	character.locomotion.change_state("hitstun")
+	character.combat.change_state("hitstun")
+
+
+func die() -> void:
+	current_health = 0
 	on_die.emit()
-	#get_parent().queue_free()
 
 
 func _on_hitbox_on_take_damage(health_amount: int, poise_amount: int) -> void:
 	take_damage(health_amount, poise_amount)
-
-
-func handle_hitstun():
-	var time_since_last_hit = Time.get_unix_time_from_system() - last_hit_time
-	var healed_poise = int((time_since_last_hit / poise_healing_time) * max_poise)
-	current_poise = min(current_poise + healed_poise, max_poise)
-	
-	var calculated_stun_timing = max_stun_timing
-	calculated_stun_timing *= stun_curve.sample(float(current_poise) / float(max_poise))
-	if calculated_stun_timing < min_stun_timing:
-		calculated_stun_timing = 0.0
-	on_calculated_hit_stun.emit(calculated_stun_timing)
-	
-	character.locomotion.change_state("hitstun")
-	character.combat.change_state("hitstun")
-	
-	last_hit_time = Time.get_unix_time_from_system()
