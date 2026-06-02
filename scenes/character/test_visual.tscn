@@ -16,9 +16,8 @@ size = Vector3(0.3, 0.3, 0.72)
 radius = 0.1
 height = 0.2
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w3so6"]
-radius = 0.2
-height = 1.4
+[sub_resource type="SphereShape3D" id="SphereShape3D_20uax"]
+radius = 0.6
 
 [sub_resource type="BoxMesh" id="BoxMesh_0rlhq"]
 size = Vector3(0.05, 1.5, 0.05)
@@ -645,7 +644,7 @@ script = ExtResource("3_20uax")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body/hand_r/weapon" unique_id=223748686]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.2, 0)
-shape = SubResource("CapsuleShape3D_w3so6")
+shape = SubResource("SphereShape3D_20uax")
 
 [node name="sword" type="MeshInstance3D" parent="body/hand_r/weapon" unique_id=1933027581]
 transform = Transform3D(1, -2.9802322e-08, -1.8626451e-09, 0, 1, 5.5879354e-09, -1.4901161e-08, 1.8626451e-09, 1, -5.9604645e-08, 0, 0)

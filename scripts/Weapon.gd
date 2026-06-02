@@ -29,7 +29,22 @@ func _on_area_entered(area: Area3D) -> void:
 	var hit_data := area as Hitbox
 	ignore_list.append(hit_data)
 	
-	hit_data.take_damage(health_damage, poise_damage)
+	hit_data.take_damage(health_damage, poise_damage, get_hit_position(hit_data))
+
+
+func get_hit_position(area: Area3D) -> Vector3:
+	var space_state := get_world_3d().direct_space_state
+	var query := PhysicsRayQueryParameters3D.create(
+		global_position,
+		area.global_position,
+		collision_mask,
+		[self]
+	)
+	var result := space_state.intersect_ray(query)
+	if result:
+		return result.position
+	# Fallback if ray misses
+	return area.global_position
 
 
 func reset():
