@@ -7,13 +7,13 @@ var current_health: float = 0
 @export_group("Poise")
 @export var max_poise: int = 100
 var current_poise: float = 0
-@export var poise_regen_rate: float = 10.0        # points per second
-@export var poise_recover_threshold: float = 0.5  # fraction of max to exit broken state
+@export var poise_regen_rate: float = 10.0
+@export var poise_recover_threshold: float = 50
 
 @export_group("Hitstun")
 @export var base_stun_duration: float = 0.3
 @export var min_stun_duration: float = 0.05
-@export var stun_decay: float = 0.6               # each consecutive stun * this multiplier
+@export var stun_decay: float = 0.6
 var consecutive_stun_count: int = 0
 
 var is_poise_broken: bool = false

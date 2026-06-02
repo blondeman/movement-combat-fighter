@@ -33,7 +33,6 @@ max_step_size = 0.6
 
 [node name="health" parent="." unique_id=13787964 node_paths=PackedStringArray("character") instance=ExtResource("14_rvcjf")]
 character = NodePath("..")
-poise_recover_threshold = 50.0
 base_stun_duration = 0.6
 min_stun_duration = 0.2
 
