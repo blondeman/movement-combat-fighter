@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://pgbu50rnf7w8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1i42k"]
+
+[node name="ship_builder_preview" type="Node3D" unique_id=697228894]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2117505720]
+mesh = SubResource("BoxMesh_1i42k")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1757570883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15016079, 0, 2.25882)
+mesh = SubResource("BoxMesh_1i42k")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=435400615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.303597, 0, 0.16209126)
+mesh = SubResource("BoxMesh_1i42k")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1089203790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08183169, 2.2979574, 0.16209126)
+mesh = SubResource("BoxMesh_1i42k")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1516563721]
+transform = Transform3D(0.7071067, -0.35355338, 0.61237234, 0, 0.8660254, 0.49999997, -0.7071067, -0.35355338, 0.61237234, 5, 5, 5)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1773301174]
+transform = Transform3D(0.41874507, 0.67633545, -0.6059892, 0.103036635, 0.62761736, 0.7716736, 0.9022396, -0.38557366, 0.19312435, 0, 0, 0)

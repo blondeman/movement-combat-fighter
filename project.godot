@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Movement Combat Fighter"
-run/main_scene="uid://14es73vutmyx"
+run/main_scene="uid://dhoqdypq2hbrs"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

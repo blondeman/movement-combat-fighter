@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cqrypb8hkd1wv"]
-
-[ext_resource type="Script" uid="uid://cwijr2taulgy" path="res://scenes/character/states/locomotion/Idle.gd" id="1_ru82j"]
-
-[node name="idle" type="Node" unique_id=200638708]
-script = ExtResource("1_ru82j")
-state_name = "idle"

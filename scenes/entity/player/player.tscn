@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bjlvvldfyusmf"]
+
+[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/entity/general/character.tscn" id="1_gmlin"]
+[ext_resource type="PackedScene" uid="uid://bqf7oei24h2xv" path="res://scenes/entity/player/camera_controller.tscn" id="2_sfcyi"]
+[ext_resource type="PackedScene" uid="uid://dq212cpt14hia" path="res://scenes/entity/player/player_input_handler.tscn" id="3_sfcyi"]
+
+[node name="player" unique_id=1758554578 node_paths=PackedStringArray("input_handler") groups=["player"] instance=ExtResource("1_gmlin")]
+input_handler = NodePath("PlayerInputHandler")
+
+[node name="camera_target" type="Node3D" parent="." index="2" unique_id=1921077291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="camera" parent="camera_target" index="0" unique_id=1981057096 node_paths=PackedStringArray("character") instance=ExtResource("2_sfcyi")]
+character = NodePath("../..")
+
+[node name="PlayerInputHandler" parent="." index="3" unique_id=956228552 instance=ExtResource("3_sfcyi")]

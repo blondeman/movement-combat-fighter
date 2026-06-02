@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dhoqdypq2hbrs"]
+
+[ext_resource type="PackedScene" uid="uid://pgbu50rnf7w8" path="res://scenes/ship_building/ship_builder_preview.tscn" id="1_edhyh"]
+[ext_resource type="PackedScene" uid="uid://4q23lvmxgrsd" path="res://scenes/ship_building/ship_builder_layer.tscn" id="2_edhyh"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mmmq4"]
+color = Color(0.71129656, 0.71129656, 0.7112965, 1)
+thickness = 4
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_edhyh"]
+color = Color(0.71129656, 0.71129656, 0.7112965, 1)
+thickness = 4
+
+[node name="ship_builder_interface" type="Control" unique_id=1569646672]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=843054432]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=1126143750]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="preview" type="MarginContainer" parent="Panel/HBoxContainer" unique_id=1433918896]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/HBoxContainer/preview" unique_id=883386511]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Panel/HBoxContainer/preview/SubViewportContainer" unique_id=1798627548]
+handle_input_locally = false
+size = Vector2i(566, 640)
+render_target_update_mode = 4
+
+[node name="ship_builder_preview" parent="Panel/HBoxContainer/preview/SubViewportContainer/SubViewport" unique_id=697228894 instance=ExtResource("1_edhyh")]
+
+[node name="VSeparator" type="VSeparator" parent="Panel/HBoxContainer" unique_id=264119043]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_mmmq4")
+
+[node name="editor" type="MarginContainer" parent="Panel/HBoxContainer" unique_id=1175437926]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/editor" unique_id=1539857332]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SubViewportContainer" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=982712933 instance=ExtResource("2_edhyh")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=1867272499]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
+
+[node name="SubViewportContainer2" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=292250318 instance=ExtResource("2_edhyh")]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=215563409]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
+
+[node name="SubViewportContainer3" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=1848519752 instance=ExtResource("2_edhyh")]
+layout_mode = 2

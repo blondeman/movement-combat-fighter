@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://blnbleuuyy58c"]
+
+[ext_resource type="Script" uid="uid://grt32231myro" path="res://scenes/entity/general/states/locomotion/JumpDash.gd" id="1_xa4tm"]
+[ext_resource type="PackedScene" uid="uid://dvga74310kdcb" path="res://scenes/effects/dust_cloud.tscn" id="2_ukiu7"]
+
+[node name="jump_dash" type="Node" unique_id=104782609]
+script = ExtResource("1_xa4tm")
+particles = ExtResource("2_ukiu7")
+state_name = "jump_dash"
+priority = 10

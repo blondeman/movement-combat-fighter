@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dqecwm2y18v1a"]
+
+[ext_resource type="Script" uid="uid://bq6p6i0wyacxw" path="res://scenes/entity/general/states/combat/CombatIdle.gd" id="1_54tpj"]
+
+[node name="idle" type="Node" unique_id=1225614332]
+script = ExtResource("1_54tpj")
+animation_length = 0.0
+state_name = "idle"

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dq212cpt14hia"]
+
+[ext_resource type="Script" uid="uid://djrejdhtq640j" path="res://scenes/entity/player/PlayerInputHandler.gd" id="1_lxr03"]
+
+[node name="PlayerInputHandler" type="Node" unique_id=956228552]
+script = ExtResource("1_lxr03")
+metadata/_custom_type_script = "uid://djrejdhtq640j"
