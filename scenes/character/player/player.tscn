@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjlvvldfyusmf"]
 
-[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/character/character.tscn" id="1_gmlin"]
+[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/character/general/character.tscn" id="1_gmlin"]
 [ext_resource type="PackedScene" uid="uid://bqf7oei24h2xv" path="res://scenes/character/player/camera_controller.tscn" id="2_sfcyi"]
 [ext_resource type="PackedScene" uid="uid://dq212cpt14hia" path="res://scenes/character/player/player_input_handler.tscn" id="3_sfcyi"]
 

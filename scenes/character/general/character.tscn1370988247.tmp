@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://beshmq74cso23"]
+
+[ext_resource type="Script" uid="uid://0dlkb5wsieer" path="res://scenes/character/general/EntityController.gd" id="1_bblvu"]
+[ext_resource type="PackedScene" uid="uid://dyjik25g3y33i" path="res://scenes/character/general/hitbox.tscn" id="2_cuvpk"]
+[ext_resource type="PackedScene" uid="uid://cgwk0ofrtytnp" path="res://scenes/character/general/test_visual.tscn" id="2_l884r"]
+[ext_resource type="Script" uid="uid://c8diifbq30i4l" path="res://scenes/character/state_machine/StateMachine.gd" id="3_mutn8"]
+[ext_resource type="PackedScene" uid="uid://cfqcbf3b317wa" path="res://scenes/character/states/locomotion/dash.tscn" id="4_bix7t"]
+[ext_resource type="PackedScene" uid="uid://cpl7g20mo4p6k" path="res://scenes/effects/blood_splatter.tscn" id="4_maja8"]
+[ext_resource type="PackedScene" uid="uid://cqrypb8hkd1wv" path="res://scenes/character/states/locomotion/idle.tscn" id="5_bblvu"]
+[ext_resource type="PackedScene" uid="uid://b8csxavncreo1" path="res://scenes/character/states/locomotion/midair.tscn" id="5_q52vl"]
+[ext_resource type="PackedScene" uid="uid://d0rm7om2v2vf" path="res://scenes/character/states/locomotion/run.tscn" id="6_q52vl"]
+[ext_resource type="PackedScene" uid="uid://7863bectfee0" path="res://scenes/character/states/locomotion/jump.tscn" id="7_l884r"]
+[ext_resource type="PackedScene" uid="uid://blnbleuuyy58c" path="res://scenes/character/states/locomotion/jump_dash.tscn" id="8_bblvu"]
+[ext_resource type="PackedScene" uid="uid://brfsc5uny6yqf" path="res://scenes/character/states/locomotion/slide.tscn" id="10_l884r"]
+[ext_resource type="PackedScene" uid="uid://qq87evtwhahe" path="res://scenes/character/states/combat/light_attack.tscn" id="11_0rlhq"]
+[ext_resource type="PackedScene" uid="uid://dqecwm2y18v1a" path="res://scenes/character/states/combat/idle.tscn" id="11_oe6dy"]
+[ext_resource type="PackedScene" uid="uid://2sqfujabyhr7" path="res://scenes/character/states/locomotion/hitstun.tscn" id="12_1pheb"]
+[ext_resource type="PackedScene" uid="uid://da6tsuhccpd1i" path="res://scenes/character/general/health.tscn" id="14_rvcjf"]
+[ext_resource type="PackedScene" uid="uid://chsoueweepwb3" path="res://scenes/character/states/combat/hitstun.tscn" id="15_h1xxs"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
+
+[node name="character" type="CharacterBody3D" unique_id=1758554578 node_paths=PackedStringArray("locomotion", "combat", "hitbox")]
+collision_layer = 2
+collision_mask = 3
+floor_snap_length = 0.2
+script = ExtResource("1_bblvu")
+locomotion = NodePath("state_machine/locomotion")
+combat = NodePath("state_machine/combat")
+hitbox = NodePath("hitbox")
+air_acceleration = 4.0
+max_step_size = 0.6
+
+[node name="health" parent="." unique_id=13787964 node_paths=PackedStringArray("character") instance=ExtResource("14_rvcjf")]
+character = NodePath("..")
+base_stun_duration = 0.6
+min_stun_duration = 0.2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1468529141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_u8vuu")
+
+[node name="hitbox" parent="." unique_id=1062837414 node_paths=PackedStringArray("character") instance=ExtResource("2_cuvpk")]
+character = NodePath("..")
+hit_effect = ExtResource("4_maja8")
+
+[node name="visual" parent="." unique_id=879074467 instance=ExtResource("2_l884r")]
+
+[node name="state_machine" type="Node" parent="." unique_id=1047176849]
+
+[node name="locomotion" type="Node" parent="state_machine" unique_id=450061241 node_paths=PackedStringArray("character", "visual")]
+script = ExtResource("3_mutn8")
+character = NodePath("../..")
+visual = NodePath("../../visual")
+
+[node name="idle" parent="state_machine/locomotion" unique_id=200638708 instance=ExtResource("5_bblvu")]
+animation_name = "idle"
+animation_blend_time = 0.1
+
+[node name="midair" parent="state_machine/locomotion" unique_id=1316658025 instance=ExtResource("5_q52vl")]
+animation_name = "midair"
+animation_blend_time = 0.1
+
+[node name="run" parent="state_machine/locomotion" unique_id=2083203723 instance=ExtResource("6_q52vl")]
+animation_name = "run"
+animation_blend_time = 0.1
+is_blend_space = true
+
+[node name="dash" parent="state_machine/locomotion" unique_id=905912519 instance=ExtResource("4_bix7t")]
+dash_velocity = 20.0
+animation_name = "dash"
+animation_blend_time = 0.1
+is_blend_space = true
+
+[node name="jump" parent="state_machine/locomotion" unique_id=1644593060 instance=ExtResource("7_l884r")]
+jump_velocity = 12.0
+animation_name = "jump"
+animation_blend_time = 0.1
+
+[node name="jump_dash" parent="state_machine/locomotion" unique_id=104782609 instance=ExtResource("8_bblvu")]
+jump_velocity = 12.0
+dash_velocity = 20.0
+animation_name = "dash"
+animation_blend_time = 0.1
+
+[node name="slide" parent="state_machine/locomotion" unique_id=498822131 instance=ExtResource("10_l884r")]
+animation_name = "slide"
+animation_blend_time = 0.1
+
+[node name="hitstun" parent="state_machine/locomotion" unique_id=1896853318 instance=ExtResource("12_1pheb")]
+momentum_decay = 20.0
+
+[node name="combat" type="Node" parent="state_machine" unique_id=731439970 node_paths=PackedStringArray("character", "visual")]
+script = ExtResource("3_mutn8")
+character = NodePath("../..")
+visual = NodePath("../../visual")
+
+[node name="idle" parent="state_machine/combat" unique_id=1225614332 instance=ExtResource("11_oe6dy")]
+
+[node name="light_attack" parent="state_machine/combat" unique_id=1256260314 instance=ExtResource("11_0rlhq")]
+combo_window_start = 0.6
+animation_length = 1.0
+priority = 5
+
+[node name="light_attack2" parent="state_machine/combat/light_attack" unique_id=1838179848 instance=ExtResource("11_0rlhq")]
+combo_window_start = 0.5
+health_damage = 2
+poise_damage = 15
+animation_length = 1.0
+animation_name = "attack_2"
+state_name = "light_attack2"
+priority = 5
+
+[node name="hitstun" parent="state_machine/combat" unique_id=1267284484 instance=ExtResource("15_h1xxs")]
+
+[connection signal="on_calculated_hit_stun" from="health" to="state_machine/locomotion/hitstun" method="_on_health_on_calculated_hit_stun"]
+[connection signal="on_calculated_hit_stun" from="health" to="state_machine/combat/hitstun" method="_on_health_on_calculated_hit_stun"]
+[connection signal="on_take_damage" from="hitbox" to="health" method="_on_hitbox_on_take_damage"]

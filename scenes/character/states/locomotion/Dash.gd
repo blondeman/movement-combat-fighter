@@ -1,4 +1,4 @@
-extends LocomotionState
+extends LocomotionStateParticles
 
 @export var dash_velocity : float = 30
 
@@ -49,3 +49,5 @@ func process_dash(input: InputPackage):
 
 		character.dash_cooldown_remaining = character.dash_cooldown
 		dashed = true
+		
+		create_particles(character.velocity)

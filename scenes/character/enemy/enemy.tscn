@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://5jrxwtmv2f50"]
 
-[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/character/character.tscn" id="1_6tklo"]
+[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/character/general/character.tscn" id="1_6tklo"]
 [ext_resource type="PackedScene" uid="uid://bm6ukniulk1u8" path="res://scenes/character/enemy/enemy_input_handler.tscn" id="2_4kjq8"]
 [ext_resource type="Material" uid="uid://cjju881fensax" path="res://materials/toon_red.tres" id="2_735o0"]
-[ext_resource type="PackedScene" uid="uid://cchyawv2tafhk" path="res://scenes/character/target.tscn" id="3_4kjq8"]
+[ext_resource type="PackedScene" uid="uid://cchyawv2tafhk" path="res://scenes/character/general/target.tscn" id="3_4kjq8"]
 
 [node name="enemy" unique_id=1758554578 node_paths=PackedStringArray("input_handler") groups=["enemy"] instance=ExtResource("1_6tklo")]
 input_handler = NodePath("EnemyInputHandler")

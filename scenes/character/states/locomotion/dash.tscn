@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cfqcbf3b317wa"]
 
 [ext_resource type="Script" uid="uid://bfqqtkhswpy2p" path="res://scenes/character/states/locomotion/Dash.gd" id="1_bapqj"]
+[ext_resource type="PackedScene" uid="uid://dvga74310kdcb" path="res://scenes/effects/dust_cloud.tscn" id="2_hcdfw"]
 
 [node name="dash" type="Node" unique_id=905912519]
 script = ExtResource("1_bapqj")
+particles = ExtResource("2_hcdfw")
 state_name = "dash"
 priority = 8

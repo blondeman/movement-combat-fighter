@@ -1,4 +1,4 @@
-extends LocomotionState
+extends LocomotionStateParticles
 
 @export var jump_velocity : float = 15
 @export var change_velocity: bool = false
@@ -40,3 +40,5 @@ func process_jump(input: InputPackage):
 
 		character.coyote_timer = 0.0
 		jumped = true
+		
+		create_particles(character.velocity)

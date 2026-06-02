@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgq4ssvdcgkue"]
 
-[ext_resource type="Script" uid="uid://bikam685trcne" path="res://scenes/character/Weapon.gd" id="1_yolmb"]
+[ext_resource type="Script" uid="uid://bikam685trcne" path="res://scenes/character/general/Weapon.gd" id="1_yolmb"]
 
 [node name="weapon" type="Area3D" unique_id=2094250186]
 transform = Transform3D(1, -2.9802322e-08, -1.8626451e-09, 0, 1, -9.313226e-09, -5.5879354e-09, -9.313226e-09, 1, 0, 0, 0)

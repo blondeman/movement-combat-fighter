@@ -1,4 +1,4 @@
-extends LocomotionState
+extends LocomotionStateParticles
 
 @export var jump_velocity : float = 15
 @export var dash_velocity : float = 30
@@ -42,3 +42,5 @@ func process_dash_jump(input: InputPackage):
 		character.dash_cooldown_remaining = character.dash_cooldown
 		character.coyote_timer = 0.0
 		dash_jumped = true
+		
+		create_particles(character.velocity)

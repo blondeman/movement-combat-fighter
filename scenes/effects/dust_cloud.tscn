@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dvga74310kdcb"]
+
+[ext_resource type="Script" uid="uid://d4hjlqxtin1k2" path="res://scenes/effects/OneShot.gd" id="1_oqgs8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pe6a0"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_so1kv"]
+material = SubResource("StandardMaterial3D_pe6a0")
+size = Vector3(0.15, 0.15, 0.15)
+
+[sub_resource type="Curve" id="Curve_pe6a0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5338983, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.1926723, 0.0, 0, 0]
+point_count = 3
+
+[node name="CPUParticles3D" type="CPUParticles3D" unique_id=1564730501]
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("BoxMesh_so1kv")
+emission_shape = 1
+emission_sphere_radius = 0.2
+particle_flag_rotate_y = true
+direction = Vector3(0, 0, -1)
+spread = 2.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 16.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+damping_min = 20.0
+damping_max = 25.0
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 0.8
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_pe6a0")
+script = ExtResource("1_oqgs8")
