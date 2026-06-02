@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bqf7oei24h2xv"]
 
-[ext_resource type="Script" uid="uid://dkiyjfymck17d" path="res://scripts/CameraController.gd" id="1_262c8"]
+[ext_resource type="Script" uid="uid://dkiyjfymck17d" path="res://scenes/character/player/CameraController.gd" id="1_262c8"]
 [ext_resource type="PackedScene" uid="uid://cxpl1jlccv7pr" path="res://scenes/character/player/marker.tscn" id="2_drmjl"]
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cvpoc"]

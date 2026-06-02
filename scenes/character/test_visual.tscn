@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cgwk0ofrtytnp"]
 
-[ext_resource type="Script" uid="uid://dsdyq4qtawy5c" path="res://scripts/Visual.gd" id="1_gwiwh"]
+[ext_resource type="Script" uid="uid://dsdyq4qtawy5c" path="res://scenes/character/Visual.gd" id="1_gwiwh"]
 [ext_resource type="Material" uid="uid://bop21rijavshp" path="res://materials/toon_blue.tres" id="1_k5fyg"]
 [ext_resource type="Material" uid="uid://cjy6ko6iek64e" path="res://materials/toon_dark_gray.tres" id="2_gwiwh"]
-[ext_resource type="Script" uid="uid://bikam685trcne" path="res://scripts/Weapon.gd" id="3_20uax"]
-[ext_resource type="Script" uid="uid://klmqagymhdeb" path="res://scripts/BlendStateSwitch.gd" id="4_w3so6"]
-[ext_resource type="Script" uid="uid://dq8rwvwmpc111" path="res://scripts/AnimationParameters.gd" id="5_321ia"]
+[ext_resource type="PackedScene" uid="uid://dgq4ssvdcgkue" path="res://scenes/character/weapon.tscn" id="3_20uax"]
+[ext_resource type="Script" uid="uid://klmqagymhdeb" path="res://scenes/character/animation/BlendStateSwitch.gd" id="4_w3so6"]
+[ext_resource type="Script" uid="uid://dq8rwvwmpc111" path="res://scenes/character/animation/AnimationParameters.gd" id="5_321ia"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
 
@@ -19,10 +19,10 @@ height = 0.2
 [sub_resource type="SphereShape3D" id="SphereShape3D_20uax"]
 radius = 0.6
 
-[sub_resource type="BoxMesh" id="BoxMesh_0rlhq"]
+[sub_resource type="BoxMesh" id="BoxMesh_yh4so"]
 size = Vector3(0.05, 1.5, 0.05)
 
-[sub_resource type="BoxMesh" id="BoxMesh_oe6dy"]
+[sub_resource type="BoxMesh" id="BoxMesh_8ai8p"]
 size = Vector3(0.15, 0.05, 0.15)
 
 [sub_resource type="Animation" id="Animation_gwiwh"]
@@ -613,11 +613,10 @@ nodes/locomotion_seek/node = SubResource("AnimationNodeTimeSeek_321ia")
 nodes/locomotion_seek/position = Vector2(-336, -192)
 node_connections = [&"output", 0, &"state_mixer", &"state_mixer", 0, &"locomotion_seek", &"state_mixer", 1, &"combat_seek", &"combat_seek", 0, &"combat", &"locomotion_seek", 0, &"locomotion"]
 
-[node name="visual" type="Node3D" unique_id=879074467 node_paths=PackedStringArray("animation_player", "blend_state", "weapon")]
+[node name="visual" type="Node3D" unique_id=879074467 node_paths=PackedStringArray("animation_player", "blend_state")]
 script = ExtResource("1_gwiwh")
 animation_player = NodePath("AnimationParameters")
 blend_state = NodePath("AnimationTree")
-weapon = NodePath("body/hand_r/weapon")
 
 [node name="body" type="MeshInstance3D" parent="." unique_id=652490843]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -636,25 +635,21 @@ mesh = SubResource("SphereMesh_l884r")
 transform = Transform3D(0.99999976, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999996, -0.5, 0, 0.5)
 mesh = SubResource("SphereMesh_l884r")
 
-[node name="weapon" type="Area3D" parent="body/hand_r" unique_id=1579054836]
-transform = Transform3D(1, -2.9802322e-08, -1.8626451e-09, 0, 1, -9.313226e-09, -5.5879354e-09, -9.313226e-09, 1, 5.9604645e-08, 0.5815237, -2.9802322e-08)
-collision_layer = 16
-collision_mask = 4
-script = ExtResource("3_20uax")
+[node name="weapon" parent="body/hand_r" unique_id=2094250186 instance=ExtResource("3_20uax")]
+transform = Transform3D(1, -5.2041704e-17, 5.5879354e-09, 0, 1, 9.313226e-09, -5.5879354e-09, -9.313226e-09, 1, 5.9604645e-08, 0.5815237, -2.9802322e-08)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="body/hand_r/weapon" unique_id=223748686]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.2, 0)
+[node name="CollisionShape3D" parent="body/hand_r/weapon" index="0" unique_id=1917641447]
 shape = SubResource("SphereShape3D_20uax")
 
-[node name="sword" type="MeshInstance3D" parent="body/hand_r/weapon" unique_id=1933027581]
+[node name="sword" type="MeshInstance3D" parent="body/hand_r/weapon" unique_id=886080315]
 transform = Transform3D(1, -2.9802322e-08, -1.8626451e-09, 0, 1, 5.5879354e-09, -1.4901161e-08, 1.8626451e-09, 1, -5.9604645e-08, 0, 0)
 material_override = ExtResource("2_gwiwh")
-mesh = SubResource("BoxMesh_0rlhq")
+mesh = SubResource("BoxMesh_yh4so")
 
-[node name="hilt" type="MeshInstance3D" parent="body/hand_r/weapon/sword" unique_id=1634013257]
+[node name="hilt" type="MeshInstance3D" parent="body/hand_r/weapon/sword" unique_id=79415046]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.41204834, 0)
 material_override = ExtResource("2_gwiwh")
-mesh = SubResource("BoxMesh_oe6dy")
+mesh = SubResource("BoxMesh_8ai8p")
 
 [node name="AnimationParameters" type="AnimationPlayer" parent="." unique_id=1190784198]
 libraries/ = SubResource("AnimationLibrary_gwiwh")
@@ -670,4 +665,4 @@ parameters/combat_seek/seek_request = -1.0
 parameters/locomotion_seek/seek_request = -1.0
 script = ExtResource("4_w3so6")
 
-[connection signal="area_entered" from="body/hand_r/weapon" to="body/hand_r/weapon" method="_on_area_entered"]
+[editable path="body/hand_r/weapon"]

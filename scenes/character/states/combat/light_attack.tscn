@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qq87evtwhahe"]
 
-[ext_resource type="Script" uid="uid://cr6udkukhjvhf" path="res://states/combat/LightAttack.gd" id="1_ciltq"]
+[ext_resource type="Script" uid="uid://cr6udkukhjvhf" path="res://scenes/character/states/combat/LightAttack.gd" id="1_ciltq"]
 
 [node name="light_attack" type="Node" unique_id=1256260314]
 script = ExtResource("1_ciltq")

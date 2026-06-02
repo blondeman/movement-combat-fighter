@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2sqfujabyhr7"]
 
-[ext_resource type="Script" uid="uid://ccsiufl5l56fx" path="res://states/locomotion/Hitstun.gd" id="1_5qlbr"]
+[ext_resource type="Script" uid="uid://ccsiufl5l56fx" path="res://scenes/character/states/locomotion/Hitstun.gd" id="1_5qlbr"]
 
 [node name="hitstun" type="Node" unique_id=1896853318]
 script = ExtResource("1_5qlbr")
