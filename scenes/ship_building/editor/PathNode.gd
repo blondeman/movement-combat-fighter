@@ -3,8 +3,6 @@ extends Node2D
 
 signal node_changed(index: int)
 
-@export var use_second_handle: bool = true
-
 @export_group("References")
 @export var center: Area2D
 @export var arm_a: Area2D
@@ -21,6 +19,16 @@ func _ready() -> void:
 	for area in [center, arm_a, arm_b]:
 		area.input_pickable = true
 		area.connect("input_event", _on_area_input_event.bind(area))
+
+
+func enable_arm_a(enabled: bool):
+	arm_a.visible = enabled
+	line_a.visible = enabled
+
+func enable_arm_b(enabled: bool):
+	arm_b.visible = enabled
+	line_b.visible = enabled
+
 
 func _on_area_input_event(_viewport, event: InputEvent, _shape_idx: int, area: Area2D) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -43,6 +51,14 @@ func _input(event: InputEvent) -> void:
 			global_position = get_global_mouse_position() + _drag_offset
 		else:
 			_dragging.global_position = get_global_mouse_position() + _drag_offset
-			line_a.points[1] = arm_a.position
-			line_b.points[1] = arm_b.position
+			
+			if Input.is_action_pressed("ship_ui_mirror_node"):
+				var other_arm: Area2D = arm_b if _dragging == arm_a else arm_a
+				other_arm.global_position = global_position - (_dragging.global_position - global_position)
+		
 		node_changed.emit(index)
+		update_nodes()
+
+func update_nodes():
+	line_a.points[1] = arm_a.position
+	line_b.points[1] = arm_b.position

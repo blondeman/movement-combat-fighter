@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dhoqdypq2hbrs"]
 
+[ext_resource type="Script" uid="uid://cp4naw8hkcnxh" path="res://scenes/ship_building/ShipBuilderInterface.gd" id="1_5nhrj"]
 [ext_resource type="PackedScene" uid="uid://pgbu50rnf7w8" path="res://scenes/ship_building/ship_builder_preview.tscn" id="1_edhyh"]
 [ext_resource type="PackedScene" uid="uid://4q23lvmxgrsd" path="res://scenes/ship_building/ship_builder_layer.tscn" id="2_edhyh"]
 
@@ -12,13 +13,15 @@ vertical = true
 color = Color(0.71129656, 0.71129656, 0.7112965, 1)
 thickness = 4
 
-[node name="ship_builder_interface" type="Control" unique_id=1569646672]
+[node name="ship_builder_interface" type="Control" unique_id=1569646672 node_paths=PackedStringArray("layer_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5nhrj")
+layer_container = NodePath("Panel/HBoxContainer/editor/VBoxContainer")
 
 [node name="Panel" type="Panel" parent="." unique_id=843054432]
 layout_mode = 1
@@ -45,16 +48,42 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/HBoxContainer/preview" unique_id=883386511]
+[node name="Control" type="Control" parent="Panel/HBoxContainer/preview" unique_id=1650691836]
 layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel/HBoxContainer/preview/Control" unique_id=883386511]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Panel/HBoxContainer/preview/SubViewportContainer" unique_id=1798627548]
+[node name="SubViewport" type="SubViewport" parent="Panel/HBoxContainer/preview/Control/SubViewportContainer" unique_id=1798627548]
 handle_input_locally = false
 size = Vector2i(566, 640)
 render_target_update_mode = 4
 
-[node name="ship_builder_preview" parent="Panel/HBoxContainer/preview/SubViewportContainer/SubViewport" unique_id=697228894 instance=ExtResource("1_edhyh")]
+[node name="ship_builder_preview" parent="Panel/HBoxContainer/preview/Control/SubViewportContainer/SubViewport" unique_id=697228894 instance=ExtResource("1_edhyh")]
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/preview/Control" unique_id=274388546]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_right = 146.0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/preview/Control/MarginContainer" unique_id=235850468]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.14509805, 0.32156864, 0.15294118, 1)
+theme_override_font_sizes/font_size = 36
+text = "Preview"
 
 [node name="VSeparator" type="VSeparator" parent="Panel/HBoxContainer" unique_id=264119043]
 layout_mode = 2
@@ -83,12 +112,4 @@ theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
 [node name="SubViewportContainer2" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=292250318 instance=ExtResource("2_edhyh")]
 layout_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=215563409]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
-
-[node name="SubViewportContainer3" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=1848519752 instance=ExtResource("2_edhyh")]
-visible = false
-layout_mode = 2
+[connection signal="on_ship_changed" from="." to="Panel/HBoxContainer/preview/Control/SubViewportContainer/SubViewport/ship_builder_preview" method="rebuild_ship"]

@@ -1,26 +1,44 @@
 [gd_scene format=3 uid="uid://pgbu50rnf7w8"]
 
+[ext_resource type="Script" uid="uid://cljnl7noig3y3" path="res://scenes/ship_building/ShipBuilderPreview.gd" id="1_cw8b4"]
+[ext_resource type="Script" uid="uid://blu0kctq8814x" path="res://scenes/ship_building/UICameraOrbit.gd" id="2_om7xm"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_1i42k"]
+size = Vector3(10, 10, 10)
 
-[node name="ship_builder_preview" type="Node3D" unique_id=697228894]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1i42k"]
+albedo_color = Color(0.91764706, 0.94509804, 0.92156863, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2117505720]
+[sub_resource type="Environment" id="Environment_1i42k"]
+background_mode = 1
+background_color = Color(0.21176471, 0.4627451, 0.22352941, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_cw8b4"]
+
+[node name="ship_builder_preview" type="Node3D" unique_id=697228894 node_paths=PackedStringArray("mesh")]
+script = ExtResource("1_cw8b4")
+mesh = NodePath("mesh")
+data_scale = 0.1
+layer_spacing = 100.0
+
+[node name="mesh" type="MeshInstance3D" parent="." unique_id=2117505720]
 mesh = SubResource("BoxMesh_1i42k")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1757570883]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15016079, 0, 2.25882)
-mesh = SubResource("BoxMesh_1i42k")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=435400615]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.303597, 0, 0.16209126)
-mesh = SubResource("BoxMesh_1i42k")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1089203790]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08183169, 2.2979574, 0.16209126)
-mesh = SubResource("BoxMesh_1i42k")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1516563721]
-transform = Transform3D(0.7071067, -0.35355338, 0.61237234, 0, 0.8660254, 0.49999997, -0.7071067, -0.35355338, 0.61237234, 5, 5, 5)
+surface_material_override/0 = SubResource("StandardMaterial3D_1i42k")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1773301174]
-transform = Transform3D(0.41874507, 0.67633545, -0.6059892, 0.103036635, 0.62761736, 0.7716736, 0.9022396, -0.38557366, 0.19312435, 0, 0, 0)
+transform = Transform3D(0.010487109, -0.62910885, 0.7772461, 0.019768614, 0.7772677, 0.62885946, -0.9997498, 0.0087699, 0.0205881, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1819423616]
+environment = SubResource("Environment_1i42k")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1985725551]
+transform = Transform3D(0.6807976, -0.54274714, 0.4918742, 0, 0.6715266, 0.7409804, -0.73247164, -0.50445765, 0.45717368, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_cw8b4")
+spring_length = 70.0
+script = ExtResource("2_om7xm")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1516563721]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 70)
