@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c0m2xalpnhmsq"]
+
+[ext_resource type="Script" uid="uid://dacrl273rtfdj" path="res://scenes/ship_building/SavePopup.gd" id="1_w1ll0"]
+
+[node name="save_popup" type="Popup" unique_id=2110916849 node_paths=PackedStringArray("line_edit", "error_text")]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Save"
+initial_position = 1
+size = Vector2i(200, 93)
+visible = true
+borderless = false
+transparent = true
+script = ExtResource("1_w1ll0")
+line_edit = NodePath("VBoxContainer/LineEdit")
+error_text = NodePath("VBoxContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1046299397]
+offset_right = 108.0
+offset_bottom = 66.0
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=922668130]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "ship name"
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=329131552]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Name already in use"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1779863968]
+layout_mode = 2
+
+[node name="cancel" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=546230371]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="save" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=875227610]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/save" to="." method="_on_save_pressed"]

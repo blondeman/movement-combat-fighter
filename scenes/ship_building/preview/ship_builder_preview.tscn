@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://pgbu50rnf7w8"]
 
-[ext_resource type="Script" uid="uid://cljnl7noig3y3" path="res://scenes/ship_building/ShipBuilderPreview.gd" id="1_cw8b4"]
-[ext_resource type="Script" uid="uid://blu0kctq8814x" path="res://scenes/ship_building/UICameraOrbit.gd" id="2_om7xm"]
+[ext_resource type="Script" uid="uid://cljnl7noig3y3" path="res://scenes/ship_building/preview/ShipBuilderPreview.gd" id="1_cw8b4"]
+[ext_resource type="Script" uid="uid://blu0kctq8814x" path="res://scenes/ship_building/preview/UICameraOrbit.gd" id="2_om7xm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1i42k"]
 size = Vector3(10, 10, 10)

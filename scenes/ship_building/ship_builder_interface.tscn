@@ -1,19 +1,27 @@
 [gd_scene format=3 uid="uid://dhoqdypq2hbrs"]
 
 [ext_resource type="Script" uid="uid://cp4naw8hkcnxh" path="res://scenes/ship_building/ShipBuilderInterface.gd" id="1_5nhrj"]
-[ext_resource type="PackedScene" uid="uid://pgbu50rnf7w8" path="res://scenes/ship_building/ship_builder_preview.tscn" id="1_edhyh"]
+[ext_resource type="PackedScene" uid="uid://pgbu50rnf7w8" path="res://scenes/ship_building/preview/ship_builder_preview.tscn" id="1_edhyh"]
 [ext_resource type="PackedScene" uid="uid://4q23lvmxgrsd" path="res://scenes/ship_building/ship_builder_layer.tscn" id="2_edhyh"]
+[ext_resource type="Texture2D" uid="uid://6ncywaxg7cvv" path="res://icons/floppy-disk-solid-full.svg" id="4_771bv"]
+[ext_resource type="PackedScene" uid="uid://c0m2xalpnhmsq" path="res://scenes/ship_building/save_popup.tscn" id="4_hdkpt"]
+[ext_resource type="Texture2D" uid="uid://bonm3mlvkstot" path="res://icons/folder-open-solid-full.svg" id="5_c6uop"]
+[ext_resource type="PackedScene" uid="uid://dw13qxjs2ukiy" path="res://scenes/ship_building/load_popup.tscn" id="5_ww0gr"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mmmq4"]
 color = Color(0.71129656, 0.71129656, 0.7112965, 1)
+grow_begin = -4.0
+grow_end = -4.0
 thickness = 4
 vertical = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_edhyh"]
 color = Color(0.71129656, 0.71129656, 0.7112965, 1)
+grow_begin = 4.0
+grow_end = 0.0
 thickness = 4
 
-[node name="ship_builder_interface" type="Control" unique_id=1569646672 node_paths=PackedStringArray("layer_container")]
+[node name="ship_builder_interface" type="Control" unique_id=1569646672 node_paths=PackedStringArray("layer_container", "save_popup", "load_popup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +30,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5nhrj")
 layer_container = NodePath("Panel/HBoxContainer/editor/VBoxContainer")
+save_popup = NodePath("save_popup")
+load_popup = NodePath("load_popup")
 
 [node name="Panel" type="Panel" parent="." unique_id=843054432]
 layout_mode = 1
@@ -112,4 +122,42 @@ theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
 [node name="SubViewportContainer2" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=292250318 instance=ExtResource("2_edhyh")]
 layout_mode = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=975630493]
+layout_mode = 0
+offset_right = 204.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="menu" type="HBoxContainer" parent="MarginContainer" unique_id=2026763571]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="save" type="Button" parent="MarginContainer/menu" unique_id=508946633]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Save"
+icon = ExtResource("4_771bv")
+expand_icon = true
+
+[node name="load" type="Button" parent="MarginContainer/menu" unique_id=949219879]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Load"
+icon = ExtResource("5_c6uop")
+expand_icon = true
+
+[node name="save_popup" parent="." unique_id=2110916849 node_paths=PackedStringArray("interface") instance=ExtResource("4_hdkpt")]
+visible = false
+interface = NodePath("..")
+
+[node name="load_popup" parent="." unique_id=1715150842 node_paths=PackedStringArray("interface") instance=ExtResource("5_ww0gr")]
+visible = false
+interface = NodePath("..")
+
 [connection signal="on_ship_changed" from="." to="Panel/HBoxContainer/preview/Control/SubViewportContainer/SubViewport/ship_builder_preview" method="rebuild_ship"]
+[connection signal="pressed" from="MarginContainer/menu/save" to="." method="show_save_popup"]
+[connection signal="pressed" from="MarginContainer/menu/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="MarginContainer/menu/load" to="." method="_on_load_pressed"]

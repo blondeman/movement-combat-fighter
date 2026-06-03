@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dw13qxjs2ukiy"]
+
+[ext_resource type="Script" uid="uid://de1x2cxdfiba5" path="res://scenes/ship_building/LoadPopup.gd" id="1_w2xfn"]
+[ext_resource type="PackedScene" uid="uid://phgv6b1iyt1s" path="res://scenes/ship_building/ship_file.tscn" id="2_f7g11"]
+
+[node name="load_popup" type="Popup" unique_id=1715150842 node_paths=PackedStringArray("list")]
+transparent_bg = true
+oversampling_override = 1.0
+title = "Load"
+initial_position = 1
+size = Vector2i(268, 171)
+visible = true
+borderless = false
+transparent = true
+script = ExtResource("1_w2xfn")
+file_scene = ExtResource("2_f7g11")
+list = NodePath("VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1658677567]
+offset_right = 40.0
+offset_bottom = 40.0

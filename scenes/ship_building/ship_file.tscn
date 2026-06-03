@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://phgv6b1iyt1s"]
+
+[ext_resource type="Texture2D" uid="uid://m0d86mrwnwj2" path="res://icons/file-solid-full.svg" id="1_210ve"]
+[ext_resource type="Script" uid="uid://2usrlddoxftl" path="res://scenes/ship_building/ShipFile.gd" id="1_jt1ma"]
+[ext_resource type="Texture2D" uid="uid://65t0gjpnwj4j" path="res://icons/trash-can-solid-full.svg" id="2_jt1ma"]
+
+[node name="ship_file" type="HBoxContainer" unique_id=1579402210 node_paths=PackedStringArray("preview_button")]
+script = ExtResource("1_jt1ma")
+preview_button = NodePath("preview")
+
+[node name="load" type="TextureButton" parent="." unique_id=1468405039]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("1_210ve")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="preview" type="Button" parent="." unique_id=130693973]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "file_name"
+alignment = 0
+text_overrun_behavior = 3
+
+[node name="delete" type="TextureButton" parent="." unique_id=995044580]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("2_jt1ma")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="load" to="." method="_on_load_pressed"]
