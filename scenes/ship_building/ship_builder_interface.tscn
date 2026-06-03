@@ -84,9 +84,11 @@ theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
 layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=215563409]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 4
 theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
 
 [node name="SubViewportContainer3" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=1848519752 instance=ExtResource("2_edhyh")]
+visible = false
 layout_mode = 2

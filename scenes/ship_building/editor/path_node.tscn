@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://b6madkmywathk"]
+
+[ext_resource type="Script" uid="uid://c8efv34egx3uu" path="res://scenes/ship_building/editor/PathNode.gd" id="1_odkqp"]
+[ext_resource type="Texture2D" uid="uid://1e1japn7dymp" path="res://icon.svg" id="2_erbxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecp4y"]
+
+[node name="path_node" type="Node2D" unique_id=1226880913 node_paths=PackedStringArray("center", "arm_a", "arm_b", "line_a", "line_b")]
+script = ExtResource("1_odkqp")
+center = NodePath("position")
+arm_a = NodePath("handle_1")
+arm_b = NodePath("handle_2")
+line_a = NodePath("line_1")
+line_b = NodePath("line_2")
+
+[node name="position" type="Area2D" parent="." unique_id=1029367090]
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="position" unique_id=605633214]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_erbxn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="position" unique_id=1515100910]
+shape = SubResource("CircleShape2D_ecp4y")
+
+[node name="handle_1" type="Area2D" parent="." unique_id=1004529370]
+z_index = 1
+position = Vector2(-50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="handle_1" unique_id=186929766]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_erbxn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="handle_1" unique_id=512640757]
+shape = SubResource("CircleShape2D_ecp4y")
+
+[node name="handle_2" type="Area2D" parent="." unique_id=945659524]
+z_index = 1
+position = Vector2(50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="handle_2" unique_id=1170265140]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_erbxn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="handle_2" unique_id=113204714]
+shape = SubResource("CircleShape2D_ecp4y")
+
+[node name="line_1" type="Line2D" parent="." unique_id=564168694]
+z_as_relative = false
+points = PackedVector2Array(0, 0, -50, 0)
+width = 2.0
+
+[node name="line_2" type="Line2D" parent="." unique_id=1083022248]
+z_as_relative = false
+points = PackedVector2Array(0, 0, 50, 0)
+width = 2.0
