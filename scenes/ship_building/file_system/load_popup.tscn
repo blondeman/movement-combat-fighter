@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dw13qxjs2ukiy"]
 
-[ext_resource type="Script" uid="uid://de1x2cxdfiba5" path="res://scenes/ship_building/LoadPopup.gd" id="1_w2xfn"]
-[ext_resource type="PackedScene" uid="uid://phgv6b1iyt1s" path="res://scenes/ship_building/ship_file.tscn" id="2_f7g11"]
+[ext_resource type="Script" uid="uid://de1x2cxdfiba5" path="res://scenes/ship_building/file_system/LoadPopup.gd" id="1_w2xfn"]
+[ext_resource type="PackedScene" uid="uid://phgv6b1iyt1s" path="res://scenes/ship_building/file_system/ship_file.tscn" id="2_f7g11"]
 
 [node name="load_popup" type="Popup" unique_id=1715150842 node_paths=PackedStringArray("list")]
 transparent_bg = true

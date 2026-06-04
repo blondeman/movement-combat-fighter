@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://pgbu50rnf7w8" path="res://scenes/ship_building/preview/ship_builder_preview.tscn" id="1_edhyh"]
 [ext_resource type="PackedScene" uid="uid://4q23lvmxgrsd" path="res://scenes/ship_building/ship_builder_layer.tscn" id="2_edhyh"]
 [ext_resource type="Texture2D" uid="uid://6ncywaxg7cvv" path="res://icons/floppy-disk-solid-full.svg" id="4_771bv"]
-[ext_resource type="PackedScene" uid="uid://c0m2xalpnhmsq" path="res://scenes/ship_building/save_popup.tscn" id="4_hdkpt"]
+[ext_resource type="PackedScene" uid="uid://c0m2xalpnhmsq" path="res://scenes/ship_building/file_system/save_popup.tscn" id="4_hdkpt"]
 [ext_resource type="Texture2D" uid="uid://bonm3mlvkstot" path="res://icons/folder-open-solid-full.svg" id="5_c6uop"]
-[ext_resource type="PackedScene" uid="uid://dw13qxjs2ukiy" path="res://scenes/ship_building/load_popup.tscn" id="5_ww0gr"]
+[ext_resource type="PackedScene" uid="uid://dw13qxjs2ukiy" path="res://scenes/ship_building/file_system/load_popup.tscn" id="5_ww0gr"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mmmq4"]
 color = Color(0.71129656, 0.71129656, 0.7112965, 1)

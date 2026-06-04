@@ -16,6 +16,8 @@ func _ready() -> void:
 
 
 func set_layer_names():
+	layers.clear()
+	
 	var i: int = 0
 	for child in layer_container.get_children():
 		if child is ShipBuilderLayerEditor:
@@ -23,10 +25,25 @@ func set_layer_names():
 			child.ship_changed.connect(update_layer)
 			i += 1
 			update_layer(i)
+			layers.append(child)
 
 
 func update_layer(idx: int):
 	on_ship_changed.emit(get_ship_data())
+
+
+func get_path_data() -> Array:
+	var path_data: Array = []
+	for i in layers.size():
+		var layer_nodes: Array = []
+		for node in layers[i].layer_path_data:
+			layer_nodes.append({
+				"position": { "x": node.position.x, "y": node.position.y },
+				"arm_a": { "x": node.arm_a.position.x, "y": node.arm_a.position.y },
+				"arm_b": { "x": node.arm_b.position.x, "y": node.arm_b.position.y }
+			})
+		path_data.append(layer_nodes)
+	return path_data
 
 
 func get_ship_data() -> Array[PackedVector2Array]:
@@ -46,29 +63,31 @@ func _on_load_pressed() -> void:
 
 
 func save_to_file(filename: String):
-	var ship_data := get_ship_data()
-	
-	var serialized: Array = []
-	for packed_arr in ship_data:
-		var layer: Array = []
-		for vec in packed_arr:
-			layer.append({ "x": vec.x, "y": vec.y })
-		serialized.append(layer)
-	
-	var json_string := JSON.stringify(serialized, "\t")
-	
+	var json_string := JSON.stringify(get_path_data(), "\t")
 	var path := SAVE_FILEPATH + filename + ".json"
 	DirAccess.make_dir_recursive_absolute("user://" + SAVE_FILEPATH)
 	
 	var file := FileAccess.open("user://" + path, FileAccess.WRITE)
 	if file == null:
-		push_error("ShipBuilderInterface: could not open file for writing: " + path)
+		push_error("Could not open file for writing: " + path)
 		return
 	
 	file.store_string(json_string)
 	file.close()
-	print("Saved successfully to " + ProjectSettings.globalize_path("user://" + path))
+	
+	print(ProjectSettings.globalize_path("user://" + path))
 
 
 func load_from_file(filename: String):
-	print("Loading from "+filename)
+	print("Loading from " + filename)
+	var path := "user://" + SAVE_FILEPATH + filename + ".json"
+	var file := FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		push_error("Could not open file for reading: " + path)
+		return
+	
+	var data: Array = JSON.parse_string(file.get_as_text())
+	file.close()
+	
+	for i in layers.size():
+		layers[i].editor.generate_from_data(data[i])

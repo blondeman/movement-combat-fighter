@@ -10,7 +10,7 @@ _data = {
 }
 point_count = 9
 
-[node name="Container" type="Control" unique_id=830863723 node_paths=PackedStringArray("label")]
+[node name="Container" type="Control" unique_id=830863723 node_paths=PackedStringArray("label", "editor")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_e853y")
 label = NodePath("MarginContainer/Label")
+editor = NodePath("SubViewportContainer/SubViewport/ship_builder_layer_editor/ship_node_path")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=982712933]
 layout_mode = 1

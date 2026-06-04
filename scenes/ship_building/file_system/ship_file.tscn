@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://phgv6b1iyt1s"]
 
 [ext_resource type="Texture2D" uid="uid://m0d86mrwnwj2" path="res://icons/file-solid-full.svg" id="1_210ve"]
-[ext_resource type="Script" uid="uid://2usrlddoxftl" path="res://scenes/ship_building/ShipFile.gd" id="1_jt1ma"]
+[ext_resource type="Script" uid="uid://2usrlddoxftl" path="res://scenes/ship_building/file_system/ShipFile.gd" id="1_jt1ma"]
 [ext_resource type="Texture2D" uid="uid://65t0gjpnwj4j" path="res://icons/trash-can-solid-full.svg" id="2_jt1ma"]
 
 [node name="ship_file" type="HBoxContainer" unique_id=1579402210 node_paths=PackedStringArray("preview_button")]

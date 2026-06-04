@@ -1,3 +1,4 @@
+class_name ShipEditor
 extends Path2D
 
 @export var node_scene: PackedScene
@@ -10,12 +11,14 @@ var points: Array[PathNode]
 
 func _ready() -> void:
 	generate_points(4)
-	generate_curve()
 
 
 func generate_points(count: int):
+	points.clear()
 	for child in get_children():
 		child.queue_free()
+	
+	await get_tree().process_frame
 	
 	for i in range(count):
 		var new_node = node_scene.instantiate() as PathNode
@@ -39,6 +42,7 @@ func generate_points(count: int):
 			(points[i - 1].position - new_node.position) \
 			.normalized() * 50
 		new_node.update_nodes()
+	generate_curve()
 
 
 func generate_curve() -> void:
@@ -48,6 +52,33 @@ func generate_curve() -> void:
 		curve.remove_point(curve.point_count - 1)
 	
 	set_curve_points()
+
+
+func generate_from_data(data: Array):
+	points.clear()
+	for child in get_children():
+		child.queue_free()
+	
+	await get_tree().process_frame
+	
+	for i in range(data.size()):
+		var new_node = node_scene.instantiate() as PathNode
+		add_child(new_node)
+		points.append(new_node)
+		new_node.index = i
+		new_node.node_changed.connect(set_curve_point)
+		
+		if i == 0:
+			new_node.enable_arm_a(false)
+		elif i == data.size() - 1:
+			new_node.enable_arm_b(false)
+		
+		new_node.position = Vector2(data[i]["position"]["x"], data[i]["position"]["y"])
+		new_node.arm_a.position = Vector2(data[i]["arm_a"]["x"], data[i]["arm_a"]["y"])
+		new_node.arm_b.position = Vector2(data[i]["arm_b"]["x"], data[i]["arm_b"]["y"])
+		
+		new_node.update_nodes()
+	generate_curve()
 
 
 func set_curve_points():
@@ -76,6 +107,7 @@ func set_curve_point(idx: int):
 	
 	if layer_editor:
 		layer_editor.set_layer_data(get_baked_ship(50))
+		layer_editor.set_path_data(points)
 
 
 func get_baked_ship(resolution: int) -> PackedVector2Array:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0m2xalpnhmsq"]
 
-[ext_resource type="Script" uid="uid://dacrl273rtfdj" path="res://scenes/ship_building/SavePopup.gd" id="1_w1ll0"]
+[ext_resource type="Script" uid="uid://dacrl273rtfdj" path="res://scenes/ship_building/file_system/SavePopup.gd" id="1_w1ll0"]
 
 [node name="save_popup" type="Popup" unique_id=2110916849 node_paths=PackedStringArray("line_edit", "error_text")]
 transparent_bg = true
