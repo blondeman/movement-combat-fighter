@@ -5,27 +5,17 @@ const SAVE_FILEPATH: String = "ships/"
 
 @export var layer_container: Control
 @export var layers: Array[ShipBuilderLayerEditor]
+@export var layer_editor_scene: PackedScene
+@export var separator_style_box: StyleBoxLine
 
 @export var save_popup: Popup
-@export var load_popup: Popup
+@export var load_popup: LoadPopup
+@export var settings_popup: SettingsPopup
 
 signal on_ship_changed(ship_data: Array[PackedVector2Array])
 
 func _ready() -> void:
-	set_layer_names()
-
-
-func set_layer_names():
-	layers.clear()
-	
-	var i: int = 0
-	for child in layer_container.get_children():
-		if child is ShipBuilderLayerEditor:
-			child.set_layer_id(i)
-			child.ship_changed.connect(update_layer)
-			i += 1
-			update_layer(i)
-			layers.append(child)
+	generate_default_layers(2, 4)
 
 
 func update_layer(idx: int):
@@ -52,14 +42,6 @@ func get_ship_data() -> Array[PackedVector2Array]:
 		if child is ShipBuilderLayerEditor:
 			ship_data.append(child.layer_data)
 	return ship_data
-
-
-func _on_save_pressed() -> void:
-	save_popup.popup_centered()
-
-
-func _on_load_pressed() -> void:
-	load_popup.popup_centered()
 
 
 func save_to_file(filename: String):
@@ -89,5 +71,58 @@ func load_from_file(filename: String):
 	var data: Array = JSON.parse_string(file.get_as_text())
 	file.close()
 	
-	for i in layers.size():
+	var layer_count = 2 if data.size() < 2 else data.size()
+	var node_count = 3 if data.is_empty() else data[0].size()
+	set_settings(layer_count, node_count)
+	
+	await set_layer_count(data.size())
+	
+	for i in data.size():
 		layers[i].editor.generate_from_data(data[i])
+
+
+func generate_default_layers(layer_count: int, node_count: int):
+	set_settings(layer_count, node_count)
+	await set_layer_count(layer_count)
+	
+	for i in range(layer_count):
+		layers[i].editor.generate_points(node_count)
+
+
+func set_settings(layer_count: int, node_count: int):
+	settings_popup.layer_count.value = layer_count
+	settings_popup.node_count.value = node_count
+
+
+func set_layer_count(count: int):
+	layers.clear()
+	
+	for child in layer_container.get_children():
+		child.queue_free()
+	
+	await get_tree().process_frame
+	
+	for i in range(count):
+		var new_layer_editor_scene = layer_editor_scene.instantiate() as ShipBuilderLayerEditor
+		layers.append(new_layer_editor_scene)
+		layer_container.add_child(new_layer_editor_scene)
+		
+		new_layer_editor_scene.set_layer_id(i)
+		new_layer_editor_scene.ship_changed.connect(update_layer)
+		
+		if i < count - 1:
+			var separator := HSeparator.new()
+			separator.add_theme_stylebox_override("separator", separator_style_box)
+			layer_container.add_child(separator)
+
+
+func _on_save_pressed() -> void:
+	save_popup.popup_centered()
+
+
+func _on_load_pressed() -> void:
+	load_popup.popup_centered()
+
+
+func _on_settings_pressed() -> void:
+	settings_popup.popup_centered()

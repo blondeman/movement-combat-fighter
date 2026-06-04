@@ -8,11 +8,6 @@ extends Path2D
 
 var points: Array[PathNode]
 
-
-func _ready() -> void:
-	generate_points(4)
-
-
 func generate_points(count: int):
 	points.clear()
 	for child in get_children():
@@ -45,21 +40,10 @@ func generate_points(count: int):
 	generate_curve()
 
 
-func generate_curve() -> void:
-	while curve.point_count < points.size():
-		curve.add_point(Vector2.ZERO)
-	while curve.point_count > points.size():
-		curve.remove_point(curve.point_count - 1)
-	
-	set_curve_points()
-
-
 func generate_from_data(data: Array):
 	points.clear()
 	for child in get_children():
-		child.queue_free()
-	
-	await get_tree().process_frame
+		child.free()
 	
 	for i in range(data.size()):
 		var new_node = node_scene.instantiate() as PathNode
@@ -78,12 +62,24 @@ func generate_from_data(data: Array):
 		new_node.arm_b.position = Vector2(data[i]["arm_b"]["x"], data[i]["arm_b"]["y"])
 		
 		new_node.update_nodes()
+		
 	generate_curve()
 
 
-func set_curve_points():
-	for i in range(points.size()):
-		set_curve_point(i)
+func generate_curve() -> void:
+	curve.clear_points()
+	for point in points:
+		var point_position = point.position
+		var point_in = point.arm_a.position
+		var point_out = point.arm_b.position
+		curve.add_point(point_position, point_in, point_out)
+	
+	visual.update_path(curve)
+	visual_mirror.update_path(curve)
+	
+	if layer_editor:
+		layer_editor.set_layer_data(get_baked_ship(50))
+		layer_editor.set_path_data(points)
 
 
 func set_curve_point(idx: int):

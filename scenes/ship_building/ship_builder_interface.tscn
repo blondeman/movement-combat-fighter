@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://cp4naw8hkcnxh" path="res://scenes/ship_building/ShipBuilderInterface.gd" id="1_5nhrj"]
 [ext_resource type="PackedScene" uid="uid://pgbu50rnf7w8" path="res://scenes/ship_building/preview/ship_builder_preview.tscn" id="1_edhyh"]
 [ext_resource type="PackedScene" uid="uid://4q23lvmxgrsd" path="res://scenes/ship_building/ship_builder_layer.tscn" id="2_edhyh"]
+[ext_resource type="StyleBox" uid="uid://bx8i14kvms1ho" path="res://scenes/ship_building/layer_separator_style_box.tres" id="4_35ojk"]
 [ext_resource type="Texture2D" uid="uid://6ncywaxg7cvv" path="res://icons/floppy-disk-solid-full.svg" id="4_771bv"]
 [ext_resource type="PackedScene" uid="uid://c0m2xalpnhmsq" path="res://scenes/ship_building/file_system/save_popup.tscn" id="4_hdkpt"]
 [ext_resource type="Texture2D" uid="uid://bonm3mlvkstot" path="res://icons/folder-open-solid-full.svg" id="5_c6uop"]
 [ext_resource type="PackedScene" uid="uid://dw13qxjs2ukiy" path="res://scenes/ship_building/file_system/load_popup.tscn" id="5_ww0gr"]
+[ext_resource type="Texture2D" uid="uid://c3qa6vvl5sn" path="res://icons/sliders-solid-full.svg" id="6_a8nyu"]
+[ext_resource type="PackedScene" uid="uid://b316b4b0lweek" path="res://scenes/ship_building/file_system/settings_popup.tscn" id="9_35ojk"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mmmq4"]
 color = Color(0.71129656, 0.71129656, 0.7112965, 1)
@@ -15,13 +18,7 @@ grow_end = -4.0
 thickness = 4
 vertical = true
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_edhyh"]
-color = Color(0.71129656, 0.71129656, 0.7112965, 1)
-grow_begin = 4.0
-grow_end = 0.0
-thickness = 4
-
-[node name="ship_builder_interface" type="Control" unique_id=1569646672 node_paths=PackedStringArray("layer_container", "save_popup", "load_popup")]
+[node name="ship_builder_interface" type="Control" unique_id=1569646672 node_paths=PackedStringArray("layer_container", "save_popup", "load_popup", "settings_popup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,8 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5nhrj")
 layer_container = NodePath("Panel/HBoxContainer/editor/VBoxContainer")
+layer_editor_scene = ExtResource("2_edhyh")
+separator_style_box = ExtResource("4_35ojk")
 save_popup = NodePath("save_popup")
 load_popup = NodePath("load_popup")
+settings_popup = NodePath("settings_popup")
 
 [node name="Panel" type="Panel" parent="." unique_id=843054432]
 layout_mode = 1
@@ -116,37 +116,48 @@ layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=1867272499]
 layout_mode = 2
-theme_override_constants/separation = 4
-theme_override_styles/separator = SubResource("StyleBoxLine_edhyh")
+theme_override_styles/separator = ExtResource("4_35ojk")
 
 [node name="SubViewportContainer2" parent="Panel/HBoxContainer/editor/VBoxContainer" unique_id=292250318 instance=ExtResource("2_edhyh")]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=975630493]
+[node name="menu_panel" type="PanelContainer" parent="." unique_id=620925458]
 layout_mode = 0
-offset_right = 204.0
-offset_bottom = 40.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 312.0
+offset_bottom = 36.0
+
+[node name="MarginContainer" type="MarginContainer" parent="menu_panel" unique_id=975630493]
+layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="menu" type="HBoxContainer" parent="MarginContainer" unique_id=2026763571]
+[node name="menu" type="HBoxContainer" parent="menu_panel/MarginContainer" unique_id=2026763571]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 4
 
-[node name="save" type="Button" parent="MarginContainer/menu" unique_id=508946633]
+[node name="save" type="Button" parent="menu_panel/MarginContainer/menu" unique_id=508946633]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Save"
 icon = ExtResource("4_771bv")
 expand_icon = true
 
-[node name="load" type="Button" parent="MarginContainer/menu" unique_id=949219879]
+[node name="load" type="Button" parent="menu_panel/MarginContainer/menu" unique_id=949219879]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Load"
 icon = ExtResource("5_c6uop")
+expand_icon = true
+
+[node name="settings" type="Button" parent="menu_panel/MarginContainer/menu" unique_id=1721778444]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Settings"
+icon = ExtResource("6_a8nyu")
 expand_icon = true
 
 [node name="save_popup" parent="." unique_id=2110916849 node_paths=PackedStringArray("interface") instance=ExtResource("4_hdkpt")]
@@ -157,7 +168,12 @@ interface = NodePath("..")
 visible = false
 interface = NodePath("..")
 
+[node name="settings_popup" parent="." unique_id=783040949 instance=ExtResource("9_35ojk")]
+visible = false
+
 [connection signal="on_ship_changed" from="." to="Panel/HBoxContainer/preview/Control/SubViewportContainer/SubViewport/ship_builder_preview" method="rebuild_ship"]
-[connection signal="pressed" from="MarginContainer/menu/save" to="." method="show_save_popup"]
-[connection signal="pressed" from="MarginContainer/menu/save" to="." method="_on_save_pressed"]
-[connection signal="pressed" from="MarginContainer/menu/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="menu_panel/MarginContainer/menu/save" to="." method="show_save_popup"]
+[connection signal="pressed" from="menu_panel/MarginContainer/menu/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="menu_panel/MarginContainer/menu/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="menu_panel/MarginContainer/menu/settings" to="." method="_on_settings_pressed"]
+[connection signal="on_settings_changed" from="settings_popup" to="." method="generate_default_layers"]
