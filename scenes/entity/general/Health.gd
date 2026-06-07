@@ -1,3 +1,4 @@
+class_name Health
 extends Node
 
 @export var character: EntityController
@@ -18,7 +19,8 @@ var consecutive_stun_count: int = 0
 
 var is_poise_broken: bool = false
 
-signal on_take_damage(amount: int, current_health: int, max_health: int)
+signal on_health_changed(amount: int, current_health: int, max_health: int)
+signal on_poise_changed(amount: int, current_poise: int, max_poise: int)
 signal on_die()
 signal on_calculated_hit_stun(stun_timing: float)
 signal on_poise_broken()
@@ -33,6 +35,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if current_poise < max_poise:
 		current_poise = min(current_poise + poise_regen_rate * delta, max_poise)
+		on_poise_changed.emit(poise_regen_rate * delta, current_poise, max_poise)
 
 	if is_poise_broken:
 		if current_poise >= poise_recover_threshold:
@@ -41,7 +44,7 @@ func _process(delta: float) -> void:
 
 func take_damage(health_amount: int, poise_amount: int) -> void:
 	current_health -= health_amount
-	on_take_damage.emit(health_amount, current_health, max_health)
+	on_health_changed.emit(-health_amount, current_health, max_health)
 
 	if character.print_state:
 		print("[%s]: HP %d/%d  Poise %d/%d  Broken: %s" % [
@@ -54,6 +57,8 @@ func take_damage(health_amount: int, poise_amount: int) -> void:
 		return
 
 	take_poise_damage(poise_amount)
+	on_poise_changed.emit(-poise_amount, current_poise, max_poise)
+
 
 func take_poise_damage(poise_amount: int):
 	if !is_poise_broken:

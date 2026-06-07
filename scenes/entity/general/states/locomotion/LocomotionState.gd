@@ -28,13 +28,8 @@ func process_input_vector(delta: float, input: InputPackage):
 	if !character.is_on_floor_or_coyote():
 		if has_input:
 			var wish_dir: Vector3 = input_direction
-			var current_speed := Vector3(character.velocity.x, 0.0, character.velocity.z).dot(wish_dir)
-			var add_speed := speed - current_speed
-			if add_speed > 0.0:
-				var accel_speed: float = character.air_acceleration * speed * delta
-				accel_speed = min(accel_speed, add_speed)
-				character.velocity.x += wish_dir.x * accel_speed
-				character.velocity.z += wish_dir.z * accel_speed
+			_air_accelerate(wish_dir, delta)
+			_air_control(wish_dir, delta)
 		else:
 			decay_horizontal_velocity(character.air_momentum_decay, delta)
 
@@ -86,3 +81,40 @@ func decay_horizontal_velocity(decay: float, delta: float) -> void:
 		horizontal = (horizontal / horizontal_speed) * new_speed
 	character.velocity.x = horizontal.x
 	character.velocity.z = horizontal.z
+
+
+func _air_accelerate(wish_dir: Vector3, delta: float) -> void:
+	var accel: float = character.air_stop_speed if character.velocity.dot(wish_dir) < 0 else character.air_acceleration
+
+	var current_speed := character.velocity.dot(wish_dir)
+	var add_speed := speed - current_speed
+	if add_speed <= 0.0:
+		return
+
+	var accel_speed: float = accel * delta * speed
+	accel_speed = min(accel_speed, add_speed)
+	character.velocity.x += wish_dir.x * accel_speed
+	character.velocity.y += wish_dir.y * accel_speed
+	character.velocity.z += wish_dir.z * accel_speed
+
+
+func _air_control(wish_dir: Vector3, delta: float) -> void:
+	if wish_dir.z == 0.0:
+		return
+
+	var original_y: float = character.velocity.y
+	character.velocity.y = 0.0
+	var air_speed: float = character.velocity.length()
+	var vel_norm: Vector3 = character.velocity.normalized()
+
+	var dot: float = vel_norm.dot(wish_dir)
+	if dot > 0.0:
+		var k: float = character.air_control * dot * dot * delta
+		vel_norm.x = vel_norm.x * air_speed + wish_dir.x * k
+		vel_norm.y = vel_norm.y * air_speed + wish_dir.y * k
+		vel_norm.z = vel_norm.z * air_speed + wish_dir.z * k
+		vel_norm = vel_norm.normalized()
+
+	character.velocity.x = vel_norm.x * air_speed
+	character.velocity.y = original_y
+	character.velocity.z = vel_norm.z * air_speed

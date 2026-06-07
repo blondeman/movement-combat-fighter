@@ -28,7 +28,8 @@ script = ExtResource("1_bblvu")
 locomotion = NodePath("state_machine/locomotion")
 combat = NodePath("state_machine/combat")
 hitbox = NodePath("hitbox")
-air_acceleration = 4.0
+air_acceleration = 8.0
+air_control = 30.0
 max_step_size = 0.6
 
 [node name="health" parent="." unique_id=13787964 node_paths=PackedStringArray("character") instance=ExtResource("14_rvcjf")]

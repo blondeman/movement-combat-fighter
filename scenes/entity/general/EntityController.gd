@@ -11,6 +11,8 @@ extends CharacterBody3D
 @export var momentum_decay: float = 4.0
 @export var air_momentum_decay: float = 1.0
 @export var air_acceleration : float = 2.0
+@export var air_stop_speed : float = 2.0
+@export var air_control: float = 2.0
 
 @export_group("Cooldowns")
 @export var dash_cooldown: float = 1.2

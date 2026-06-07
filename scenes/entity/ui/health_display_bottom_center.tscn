@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b3pnbmdwdxj1f"]
+
+[ext_resource type="Script" uid="uid://dxu6s65g6a0pj" path="res://scenes/entity/ui/HealthDisplay.gd" id="1_egilq"]
+
+[sub_resource type="Gradient" id="Gradient_54fr5"]
+colors = PackedColorArray(0.1663743, 0.1663743, 0.1663743, 1, 0.1663743, 0.1663743, 0.1663743, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c6a2j"]
+gradient = SubResource("Gradient_54fr5")
+width = 300
+height = 25
+
+[sub_resource type="Gradient" id="Gradient_ali68"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hq2wr"]
+gradient = SubResource("Gradient_ali68")
+width = 300
+height = 25
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_gjbcx"]
+colors = PackedColorArray(1, 0.7882353, 0, 1, 1, 0.7882353, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_54fr5"]
+gradient = SubResource("Gradient_gjbcx")
+width = 300
+height = 25
+fill_to = Vector2(0, 0)
+
+[node name="health_display_bottom_center" type="Control" unique_id=565350303 node_paths=PackedStringArray("health_bar", "poise_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_egilq")
+health_bar = NodePath("MarginContainer/VBoxContainer/health")
+poise_bar = NodePath("MarginContainer/VBoxContainer/poise")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=247690456]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -62.0
+offset_right = 154.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=377542123]
+layout_mode = 2
+
+[node name="health" type="TextureProgressBar" parent="MarginContainer/VBoxContainer" unique_id=1152341704]
+layout_mode = 2
+step = 0.0
+value = 75.0
+texture_under = SubResource("GradientTexture2D_c6a2j")
+texture_progress = SubResource("GradientTexture2D_hq2wr")
+
+[node name="poise" type="TextureProgressBar" parent="MarginContainer/VBoxContainer" unique_id=831415555]
+layout_mode = 2
+step = 0.0
+value = 75.0
+texture_under = SubResource("GradientTexture2D_c6a2j")
+texture_progress = SubResource("GradientTexture2D_54fr5")
