@@ -16,6 +16,9 @@ func default_lifecycle(input : InputPackage):
 		if input.actions.has("dash") and character.dash_cooldown_remaining <= 0:
 			return "dash"
 		
+		if input.actions.has("jump") and character.ledge_grab_check():
+			return "ledge_boost"
+		
 		if input.actions.has("light_attack"):
 			return "midair_light_attack"
 		

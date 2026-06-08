@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c4ij8566vxwmv"]
+
+[ext_resource type="Script" uid="uid://syr0fxbaol6c" path="res://scenes/entity/general/states/locomotion/LedgeBoost.gd" id="1_5oe3u"]
+[ext_resource type="PackedScene" uid="uid://dvga74310kdcb" path="res://scenes/effects/dust_cloud.tscn" id="2_228t8"]
+
+[node name="ledge_boost" type="Node" unique_id=1895646670]
+script = ExtResource("1_5oe3u")
+particles = ExtResource("2_228t8")
+animation_name = "jump"
+state_name = "ledge_boost"
+priority = 9

@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://2sqfujabyhr7" path="res://scenes/entity/general/states/locomotion/hitstun.tscn" id="12_1pheb"]
 [ext_resource type="PackedScene" uid="uid://da6tsuhccpd1i" path="res://scenes/entity/general/health.tscn" id="14_rvcjf"]
 [ext_resource type="PackedScene" uid="uid://chsoueweepwb3" path="res://scenes/entity/general/states/combat/hitstun.tscn" id="15_h1xxs"]
+[ext_resource type="PackedScene" uid="uid://c4ij8566vxwmv" path="res://scenes/entity/general/states/locomotion/ledge_boost.tscn" id="15_ihy37"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
 
@@ -28,7 +29,7 @@ script = ExtResource("1_bblvu")
 locomotion = NodePath("state_machine/locomotion")
 combat = NodePath("state_machine/combat")
 hitbox = NodePath("hitbox")
-air_acceleration = 8.0
+air_acceleration = 16.0
 air_control = 30.0
 max_step_size = 0.6
 
@@ -90,6 +91,8 @@ animation_blend_time = 0.1
 
 [node name="hitstun" parent="state_machine/locomotion" unique_id=1896853318 instance=ExtResource("12_1pheb")]
 momentum_decay = 20.0
+
+[node name="ledge_boost" parent="state_machine/locomotion" unique_id=1895646670 instance=ExtResource("15_ihy37")]
 
 [node name="combat" type="Node" parent="state_machine" unique_id=731439970 node_paths=PackedStringArray("character", "visual")]
 script = ExtResource("3_mutn8")

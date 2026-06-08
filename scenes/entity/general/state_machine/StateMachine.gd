@@ -44,7 +44,11 @@ func change_state(new_state: String) -> void:
 	
 	if current_state:
 		current_state._exit()
-	current_state = states[new_state]
+	
+	if states.has(new_state):
+		current_state = states[new_state]
+	else:
+		current_state = states["idle"]
 	current_state._enter()
 	visual.play(current_state)
 

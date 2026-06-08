@@ -18,7 +18,7 @@ var initial_position : Vector3
 var frame_length = 0.016
 
 var state_machine: StateMachine
-var character: CharacterBody3D
+var character: EntityController
 
 func check_relevance(input : InputPackage) -> String:
 	return default_lifecycle(input)

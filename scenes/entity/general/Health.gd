@@ -45,12 +45,6 @@ func _process(delta: float) -> void:
 func take_damage(health_amount: int, poise_amount: int) -> void:
 	current_health -= health_amount
 	on_health_changed.emit(-health_amount, current_health, max_health)
-
-	if character.print_state:
-		print("[%s]: HP %d/%d  Poise %d/%d  Broken: %s" % [
-			get_parent().name, int(current_health), max_health,
-			int(current_poise), max_poise, is_poise_broken
-		])
 	
 	if current_health <= 0:
 		die()
