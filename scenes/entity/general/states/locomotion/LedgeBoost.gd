@@ -32,12 +32,24 @@ func exit():
 
 func process_jump(input: InputPackage):
 	if works_longer_than(jump_timing) and not jumped:
-		var input_direction = input.get_input_direction()
-		
-		if change_velocity:
-			character.velocity = input_direction * speed
+		var input_direction := input.get_input_direction()
+		var has_input := input_direction.length_squared() > 0.001
+
+		if has_input:
+			var flat_velocity := Vector3(character.velocity.x, 0.0, character.velocity.z)
+			var current_speed := flat_velocity.length()
+
+			if current_speed > speed:
+				var dot := flat_velocity.normalized().dot(input_direction)
+				var retained_speed := lerpf(speed, current_speed, (dot + 1.0) * 0.5)
+				var blended_dir := (flat_velocity.normalized() + input_direction * (1.0 - dot)).normalized()
+				character.velocity.x = blended_dir.x * retained_speed
+				character.velocity.z = blended_dir.z * retained_speed
+			else:
+				character.velocity.x = input_direction.x * speed
+				character.velocity.z = input_direction.z * speed
+
 		character.velocity.y = jump_velocity
-		
 		jumped = true
-		
+
 		create_particles(character.velocity)

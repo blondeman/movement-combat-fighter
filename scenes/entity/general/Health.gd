@@ -90,6 +90,8 @@ func _apply_hitstun() -> void:
 func die() -> void:
 	current_health = 0
 	on_die.emit()
+	if !character.god_mode:
+		character.queue_free()
 
 
 func _on_hitbox_on_take_damage(health_amount: int, poise_amount: int) -> void:

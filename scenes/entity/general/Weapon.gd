@@ -2,7 +2,7 @@ class_name Weapon
 extends Area3D
 
 var ignore_list: Array[Hitbox]
-var is_attacking: bool = true
+var is_attacking: bool = false
 var health_damage: int = 10
 var poise_damage: int = 10
 

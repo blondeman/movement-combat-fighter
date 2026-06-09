@@ -103,12 +103,13 @@ visual = NodePath("../../visual")
 
 [node name="light_attack" parent="state_machine/combat" unique_id=1256260314 instance=ExtResource("11_0rlhq")]
 combo_window_start = 0.6
+health_damage = 5
 animation_length = 1.0
 priority = 5
 
 [node name="light_attack2" parent="state_machine/combat/light_attack" unique_id=1838179848 instance=ExtResource("11_0rlhq")]
 combo_window_start = 0.5
-health_damage = 2
+health_damage = 7
 poise_damage = 15
 animation_length = 1.0
 animation_name = "attack_2"

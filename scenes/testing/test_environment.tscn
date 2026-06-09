@@ -81,6 +81,7 @@ locomotion = NodePath("state_machine")
 air_acceleration = 2.0
 air_control = 2.0
 print_state = true
+god_mode = true
 
 [node name="health_display_top_left" parent="player" unique_id=565350303 instance=ExtResource("4_ml3la")]
 

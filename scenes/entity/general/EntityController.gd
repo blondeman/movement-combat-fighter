@@ -42,6 +42,7 @@ var lock_target: Node3D = null
 @export_group("Debug Options")
 @export var print_state: bool = false
 @export var enabled: bool = true
+@export var god_mode: bool = false
 
 func _physics_process(delta: float):
 	if !enabled:

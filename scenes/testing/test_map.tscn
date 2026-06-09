@@ -118,8 +118,8 @@ uv1_scale = Vector3(5, 4, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_fixyl"]
 size = Vector3(40, 0.2, 0.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fixyl"]
-size = Vector3(5, 1, 0.2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_apy7a"]
+size = Vector3(40, 1, 0.2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_md6yi"]
 size = Vector3(5, 10, 9)
@@ -151,6 +151,9 @@ uv1_scale = Vector3(5, 4, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_05540"]
 size = Vector3(5, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fixyl"]
+size = Vector3(5, 1, 0.2)
 
 [node name="map" type="Node3D" unique_id=1204885823]
 
@@ -396,7 +399,7 @@ collision_layer = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="structure_d/MeshInstance3D3/StaticBody3D" unique_id=487735982]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40088463, 0)
-shape = SubResource("BoxShape3D_fixyl")
+shape = SubResource("BoxShape3D_apy7a")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="structure_d" unique_id=569295254]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -30)
