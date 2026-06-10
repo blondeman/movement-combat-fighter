@@ -10,12 +10,14 @@ border_size = 1.0
 agent_height = 0.5
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uk53i"]
+resource_local_to_scene = true
 
 [sub_resource type="Sky" id="Sky_ukglk"]
 resource_local_to_scene = true
 sky_material = SubResource("ProceduralSkyMaterial_uk53i")
 
 [sub_resource type="Environment" id="Environment_wwrw0"]
+resource_local_to_scene = true
 background_mode = 2
 sky = SubResource("Sky_ukglk")
 
@@ -34,3 +36,7 @@ god_mode = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=217649553]
 environment = SubResource("Environment_wwrw0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=390321018]
+transform = Transform3D(0.59726125, 0.5753763, -0.5587675, 0, 0.69667697, 0.717385, 0.8020467, -0.42846626, 0.41609815, 0, 0, 0)
+shadow_enabled = true

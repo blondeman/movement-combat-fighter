@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://2l2ddvufbc8k"]
+
+[ext_resource type="PackedScene" uid="uid://wfdp2pyod6fp" path="res://scenes/levels/base_level.tscn" id="1_up1fl"]
+[ext_resource type="PackedScene" uid="uid://q27atmnryisa" path="res://scenes/levels/village.res" id="2_7n8tl"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_7n8tl"]
+resource_local_to_scene = true
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 9
+border_size = 1.0
+agent_height = 0.5
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hjghw"]
+resource_local_to_scene = true
+
+[sub_resource type="Sky" id="Sky_v82ea"]
+resource_local_to_scene = true
+sky_material = SubResource("ProceduralSkyMaterial_hjghw")
+
+[sub_resource type="Environment" id="Environment_qq8ng"]
+resource_local_to_scene = true
+background_mode = 2
+sky = SubResource("Sky_v82ea")
+
+[node name="village" unique_id=1215745624 instance=ExtResource("1_up1fl")]
+
+[node name="NavigationRegion3D" parent="." index="0" unique_id=1391912412]
+navigation_mesh = SubResource("NavigationMesh_7n8tl")
+
+[node name="map" parent="NavigationRegion3D" index="0" unique_id=2079069364 instance=ExtResource("2_7n8tl")]
+
+[node name="WorldEnvironment" parent="." index="2" unique_id=217649553]
+environment = SubResource("Environment_qq8ng")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://5jrxwtmv2f50"]
 
-[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/entity/general/character.tscn" id="1_6tklo"]
+[ext_resource type="PackedScene" uid="uid://beshmq74cso23" path="res://scenes/entity/character.tscn" id="1_6tklo"]
 [ext_resource type="PackedScene" uid="uid://bm6ukniulk1u8" path="res://scenes/entity/enemy/enemy_input_handler.tscn" id="2_4kjq8"]
 [ext_resource type="Material" uid="uid://cjju881fensax" path="res://materials/toon_red.tres" id="2_735o0"]
 [ext_resource type="PackedScene" uid="uid://cchyawv2tafhk" path="res://scenes/entity/general/target.tscn" id="3_4kjq8"]

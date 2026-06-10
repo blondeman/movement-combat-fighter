@@ -4,7 +4,8 @@ extends Control
 
 var scene_list: Array = [
 	"res://scenes/testing/test_environment.tscn",
-	"res://scenes/ship_building/ship_builder_interface.tscn"
+	"res://scenes/ship_building/ship_builder_interface.tscn",
+	"res://scenes/levels/village.tscn",
 ]
 
 
