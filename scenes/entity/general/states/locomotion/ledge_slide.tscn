@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://da5ligs6w1iil"]
+
+[ext_resource type="Script" uid="uid://bux3v170uaw7s" path="res://scenes/entity/general/states/locomotion/LedgeSlide.gd" id="1_k777x"]
+
+[node name="ledge_slide" type="Node" unique_id=2030182215]
+script = ExtResource("1_k777x")
+animation_name = "midair"
+state_name = "ledge_slide"
+priority = 2
+can_loop = true

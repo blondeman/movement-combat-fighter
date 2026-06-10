@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://wfdp2pyod6fp"]
+
+[ext_resource type="PackedScene" uid="uid://bjlvvldfyusmf" path="res://scenes/entity/player/player.tscn" id="1_uk53i"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_uk53i"]
+resource_local_to_scene = true
+geometry_parsed_geometry_type = 1
+geometry_collision_mask = 9
+border_size = 1.0
+agent_height = 0.5
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uk53i"]
+
+[sub_resource type="Sky" id="Sky_ukglk"]
+resource_local_to_scene = true
+sky_material = SubResource("ProceduralSkyMaterial_uk53i")
+
+[sub_resource type="Environment" id="Environment_wwrw0"]
+background_mode = 2
+sky = SubResource("Sky_ukglk")
+
+[node name="BaseLevel" type="Node3D" unique_id=1215745624]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1391912412]
+navigation_mesh = SubResource("NavigationMesh_uk53i")
+
+[node name="player" parent="." unique_id=1758554578 node_paths=PackedStringArray("locomotion") instance=ExtResource("1_uk53i")]
+floor_snap_length = 0.1
+locomotion = NodePath("state_machine")
+air_acceleration = 2.0
+air_control = 2.0
+print_state = true
+god_mode = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=217649553]
+environment = SubResource("Environment_wwrw0")

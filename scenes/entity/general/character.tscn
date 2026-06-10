@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://da6tsuhccpd1i" path="res://scenes/entity/general/health.tscn" id="14_rvcjf"]
 [ext_resource type="PackedScene" uid="uid://chsoueweepwb3" path="res://scenes/entity/general/states/combat/hitstun.tscn" id="15_h1xxs"]
 [ext_resource type="PackedScene" uid="uid://c4ij8566vxwmv" path="res://scenes/entity/general/states/locomotion/ledge_boost.tscn" id="15_ihy37"]
+[ext_resource type="PackedScene" uid="uid://da5ligs6w1iil" path="res://scenes/entity/general/states/locomotion/ledge_slide.tscn" id="16_ihy37"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
 
@@ -93,6 +94,8 @@ animation_blend_time = 0.1
 momentum_decay = 20.0
 
 [node name="ledge_boost" parent="state_machine/locomotion" unique_id=1895646670 instance=ExtResource("15_ihy37")]
+
+[node name="ledge_slide" parent="state_machine/locomotion" unique_id=2030182215 instance=ExtResource("16_ihy37")]
 
 [node name="combat" type="Node" parent="state_machine" unique_id=731439970 node_paths=PackedStringArray("character", "visual")]
 script = ExtResource("3_mutn8")

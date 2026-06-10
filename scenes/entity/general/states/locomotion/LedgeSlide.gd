@@ -1,7 +1,11 @@
 extends LocomotionState
 
+@export var slide_speed: float = 2
+
 func update(delta: float, input: InputPackage):
 	character.velocity.y -= gravity * delta
+	if character.velocity.y < -slide_speed:
+		character.velocity.y = -slide_speed
 	character.move_and_slide()
 
 
@@ -13,11 +17,14 @@ func default_lifecycle(input : InputPackage):
 		
 		return best_input_that_can_be_paid(input)
 	else:
+		if !character.ledge_grab_check():
+			return "midair"
+		
 		if input.actions.has("dash") and character.dash_cooldown_remaining <= 0:
 			return "dash"
 		
-		if character.ledge_grab_check():
-			return "ledge_slide"
+		if input.actions.has("jump"):
+			return "ledge_boost"
 		
 		if input.actions.has("light_attack"):
 			return "midair_light_attack"
