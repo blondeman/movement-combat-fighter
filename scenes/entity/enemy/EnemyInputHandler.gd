@@ -15,6 +15,14 @@ var do_jump: bool = false
 @export_group("Attacking")
 @export var attack_range: float = 1.3
 
+@export_group("Dashing")
+@export var random_dash_dodge_range: float
+@export var random_dash_timer_min: float
+@export var random_dash_timer_max: float
+var next_dash_timer: float = 0
+var dash_angle: Vector2
+var dash_input_timer: float = 0 #this is used for the input delay while dashing
+
 func _ready():
 	_set_target()
 	
@@ -38,9 +46,24 @@ func get_actions(inputPackage: InputPackage):
 	
 	var next_pos: Vector3 = nav_agent.get_next_path_position()
 	var direction: Vector3 = (next_pos - get_parent().global_position)
-	inputPackage.input_direction = Vector2(direction.x, direction.z).normalized()
+	var horizontal_direction: Vector2 = Vector2(direction.x, direction.z)
+	
+	if horizontal_direction.length() <= nav_agent.radius or nav_agent.distance_to_target() < attack_range:
+		horizontal_direction = Vector2.ZERO
+	
+	inputPackage.input_direction = horizontal_direction.normalized()
 	if inputPackage.input_direction != Vector2.ZERO:
 		inputPackage.actions.append("run")
+	
+	if _dash():
+		inputPackage.actions.append("dash")
+		dash_input_timer = 0.1
+		var opposite_angle = horizontal_direction.angle() + PI
+		var new_angle = opposite_angle + randf_range(-PI / 2, PI / 2)
+		dash_angle = Vector2.from_angle(new_angle)
+		
+	if dash_input_timer > 0 and nav_agent.distance_to_target() < random_dash_dodge_range:
+		inputPackage.input_direction = dash_angle
 	
 	if link_timer > 0:
 		if do_jump:
@@ -59,6 +82,17 @@ func get_combat_actions(inputPackage: InputPackage):
 func _process(delta: float) -> void:
 	if link_timer > 0:
 		link_timer -= delta
+	if next_dash_timer > 0:
+		next_dash_timer -= delta
+	if dash_input_timer > 0:
+		dash_input_timer -= delta
+
+
+func _dash() -> bool:
+	if next_dash_timer <= 0:
+		next_dash_timer = randf_range(random_dash_timer_min, random_dash_timer_max)
+		return true
+	return false
 
 
 func _jump(details: Dictionary):

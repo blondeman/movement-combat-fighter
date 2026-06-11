@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cchyawv2tafhk" path="res://scenes/entity/general/target.tscn" id="3_4kjq8"]
 [ext_resource type="PackedScene" uid="uid://dkettepa2sscj" path="res://scenes/entity/ui/health_display_floating.tscn" id="5_g5hgt"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xodbh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g5hgt"]
 resource_local_to_scene = true
 animation = &"attack"
 
@@ -27,7 +27,7 @@ animation = &"dash"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t142n"]
 animation = &"dash"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fhihl"]
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_xodbh"]
 resource_local_to_scene = true
 blend_point_0/node = SubResource("AnimationNodeAnimation_8ai8p")
 blend_point_0/pos = Vector2(-1, 0)
@@ -40,7 +40,7 @@ blend_point_3/pos = Vector2(0, 1)
 blend_point_4/node = SubResource("AnimationNodeAnimation_t142n")
 blend_point_4/pos = Vector2(0, 0)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ao7ub"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhihl"]
 resource_local_to_scene = true
 animation = &"RESET"
 
@@ -61,7 +61,7 @@ animation = &"run"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yh4so"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ll2t4"]
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ao7ub"]
 resource_local_to_scene = true
 blend_point_0/node = SubResource("AnimationNodeAnimation_w3so6")
 blend_point_0/pos = Vector2(-1, 0)
@@ -74,24 +74,24 @@ blend_point_3/pos = Vector2(1, 0)
 blend_point_4/node = SubResource("AnimationNodeAnimation_yh4so")
 blend_point_4/pos = Vector2(0, 0)
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_43amg"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ll2t4"]
 resource_local_to_scene = true
 filter_enabled = true
 filters = ["body/hand_r:position", "body/hand_r:rotation"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6actv"]
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_43amg"]
 resource_local_to_scene = true
 graph_offset = Vector2(-718.3688, -108.87776)
 nodes/output/position = Vector2(320, 256)
-nodes/run/node = SubResource("AnimationNodeBlendSpace2D_ll2t4")
+nodes/run/node = SubResource("AnimationNodeBlendSpace2D_ao7ub")
 nodes/run/position = Vector2(-528, 48)
-nodes/dash/node = SubResource("AnimationNodeBlendSpace2D_fhihl")
+nodes/dash/node = SubResource("AnimationNodeBlendSpace2D_xodbh")
 nodes/dash/position = Vector2(-528, 272)
-nodes/locomotion/node = SubResource("AnimationNodeAnimation_ao7ub")
+nodes/locomotion/node = SubResource("AnimationNodeAnimation_fhihl")
 nodes/locomotion/position = Vector2(-512, -160)
-nodes/state_mixer/node = SubResource("AnimationNodeBlend2_43amg")
+nodes/state_mixer/node = SubResource("AnimationNodeBlend2_ll2t4")
 nodes/state_mixer/position = Vector2(32, 256)
-nodes/combat/node = SubResource("AnimationNodeAnimation_xodbh")
+nodes/combat/node = SubResource("AnimationNodeAnimation_g5hgt")
 nodes/combat/position = Vector2(-512, 528)
 nodes/combat_seek/node = SubResource("AnimationNodeTimeSeek_20uax")
 nodes/combat_seek/position = Vector2(-336, 496)
@@ -99,7 +99,7 @@ nodes/locomotion_seek/node = SubResource("AnimationNodeTimeSeek_321ia")
 nodes/locomotion_seek/position = Vector2(-336, -192)
 node_connections = [&"output", 0, &"state_mixer", &"state_mixer", 0, &"locomotion_seek", &"state_mixer", 1, &"combat_seek", &"combat_seek", 0, &"combat", &"locomotion_seek", 0, &"locomotion"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yufsc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_6actv"]
 viewport_path = NodePath("SubViewport")
 
 [node name="enemy" unique_id=1758554578 node_paths=PackedStringArray("input_handler") groups=["enemy"] instance=ExtResource("1_6tklo")]
@@ -109,16 +109,19 @@ input_handler = NodePath("EnemyInputHandler")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="EnemyInputHandler" parent="." index="3" unique_id=1301081944 instance=ExtResource("2_4kjq8")]
+random_dash_dodge_range = 8.0
+random_dash_timer_min = 1.0
+random_dash_timer_max = 2.0
 
 [node name="body" parent="visual" parent_id_path=PackedInt32Array(879074467) index="0" unique_id=652490843]
 material_override = ExtResource("2_735o0")
 
 [node name="AnimationTree" parent="visual" parent_id_path=PackedInt32Array(879074467) index="2" unique_id=1857423590]
-tree_root = SubResource("AnimationNodeBlendTree_6actv")
+tree_root = SubResource("AnimationNodeBlendTree_43amg")
 
 [node name="health_display_floating" parent="." index="7" unique_id=886603368 instance=ExtResource("5_g5hgt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54981, 0)
-texture = SubResource("ViewportTexture_yufsc")
+texture = SubResource("ViewportTexture_6actv")
 
 [editable path="visual"]
 [editable path="visual/body/hand_r/weapon"]

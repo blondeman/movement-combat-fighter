@@ -4,6 +4,7 @@ extends LocomotionStateParticles
 
 const transition_timing = 0.3
 const dash_timing = 0.1
+const invulnerability_timing = 0.3
 
 var dashed : bool = false
 var dash_direction: Vector3 = Vector3.ZERO
@@ -26,12 +27,21 @@ func default_lifecycle(input: InputPackage) -> String:
 
 func update(delta: float, input: InputPackage):
 	process_dash(input)
+	process_invulnerability()
 	rotate_toward_velocity(delta)
 	character.move_and_slide()
 
 
 func exit():
+	character.health.invulnerable = false
 	rotate_toward_velocity(0)
+
+
+func process_invulnerability():
+	if !character.health.invulnerable and works_longer_than(dash_timing):
+		character.health.invulnerable = true
+	if works_longer_than(invulnerability_timing):
+		character.health.invulnerable = false
 
 
 func process_dash(input: InputPackage):

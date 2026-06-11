@@ -10,6 +10,7 @@ const DIRECTION_BACKWARD_LEFT := Vector3(-0.707106,0,-0.707106)
 @export var input_handler: InputHandler
 @export var locomotion: StateMachine
 @export var combat: StateMachine
+@export var health: Health
 @export var hitbox: Hitbox
 
 @export_group("Movement")
