@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3qa6vvl5sn"
-path="res://.godot/imported/sliders-solid-full.svg-c8c5bf8ac3a5bee225ac9f570652738b.ctex"
+uid="uid://cgrjkd8h53fcj"
+path="res://.godot/imported/chart-diagram-solid-full.svg-2c0e2b434a8ed3309a350e76bd97e677.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://icons/sliders-solid-full.svg"
-dest_files=["res://.godot/imported/sliders-solid-full.svg-c8c5bf8ac3a5bee225ac9f570652738b.ctex"]
+source_file="res://icons/chart-diagram-solid-full.svg"
+dest_files=["res://.godot/imported/chart-diagram-solid-full.svg-2c0e2b434a8ed3309a350e76bd97e677.ctex"]
 
 [params]
 

@@ -172,8 +172,8 @@ interface = NodePath("..")
 visible = false
 
 [connection signal="on_ship_changed" from="." to="Panel/HBoxContainer/preview/Control/SubViewportContainer/SubViewport/ship_builder_preview" method="rebuild_ship"]
-[connection signal="pressed" from="menu_panel/MarginContainer/menu/save" to="." method="show_save_popup"]
 [connection signal="pressed" from="menu_panel/MarginContainer/menu/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="menu_panel/MarginContainer/menu/save" to="." method="show_save_popup"]
 [connection signal="pressed" from="menu_panel/MarginContainer/menu/load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="menu_panel/MarginContainer/menu/settings" to="." method="_on_settings_pressed"]
 [connection signal="on_settings_changed" from="settings_popup" to="." method="generate_default_layers"]

@@ -1,3 +1,4 @@
+@icon("res://icons/chart-diagram-solid-full.svg")
 class_name StateMachine
 extends Node
 
