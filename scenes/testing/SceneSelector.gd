@@ -23,4 +23,4 @@ func create_buttons():
 
 
 func load_scene(scene: String):
-	get_tree().change_scene_to_file(scene)
+	SceneManager.load_scene_file(scene)

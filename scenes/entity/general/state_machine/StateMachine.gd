@@ -8,6 +8,8 @@ extends Node
 var current_state: State
 var states: Dictionary
 
+signal on_state_changed(from: State, to: State)
+
 func _ready():
 	get_states_in_children(self)
 	change_state("idle")
@@ -35,6 +37,7 @@ func update(delta: float, input: InputPackage):
 
 
 func change_state(new_state: String) -> void:
+	var previous_state = current_state
 	if print_state and character.print_state:
 		var machine_name = "["+name+"]"
 		if current_state:
@@ -49,6 +52,9 @@ func change_state(new_state: String) -> void:
 		current_state = states[new_state]
 	else:
 		current_state = states["idle"]
+	
+	on_state_changed.emit(previous_state, current_state)
+	
 	current_state._enter()
 	visual.play(current_state)
 
