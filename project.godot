@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Movement Combat Fighter"
 run/main_scene="uid://c8fdqi7ggtcnb"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
