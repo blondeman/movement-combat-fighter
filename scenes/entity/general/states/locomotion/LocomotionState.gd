@@ -9,29 +9,21 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func default_lifecycle(input : InputPackage) -> String:
 	if not character.is_on_floor_or_coyote():
 		return "midair"
-	
-	if character.dash_cooldown_remaining > 0:
+
+	if not character.status.can_dash():
 		input.actions.erase("dash")
 		input.actions.erase("jump_dash")
-	
+
 	return best_input_that_can_be_paid(input)
 
 
-func _update(delta: float, input: InputPackage):
-	process_input_vector(delta, input)
-	update(delta, input)
-
-
-func process_input_vector(delta: float, input: InputPackage):
+func apply_air_physics(delta: float, input: InputPackage) -> void:
 	var input_direction := input.get_input_direction()
-	var has_input := input_direction.length_squared() > 0.001
-	if !character.is_on_floor_or_coyote():
-		if has_input:
-			var wish_dir: Vector3 = input_direction
-			_air_accelerate(wish_dir, delta)
-			_air_control(wish_dir, delta)
-		else:
-			decay_horizontal_velocity(character.air_momentum_decay, delta)
+	if input_direction.length_squared() > 0.001:
+		_air_accelerate(input_direction, delta)
+		_air_control(input_direction, delta)
+	else:
+		decay_horizontal_velocity(character.air_momentum_decay, delta)
 
 
 func process_rotation(delta: float, input_direction: Vector3):
@@ -69,43 +61,43 @@ func rotate_toward_direction(delta: float, input_direction: Vector3) -> float:
 
 
 func rotate_toward_velocity(delta: float):
-	var target_direction := Vector3(character.velocity.x, 0, character.velocity.z).normalized()
+	var target_direction := Vector3(character.frame_velocity.x, 0, character.frame_velocity.z).normalized()
 	rotate_toward_direction(delta, target_direction)
 
 
 func decay_horizontal_velocity(decay: float, delta: float) -> void:
-	var horizontal := Vector3(character.velocity.x, 0.0, character.velocity.z)
+	var horizontal := Vector3(character.frame_velocity.x, 0.0, character.frame_velocity.z)
 	var horizontal_speed := horizontal.length()
 	var new_speed := move_toward(horizontal_speed, 0.0, decay * delta)
 	if horizontal_speed > 0.0:
 		horizontal = (horizontal / horizontal_speed) * new_speed
-	character.velocity.x = horizontal.x
-	character.velocity.z = horizontal.z
+	character.frame_velocity.x = horizontal.x
+	character.frame_velocity.z = horizontal.z
 
 
 func _air_accelerate(wish_dir: Vector3, delta: float) -> void:
-	var accel: float = character.air_stop_speed if character.velocity.dot(wish_dir) < 0 else character.air_acceleration
+	var accel: float = character.air_stop_speed if character.frame_velocity.dot(wish_dir) < 0 else character.air_acceleration
 
-	var current_speed := character.velocity.dot(wish_dir)
+	var current_speed := character.frame_velocity.dot(wish_dir)
 	var add_speed := speed - current_speed
 	if add_speed <= 0.0:
 		return
 
 	var accel_speed: float = accel * delta * speed
 	accel_speed = min(accel_speed, add_speed)
-	character.velocity.x += wish_dir.x * accel_speed
-	character.velocity.y += wish_dir.y * accel_speed
-	character.velocity.z += wish_dir.z * accel_speed
+	character.frame_velocity.x += wish_dir.x * accel_speed
+	character.frame_velocity.y += wish_dir.y * accel_speed
+	character.frame_velocity.z += wish_dir.z * accel_speed
 
 
 func _air_control(wish_dir: Vector3, delta: float) -> void:
 	if wish_dir.z == 0.0:
 		return
 
-	var original_y: float = character.velocity.y
-	character.velocity.y = 0.0
-	var air_speed: float = character.velocity.length()
-	var vel_norm: Vector3 = character.velocity.normalized()
+	var original_y: float = character.frame_velocity.y
+	character.frame_velocity.y = 0.0
+	var air_speed: float = character.frame_velocity.length()
+	var vel_norm: Vector3 = character.frame_velocity.normalized()
 
 	var dot: float = vel_norm.dot(wish_dir)
 	if dot > 0.0:
@@ -115,6 +107,6 @@ func _air_control(wish_dir: Vector3, delta: float) -> void:
 		vel_norm.z = vel_norm.z * air_speed + wish_dir.z * k
 		vel_norm = vel_norm.normalized()
 
-	character.velocity.x = vel_norm.x * air_speed
-	character.velocity.y = original_y
-	character.velocity.z = vel_norm.z * air_speed
+	character.frame_velocity.x = vel_norm.x * air_speed
+	character.frame_velocity.y = original_y
+	character.frame_velocity.z = vel_norm.z * air_speed

@@ -1,0 +1,17 @@
+Species
+Bug - Spider
+Bug - Beetle
+Bug - Moth
+Rodent - Mouse
+Rodent - Chipmunk
+Rodent - Rat
+Frog - Frog
+Frog - Toad
+Bird - Raven
+Bird - Owl
+Bird - Jay
+Lizard - Lizard
+Lizard - Snake
+Canine - Cat
+Canine - Dog
+Canine - Fox

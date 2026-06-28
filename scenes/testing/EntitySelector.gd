@@ -8,11 +8,13 @@ var _labels: Dictionary = {}
 @export var label_parent: Control
 
 var label_keys: Array[String] = [
-	"entity", 
-	"locomotion", 
-	"combat", 
-	"health", 
-	"poise"
+	"entity",
+	"locomotion",
+	"combat",
+	"health",
+	"poise",
+	"h_speed",
+	"v_speed",
 ]
 
 var _signal_bindings: Array[Array] = [
@@ -25,6 +27,14 @@ var _signal_bindings: Array[Array] = [
 func _ready():
 	_rebuild_labels()
 	set_process_input(true)
+
+
+func _process(_delta: float) -> void:
+	if not tracked_entity:
+		return
+	var v := tracked_entity.velocity
+	_labels["h_speed"].text = "H Speed: %.2f" % Vector3(v.x, 0.0, v.z).length()
+	_labels["v_speed"].text = "V Speed: %.2f" % v.y
 
 func _input(event: InputEvent):
 	# Tilde key toggle

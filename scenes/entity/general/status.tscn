@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://m231yprq1t1n"]
+
+[ext_resource type="Script" uid="uid://bdnemsl4op3f7" path="res://scenes/entity/general/CharacterStatus.gd" id="1_c8kn0"]
+
+[node name="status" type="Node" unique_id=1800756525]
+script = ExtResource("1_c8kn0")

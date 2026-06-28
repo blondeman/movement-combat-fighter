@@ -1,13 +1,16 @@
 class_name Weapon
 extends Area3D
 
+var character: EntityController
 var ignore_list: Array[Hitbox]
 var is_attacking: bool = false
 var health_damage: int = 10
 var poise_damage: int = 10
+var knockback: float = 20
 
 
 func set_data(state: CombatState):
+	character = state.character
 	health_damage = state.health_damage
 	poise_damage = state.poise_damage
 	ignore_list.append(state.character.hitbox)
@@ -29,7 +32,9 @@ func _on_area_entered(area: Area3D) -> void:
 	var hit_data := area as Hitbox
 	ignore_list.append(hit_data)
 	
-	hit_data.take_damage(health_damage, poise_damage, get_hit_position(hit_data))
+	var hit_direction = Vector3(area.character.global_position - character.global_position).normalized()
+	
+	hit_data.take_damage(health_damage, poise_damage, get_hit_position(hit_data), hit_direction * knockback)
 
 
 func get_hit_position(area: Area3D) -> Vector3:

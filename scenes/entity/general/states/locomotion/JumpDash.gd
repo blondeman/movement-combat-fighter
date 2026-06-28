@@ -23,7 +23,6 @@ func default_lifecycle(input : InputPackage) -> String:
 
 func update(delta: float, input : InputPackage):
 	process_dash_jump(input)
-	character.move_and_slide()
 
 
 func process_dash_jump(input: InputPackage):
@@ -35,12 +34,12 @@ func process_dash_jump(input: InputPackage):
 			dash_direction = input_direction * dash_velocity
 		else:
 			dash_direction = character.global_transform.basis.z * dash_velocity
-		character.velocity.x = dash_direction.x
-		character.velocity.z = dash_direction.z
-		character.velocity.y = jump_velocity
+		character.frame_velocity.x = dash_direction.x
+		character.frame_velocity.z = dash_direction.z
+		character.frame_velocity.y = jump_velocity
 		
-		character.dash_cooldown_remaining = character.dash_cooldown
-		character.coyote_timer = 0.0
+		character.status.start_dash_cooldown()
+		character.status.consume_coyote()
 		dash_jumped = true
 		
-		create_particles(character.velocity)
+		create_particles(character.frame_velocity)

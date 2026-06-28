@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0dlkb5wsieer" path="res://scenes/entity/EntityController.gd" id="1_bblvu"]
 [ext_resource type="PackedScene" uid="uid://dyjik25g3y33i" path="res://scenes/entity/general/hitbox.tscn" id="2_cuvpk"]
+[ext_resource type="PackedScene" uid="uid://m231yprq1t1n" path="res://scenes/entity/general/status.tscn" id="2_j0nk3"]
 [ext_resource type="PackedScene" uid="uid://cgwk0ofrtytnp" path="res://scenes/entity/general/test_visual.tscn" id="2_l884r"]
 [ext_resource type="Script" uid="uid://c8diifbq30i4l" path="res://scenes/entity/general/state_machine/StateMachine.gd" id="3_mutn8"]
 [ext_resource type="PackedScene" uid="uid://cfqcbf3b317wa" path="res://scenes/entity/general/states/locomotion/dash.tscn" id="4_bix7t"]
@@ -22,7 +23,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_u8vuu"]
 
-[node name="character" type="CharacterBody3D" unique_id=1758554578 node_paths=PackedStringArray("locomotion", "combat", "health", "hitbox")]
+[node name="character" type="CharacterBody3D" unique_id=1758554578 node_paths=PackedStringArray("locomotion", "combat", "health", "hitbox", "status")]
 collision_layer = 2
 collision_mask = 3
 floor_snap_length = 0.2
@@ -31,12 +32,18 @@ locomotion = NodePath("state_machine/locomotion")
 combat = NodePath("state_machine/combat")
 health = NodePath("health")
 hitbox = NodePath("hitbox")
+status = NodePath("status")
+momentum_decay = 20.0
 air_acceleration = 16.0
 air_control = 30.0
 max_step_size = 0.6
+ledge_grab_reach = 0.7
+
+[node name="status" parent="." unique_id=1800756525 instance=ExtResource("2_j0nk3")]
 
 [node name="health" parent="." unique_id=13787964 node_paths=PackedStringArray("character") instance=ExtResource("14_rvcjf")]
 character = NodePath("..")
+poise_regen_rate = 1.0
 base_stun_duration = 0.6
 min_stun_duration = 0.2
 
@@ -92,7 +99,6 @@ animation_name = "slide"
 animation_blend_time = 0.1
 
 [node name="hitstun" parent="state_machine/locomotion" unique_id=1896853318 instance=ExtResource("12_1pheb")]
-momentum_decay = 20.0
 
 [node name="ledge_boost" parent="state_machine/locomotion" unique_id=1895646670 instance=ExtResource("15_ihy37")]
 
@@ -106,16 +112,15 @@ visual = NodePath("../../visual")
 [node name="idle" parent="state_machine/combat" unique_id=1225614332 instance=ExtResource("11_oe6dy")]
 
 [node name="light_attack" parent="state_machine/combat" unique_id=1256260314 instance=ExtResource("11_0rlhq")]
-combo_window_start = 0.6
+combo_window_start = 0.5
 health_damage = 5
-animation_length = 1.0
+animation_length = 0.9
 priority = 5
 
 [node name="light_attack2" parent="state_machine/combat/light_attack" unique_id=1838179848 instance=ExtResource("11_0rlhq")]
-combo_window_start = 0.5
 health_damage = 7
 poise_damage = 15
-animation_length = 1.0
+animation_length = 0.9
 animation_name = "attack_2"
 state_name = "light_attack2"
 priority = 5

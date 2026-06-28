@@ -5,9 +5,10 @@ extends Area3D
 @export var hit_effect: PackedScene
 signal on_take_damage(health_amount: int, poise_amount: int)
 
-func take_damage(health_amount: int, poise_amount: int, hit_position: Vector3):
+func take_damage(health_amount: int, poise_amount: int, hit_position: Vector3, hit_direction: Vector3):
 	on_take_damage.emit(health_amount, poise_amount)
 	instance_hit_effect(hit_position)
+	character.add_force(hit_direction)
 
 
 func instance_hit_effect(hit_position: Vector3):

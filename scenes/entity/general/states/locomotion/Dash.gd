@@ -29,19 +29,18 @@ func update(delta: float, input: InputPackage):
 	process_dash(input)
 	process_invulnerability()
 	rotate_toward_velocity(delta)
-	character.move_and_slide()
 
 
 func exit():
-	character.health.invulnerable = false
+	character.status.invulnerable = false
 	rotate_toward_velocity(0)
 
 
 func process_invulnerability():
-	if !character.health.invulnerable and works_longer_than(dash_timing):
-		character.health.invulnerable = true
+	if !character.status.invulnerable and works_longer_than(dash_timing):
+		character.status.invulnerable = true
 	if works_longer_than(invulnerability_timing):
-		character.health.invulnerable = false
+		character.status.invulnerable = false
 
 
 func process_dash(input: InputPackage):
@@ -53,11 +52,11 @@ func process_dash(input: InputPackage):
 		else:
 			dash_direction = character.global_transform.basis.z * dash_velocity
 
-		character.velocity.x = dash_direction.x
-		character.velocity.z = dash_direction.z
-		character.velocity.y = 0
+		character.frame_velocity.x = dash_direction.x
+		character.frame_velocity.z = dash_direction.z
+		character.frame_velocity.y = 0
 
-		character.dash_cooldown_remaining = character.dash_cooldown
+		character.status.start_dash_cooldown()
 		dashed = true
 		
-		create_particles(character.velocity)
+		create_particles(character.frame_velocity)

@@ -1,0 +1,12 @@
+Setting
+Mountain
+Shore
+Forest
+City
+Village
+Temple
+Building
+Sea
+Rocky
+Plains
+Desert

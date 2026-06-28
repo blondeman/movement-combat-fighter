@@ -18,7 +18,6 @@ var current_poise: float = 0
 var consecutive_stun_count: int = 0
 
 var is_poise_broken: bool = false
-var invulnerable: bool = false
 
 signal on_health_changed(amount: int, current_health: int, max_health: int)
 signal on_poise_changed(amount: int, current_poise: int, max_poise: int)
@@ -44,7 +43,7 @@ func _process(delta: float) -> void:
 
 
 func take_damage(health_amount: int, poise_amount: int) -> void:
-	if invulnerable:
+	if character.status.invulnerable:
 		return
 	
 	current_health -= health_amount

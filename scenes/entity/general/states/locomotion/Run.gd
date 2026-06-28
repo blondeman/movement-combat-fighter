@@ -8,7 +8,6 @@ extends LocomotionState
 
 func update(delta: float, input: InputPackage):
 	process_input_vector(delta, input)
-	character.move_and_slide()
 
 func process_input_vector(delta: float, input: InputPackage):
 	var input_direction := input.get_input_direction()
@@ -33,7 +32,7 @@ func process_input_vector(delta: float, input: InputPackage):
 
 
 func _apply_friction(delta: float, wish_speed: float) -> void:
-	var vel := character.velocity
+	var vel := character.frame_velocity
 	var current_speed: float = vel.length()
 	if current_speed < 0.001:
 		return
@@ -43,16 +42,16 @@ func _apply_friction(delta: float, wish_speed: float) -> void:
 	var control: float = max(current_speed, stop_speed)
 	var drop := control * friction * delta
 	var new_speed: float = max(current_speed - drop, 0.0) / current_speed
-	character.velocity = vel * new_speed
+	character.frame_velocity = vel * new_speed
 
 
 func _apply_acceleration(delta: float, wish_dir: Vector3, wish_speed: float) -> void:
 	# How much of wish_dir we're already moving in
-	var current_speed := character.velocity.dot(wish_dir)
+	var current_speed := character.frame_velocity.dot(wish_dir)
 	# Only add velocity up to the cap
 	var add_speed := wish_speed - current_speed
 	if add_speed <= 0.0:
 		return
 
 	var accel_speed: float = min(accel * wish_speed * delta, add_speed)
-	character.velocity += wish_dir * accel_speed
+	character.frame_velocity += wish_dir * accel_speed

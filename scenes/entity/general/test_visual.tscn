@@ -16,8 +16,9 @@ size = Vector3(0.3, 0.3, 0.72)
 radius = 0.1
 height = 0.2
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_20uax"]
-radius = 0.6
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_45dj7"]
+radius = 0.3
+height = 1.8
 
 [sub_resource type="BoxMesh" id="BoxMesh_yh4so"]
 size = Vector3(0.05, 1.5, 0.05)
@@ -90,6 +91,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_w3so6"]
 resource_name = "attack"
+length = 0.9
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -98,7 +100,7 @@ tracks/0/path = NodePath("body/hand_r:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.46056616, 0.6, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.29389948, 0.4727672, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(-0.67496794, 0.20315963, -0.17522311), Vector3(-0.7525636, 0.336527, 0.020871758), Vector3(-0.314056, -0.13831809, 0.77340835), Vector3(0.47927302, -0.13831806, 0.64642936), Vector3(0.5728679, -0.1313082, 0.6822438), Vector3(0.6112535, -0.13091554, 0.64181876), Vector3(0.7258428, -0.12974334, 0.52114165)]
@@ -110,7 +112,7 @@ tracks/1/path = NodePath("body/hand_r:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.46056616, 0.6, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.29389948, 0.4727672, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.83131355, -1.5834525, 0.5590789), Vector3(-0.48694685, 0.43982297, 0.3926991), Vector3(0.1308997, 1.1082841, 1.5934856), Vector3(1.3216885, 1.5096915, 0.8141655), Vector3(1.3397381, 1.936696, 0.8797955), Vector3(1.335507, 2.0466723, 0.8769626), Vector3(1.3228765, 2.3749743, 0.86850595)]
@@ -122,7 +124,7 @@ tracks/2/path = NodePath("body/hand_l:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.10675885, 0.20436694, 0.29892477, 0.46666667, 1),
+"times": PackedFloat32Array(0, 0.07342552, 0.13770027, 0.19892476, 0.3, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.74929225, -0.04606974, 0.4889379), Vector3(0.3956719, -0.04606974, 0.8111364), Vector3(0.70321137, -0.04606974, 0.32994485), Vector3(0.91852146, -0.04606974, -0.15846157), Vector3(0.791015, -0.04606974, -0.092859864), Vector3(0.791015, -0.04606974, -0.092859864)]
@@ -134,7 +136,7 @@ tracks/3/path = NodePath("AnimationParameters:is_weapon_hitbox_active")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.46666667),
+"times": PackedFloat32Array(0, 0.06666667, 0.33943388),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -142,6 +144,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_lslkc"]
 resource_name = "attack_2"
+length = 0.9
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -150,7 +153,7 @@ tracks/0/path = NodePath("body/hand_r:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.16666667, 0.26666668, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.7258428, -0.12974334, 0.52114165), Vector3(0.2217871, 0.20315963, 0.9694385), Vector3(-0.4076112, 0.20315963, 0.6399133), Vector3(-0.8402491, 0.20315963, -0.017016768), Vector3(-0.67496794, 0.20315963, -0.17522311)]
@@ -162,7 +165,7 @@ tracks/1/path = NodePath("body/hand_r:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.16666667, 0.26666668, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(1.3228765, 2.3749743, 0.86850595), Vector3(1.0617917, -1.3323545, -1.5884855), Vector3(0.83131343, -0.19874302, 0.55907893), Vector3(0.83131355, -1.1132084, 0.5590789), Vector3(0.83131355, -1.5834525, 0.5590789)]
@@ -174,7 +177,7 @@ tracks/2/path = NodePath("body/hand_l:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16760397, 0.30860415, 1),
+"times": PackedFloat32Array(0, 0.13427064, 0.24193747, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.791015, -0.04606974, -0.092859864), Vector3(0.7485759, -0.04606974, 0.36026728), Vector3(0.6336127, -0.04606974, 0.64650476), Vector3(0.74929225, -0.04606974, 0.4889379)]
@@ -186,7 +189,7 @@ tracks/3/path = NodePath("AnimationParameters:is_weapon_hitbox_active")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4),
+"times": PackedFloat32Array(0, 0.06666667, 0.3333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -545,14 +548,19 @@ animation = &"dash"
 resource_local_to_scene = true
 blend_point_0/node = SubResource("AnimationNodeAnimation_8ai8p")
 blend_point_0/pos = Vector2(-1, 0)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_lslkc")
 blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_q3c63")
 blend_point_2/pos = Vector2(1, 0)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_o6xqe")
 blend_point_3/pos = Vector2(0, 1)
+blend_point_3/name = &"3"
 blend_point_4/node = SubResource("AnimationNodeAnimation_t142n")
 blend_point_4/pos = Vector2(0, 0)
+blend_point_4/name = &"4"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pq80e"]
 resource_local_to_scene = true
@@ -579,14 +587,19 @@ animation = &"idle"
 resource_local_to_scene = true
 blend_point_0/node = SubResource("AnimationNodeAnimation_w3so6")
 blend_point_0/pos = Vector2(-1, 0)
+blend_point_0/name = &"0"
 blend_point_1/node = SubResource("AnimationNodeAnimation_yt3fj")
 blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1"
 blend_point_2/node = SubResource("AnimationNodeAnimation_20uax")
 blend_point_2/pos = Vector2(0, 1)
+blend_point_2/name = &"2"
 blend_point_3/node = SubResource("AnimationNodeAnimation_321ia")
 blend_point_3/pos = Vector2(1, 0)
+blend_point_3/name = &"3"
 blend_point_4/node = SubResource("AnimationNodeAnimation_yh4so")
 blend_point_4/pos = Vector2(0, 0)
+blend_point_4/name = &"4"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_q5pif"]
 resource_local_to_scene = true
@@ -595,7 +608,6 @@ filters = ["body/hand_r:position", "body/hand_r:rotation"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yt3fj"]
 resource_local_to_scene = true
-graph_offset = Vector2(-718.3688, -108.87776)
 nodes/output/position = Vector2(320, 256)
 nodes/run/node = SubResource("AnimationNodeBlendSpace2D_w3so6")
 nodes/run/position = Vector2(-528, 48)
@@ -640,7 +652,8 @@ mesh = SubResource("SphereMesh_l884r")
 transform = Transform3D(1, -5.2041704e-17, 5.5879354e-09, 0, 1, 9.313226e-09, -5.5879354e-09, -9.313226e-09, 1, 5.9604645e-08, 0.5815237, -2.9802322e-08)
 
 [node name="CollisionShape3D" parent="body/hand_r/weapon" index="0" unique_id=1917641447]
-shape = SubResource("SphereShape3D_20uax")
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.4, 0)
+shape = SubResource("CapsuleShape3D_45dj7")
 
 [node name="sword" type="MeshInstance3D" parent="body/hand_r/weapon" unique_id=886080315]
 transform = Transform3D(1, -2.9802322e-08, -1.8626451e-09, 0, 1, 5.5879354e-09, -1.4901161e-08, 1.8626451e-09, 1, -5.9604645e-08, 0, 0)

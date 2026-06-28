@@ -11,24 +11,20 @@ func default_lifecycle(input: InputPackage) -> String:
 	if input.actions.has("jump"):
 		return "jump"
 		
-	var horizontal_speed = Vector3(character.velocity.x, 0, character.velocity.z).length()
+	var horizontal_speed = Vector3(character.frame_velocity.x, 0, character.frame_velocity.z).length()
 	if horizontal_speed < speed:
 		return best_input_that_can_be_paid(input)
 		
 	return "okay"
 
 
-func _update(delta: float, input: InputPackage):
-	update(delta, input)
-
 func update(delta: float, input: InputPackage):
 	process_slide(delta, input)
 	process_rotation(delta, input.get_input_direction())
-	character.velocity.y -= gravity * delta
-	character.move_and_slide()
+	character.frame_velocity.y -= gravity * delta
 
 func process_slide(delta: float, input: InputPackage):
-	var horizontal_vel = Vector3(character.velocity.x, 0, character.velocity.z)
+	var horizontal_vel = Vector3(character.frame_velocity.x, 0, character.frame_velocity.z)
 	horizontal_vel = horizontal_vel.lerp(Vector3.ZERO, slide_friction * delta)
 	
 	var rotated_input = input.get_rotated_input()
@@ -38,5 +34,5 @@ func process_slide(delta: float, input: InputPackage):
 		if horizontal_vel.length() > horizontal_vel.length():
 			horizontal_vel = horizontal_vel.normalized() * horizontal_vel.length()
 	
-	character.velocity.x = horizontal_vel.x
-	character.velocity.z = horizontal_vel.z
+	character.frame_velocity.x = horizontal_vel.x
+	character.frame_velocity.z = horizontal_vel.z
